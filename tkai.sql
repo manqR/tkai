@@ -117,6 +117,21 @@ INSERT INTO `kelas` (`kode`, `idkategori`, `idcabang`, `tahun_ajaran`, `wali_kel
 /*!40000 ALTER TABLE `kelas` ENABLE KEYS */;
 
 
+-- Dumping structure for table tkai.migration
+CREATE TABLE IF NOT EXISTS `migration` (
+  `version` varchar(180) NOT NULL,
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Dumping data for table tkai.migration: ~2 rows (approximately)
+/*!40000 ALTER TABLE `migration` DISABLE KEYS */;
+INSERT INTO `migration` (`version`, `apply_time`) VALUES
+	('m000000_000000_base', 1544035834),
+	('m130524_201442_init', 1544035837);
+/*!40000 ALTER TABLE `migration` ENABLE KEYS */;
+
+
 -- Dumping structure for table tkai.siswa
 CREATE TABLE IF NOT EXISTS `siswa` (
   `nis` char(20) NOT NULL,
@@ -186,6 +201,28 @@ INSERT INTO `siswa` (`nis`, `kode_siswa`, `idcabang`, `idkategori`, `nisn`, `nam
 	('180493', '1-2-180493', 1, 2, '0123463344', 'Rayyan Delisha Setiawan', 'Delisha', 'Islam', 'P', 'Jakarta', '2012-06-22', 'Jagakarsa Residence Az/20, Jl. Kebagusan Raya No 24, Jagakarsa', '081218861287 / 08811210218', 'Agus Setiawan', 'Rosmalia', 'Karyawan Swasta', '', 'yansha79@gmail.com', 'yansha79@gmail.com', '0000', '2018-12-06 00:53:00', 65),
 	('180507', '1-2-180507', 1, 2, '0128116115', 'Sarkara Laislana Sadajiwa Abhipraya', 'Sarkara', 'Islam', 'P', 'Jakarta', '2012-02-05', 'Jl. Syarpa No 114 C, Ciganjur, Jagakarsa', '81381016939', 'Mirza Siddhi Abhipraya', 'Chika Haryani', 'Karyawan Swasta', '', 'mirzajaing@gmail.com', 'mirzajaing@gmail.com', '0000', '2018-12-06 00:53:00', 66);
 /*!40000 ALTER TABLE `siswa` ENABLE KEYS */;
+
+
+-- Dumping structure for table tkai.user
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `status` smallint(6) NOT NULL DEFAULT '10',
+  `created_at` int(11) NOT NULL,
+  `updated_at` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `password_reset_token` (`password_reset_token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- Dumping data for table tkai.user: ~0 rows (approximately)
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 
 -- Dumping structure for view tkai.v_kelas_siswa
