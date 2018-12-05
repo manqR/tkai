@@ -1,0 +1,20 @@
+<?php
+
+use yii\helpers\Html;
+
+
+/* @var $this yii\web\View */
+/* @var $model backend\models\Siswa */
+
+$this->title = 'Create Siswa';
+$this->params['breadcrumbs'][] = ['label' => 'Siswas', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="siswa-create">
+
+
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+
+</div>

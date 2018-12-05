@@ -1,0 +1,12 @@
+
+
+# Report
+* Format laporan Harian SPP
+- Tambahkan Nama
+- Tgl Report adalah Tanggal Pembayaran 
+- Filter Period by date 
+- Filter by Kelas
+- Assign 1, Bendahara -> Summary
+- Assign 2, Kasir -> Group By Class
+- Assign 3, Kasir -> Detail Siswanya
+
