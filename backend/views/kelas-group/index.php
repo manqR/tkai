@@ -20,6 +20,7 @@ $root = '@web';
 $this->registerJsFile($root."/vendors/select2/select2.js",
 ['depends' => [\yii\web\JqueryAsset::className()],
 'position' => View::POS_END]);
+
 $this->registerJsFile($root."/vendors/datatables/media/js/jquery.dataTables.js",
 ['depends' => [\yii\web\JqueryAsset::className()],
 'position' => View::POS_END]);

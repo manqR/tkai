@@ -13,15 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="card card-block form-layout">
 	 
 		<?php $form = ActiveForm::begin(['id' => 'validate']); ?>        
-            <div class="text-xs-center m-b-3">
-                <img src="images/logo-icon.png" height="80" alt="" class="m-b-1"/>
-                <h5>
-                    Welcome back!
-                </h5>
-                <p class="text-muted">
-                    Sign in with your app id to continue.
-                </p>
-            </div>
+            
             <fieldset class="form-group">
                 <label for="username">
                 Enter your username

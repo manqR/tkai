@@ -15,71 +15,49 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'idsiswa') ?>
+    <?= $form->field($model, 'nis') ?>
 
-    <?= $form->field($model, 'idkelas') ?>
+    <?= $form->field($model, 'kode_siswa') ?>
 
-    <?= $form->field($model, 'idjurusan') ?>
+    <?= $form->field($model, 'idcabang') ?>
 
-    <?= $form->field($model, 'nama_lengkap') ?>
+    <?= $form->field($model, 'idkategori') ?>
 
-    <?= $form->field($model, 'jenis_kelamin') ?>
+    <?= $form->field($model, 'nisn') ?>
 
-    <?php // echo $form->field($model, 'nisn') ?>
+    <?php // echo $form->field($model, 'nama_lengkap') ?>
 
-    <?php // echo $form->field($model, 'no_seri_ijazah_smp') ?>
+    <?php // echo $form->field($model, 'nama_panggilan') ?>
 
-    <?php // echo $form->field($model, 'no_seri_skhun_smp') ?>
+    <?php // echo $form->field($model, 'agama') ?>
 
-    <?php // echo $form->field($model, 'no_ujian_nasional') ?>
-
-    <?php // echo $form->field($model, 'nik') ?>
+    <?php // echo $form->field($model, 'jenis_kelamin') ?>
 
     <?php // echo $form->field($model, 'tempat_lahir') ?>
 
     <?php // echo $form->field($model, 'tanggal_lahir') ?>
 
-    <?php // echo $form->field($model, 'agama') ?>
-
     <?php // echo $form->field($model, 'alamat') ?>
 
-    <?php // echo $form->field($model, 'kelurahan') ?>
+    <?php // echo $form->field($model, 'tlp') ?>
 
-    <?php // echo $form->field($model, 'kecamatan') ?>
+    <?php // echo $form->field($model, 'tlp_darurat') ?>
 
-    <?php // echo $form->field($model, 'kota') ?>
+    <?php // echo $form->field($model, 'nama_ayah') ?>
 
-    <?php // echo $form->field($model, 'provinsi') ?>
+    <?php // echo $form->field($model, 'nama_ibu') ?>
 
-    <?php // echo $form->field($model, 'transportasi') ?>
+    <?php // echo $form->field($model, 'pekerjaan_ayah') ?>
 
-    <?php // echo $form->field($model, 'tlp_rumah') ?>
-
-    <?php // echo $form->field($model, 'hp') ?>
+    <?php // echo $form->field($model, 'pekerjaan_ibu') ?>
 
     <?php // echo $form->field($model, 'email') ?>
 
-    <?php // echo $form->field($model, 'status_kps') ?>
+    <?php // echo $form->field($model, 'tahun_input') ?>
 
-    <?php // echo $form->field($model, 'no_kps') ?>
+    <?php // echo $form->field($model, 'tgl_input') ?>
 
-    <?php // echo $form->field($model, 'tinggi_badan') ?>
-
-    <?php // echo $form->field($model, 'berat_badan') ?>
-
-    <?php // echo $form->field($model, 'jarak_tempat_tinggal') ?>
-
-    <?php // echo $form->field($model, 'waktu_tempuh') ?>
-
-    <?php // echo $form->field($model, 'jml_saudara') ?>
-
-    <?php // echo $form->field($model, 'user_create') ?>
-
-    <?php // echo $form->field($model, 'date_create') ?>
-
-    <?php // echo $form->field($model, 'user_update') ?>
-
-    <?php // echo $form->field($model, 'date_update') ?>
+    <?php // echo $form->field($model, 'urutan') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

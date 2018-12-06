@@ -3208,7 +3208,8 @@ button.list-group-item-danger {
   background-color: transparent; }
 
 .table-responsive {
-  overflow-x: visible; }
+  /* overflow-x: visible; */
+   }
 
 table.dataTable {
   border-collapse: collapse !important; }

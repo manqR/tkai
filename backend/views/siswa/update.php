@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Siswa */
 
-$this->title = 'Update Siswa: {nameAttribute}';
+$this->title = 'Update Siswa: ' . $model->nis;
 $this->params['breadcrumbs'][] = ['label' => 'Siswas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->idsiswa, 'url' => ['view', 'id' => $model->idsiswa]];
+$this->params['breadcrumbs'][] = ['label' => $model->nis, 'url' => ['view', 'nis' => $model->nis, 'kode_siswa' => $model->kode_siswa, 'urutan' => $model->urutan]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="siswa-update">

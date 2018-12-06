@@ -94,12 +94,12 @@
                 <span class="menu-caret">
                 <i class="material-icons">arrow_drop_down</i>
                 </span>
-                <i class="material-icons text-success">account_balance</i>               
+                <i class="material-icons text-success">face</i>               
                 <span>Siswa</span>
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="registration">
+                        <a href="siswa">
                         <span>Registrasi</span>
                         </a>
                     </li>
@@ -136,68 +136,28 @@
                         <a href="kelas">
                         <span>Kelas</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="jurusan">
-                        <span>Jurusan</span>
-                        </a>
-                    </li>      
-					<li>
-                        <a href="ajaran">
-                        <span>Tahun Ajaran</span>
-                        </a>
-                    </li>                   
-					<li>
-                        <a href="biaya_tidak_tetap">
-                        <span>Biaya Tidak Tetap</span>
-                        </a>
-                    </li>                   
+                    </li>                                  
                 </ul>
             </li>
             <!-- /setup -->
 
-           <!-- Laporan pemasukan / pengeluaran -->
-           <li>
-                <a href="javascript:;">
-                <span class="menu-caret">
-                <i class="material-icons">arrow_drop_down</i>
-                </span>
-                <i class="material-icons text-default">description</i>
-                <span>Pencatatan Keuangan</span>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="pencatatan">
-                        <span>Tambah Pencatatan</span>
-                        </a>
-                    </li>                                                 
-                </ul>
-            </li>
-            <!-- /Laporan pemasukan / pengeluaran -->
+          
 
-             <!-- Kasir -->
-             <li>
-                <a href="kasir">
-                    <i class="material-icons text-danger">attach_money</i>
-                    <span>Kasir</span>
-                </a>
-            </li>
-            <!-- /kasir -->
-
-             <!-- Spp -->
-             <li>
-                <a href="spp">
-                    <i class="material-icons">receipt</i>
-                    <span>Spp</span>
-                </a>
-            </li>
-            <!-- /spp -->
-
-             <!-- Import -->
+            <!-- Import -->
              <li>
                 <a href="upload">
                     <i class="material-icons text-success">cloud_upload</i>
                     <span>Upload</span>
+                </a>
+            </li>
+            <!-- /Import -->
+
+
+              <!-- Import -->
+              <li>
+                <a href="upload">
+                    <i class="material-icons text-danger">account_balance_wallet</i>
+                    <span>Kas</span>
                 </a>
             </li>
             <!-- /Import -->

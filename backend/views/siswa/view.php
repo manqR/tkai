@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Siswa */
 
-$this->title = $model->idsiswa;
+$this->title = $model->nis;
 $this->params['breadcrumbs'][] = ['label' => 'Siswas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->idsiswa], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->idsiswa], [
+        <?= Html::a('Update', ['update', 'nis' => $model->nis, 'kode_siswa' => $model->kode_siswa, 'urutan' => $model->urutan], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'nis' => $model->nis, 'kode_siswa' => $model->kode_siswa, 'urutan' => $model->urutan], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -28,39 +28,28 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idsiswa',
-            'idkelas',
-            'idjurusan',
-            'nama_lengkap',
-            'jenis_kelamin',
+            'nis',
+            'kode_siswa',
+            'idcabang',
+            'idkategori',
             'nisn',
-            'no_seri_ijazah_smp',
-            'no_seri_skhun_smp',
-            'no_ujian_nasional',
-            'nik',
+            'nama_lengkap',
+            'nama_panggilan',
+            'agama',
+            'jenis_kelamin',
             'tempat_lahir',
             'tanggal_lahir',
-            'agama',
-            'alamat:ntext',
-            'kelurahan',
-            'kecamatan',
-            'kota',
-            'provinsi',
-            'transportasi',
-            'tlp_rumah',
-            'hp',
+            'alamat',
+            'tlp',
+            'tlp_darurat',
+            'nama_ayah',
+            'nama_ibu',
+            'pekerjaan_ayah',
+            'pekerjaan_ibu',
             'email:email',
-            'status_kps',
-            'no_kps',
-            'tinggi_badan',
-            'berat_badan',
-            'jarak_tempat_tinggal',
-            'waktu_tempuh',
-            'jml_saudara',
-            'user_create',
-            'date_create',
-            'user_update',
-            'date_update',
+            'tahun_input',
+            'tgl_input',
+            'urutan',
         ],
     ]) ?>
 

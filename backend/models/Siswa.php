@@ -7,42 +7,36 @@ use Yii;
 /**
  * This is the model class for table "siswa".
  *
- * @property string $idsiswa
- * @property string $nama_lengkap
- * @property string $jenis_kelamin
+ * @property string $nis
+ * @property string $kode_siswa
+ * @property int $idcabang
+ * @property int $idkategori
  * @property string $nisn
- * @property string $no_seri_ijazah_smp
- * @property string $no_seri_skhun_smp
- * @property string $no_ujian_nasional
- * @property string $nik
+ * @property string $nama_lengkap
+ * @property string $nama_panggilan
+ * @property string $agama
+ * @property string $jenis_kelamin
  * @property string $tempat_lahir
  * @property string $tanggal_lahir
- * @property string $agama
  * @property string $alamat
- * @property string $kelurahan
- * @property string $kecamatan
- * @property string $kota
- * @property string $provinsi
- * @property string $transportasi
- * @property string $tlp_rumah
- * @property string $hp
+ * @property string $tlp
+ * @property string $tlp_darurat
+ * @property string $nama_ayah
+ * @property string $nama_ibu
+ * @property string $pekerjaan_ayah
+ * @property string $pekerjaan_ibu
  * @property string $email
- * @property int $status_kps
- * @property string $no_kps
- * @property int $tinggi_badan
- * @property double $berat_badan
- * @property int $jarak_tempat_tinggal
- * @property int $waktu_tempuh
- * @property int $jml_saudara
- * @property string $user_create
- * @property string $date_create
- * @property string $user_update
- * @property string $date_update
+ * @property string $tahun_input
+ * @property string $tgl_input
+ * @property int $urutan
+ *
+ * @property Cabang $cabang
+ * @property Kategori $kategori
  */
 class Siswa extends \yii\db\ActiveRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName()
     {
@@ -50,62 +44,67 @@ class Siswa extends \yii\db\ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['idsiswa', 'nama_lengkap', 'jenis_kelamin', 'nisn', 'no_seri_ijazah_smp', 'no_seri_skhun_smp', 'no_ujian_nasional', 'nik', 'tempat_lahir', 'tanggal_lahir', 'agama', 'alamat', 'kelurahan', 'kecamatan', 'kota', 'provinsi', 'transportasi', 'hp', 'email', 'status_kps', 'no_kps', 'tinggi_badan', 'berat_badan', 'jarak_tempat_tinggal', 'waktu_tempuh', 'jml_saudara'], 'required'],
-            [['tanggal_lahir', 'date_create', 'date_update'], 'safe'],
-            [['alamat'], 'string'],
-            [['tinggi_badan', 'jarak_tempat_tinggal', 'waktu_tempuh', 'jml_saudara'], 'integer'],
-            [['berat_badan'], 'number'],
-            [['idsiswa', 'jenis_kelamin', 'tlp_rumah'], 'string', 'max' => 10],
-            [['nama_lengkap', 'tempat_lahir', 'agama', 'kelurahan', 'kecamatan', 'kota', 'provinsi', 'transportasi', 'email', 'user_create', 'user_update'], 'string', 'max' => 50],
-            [['nisn', 'no_seri_ijazah_smp', 'no_seri_skhun_smp', 'no_ujian_nasional', 'nik', 'no_kps'], 'string', 'max' => 20],
-            [['hp'], 'string', 'max' => 14],
-            [['status_kps'], 'string', 'max' => 4],
-            [['idsiswa'], 'unique'],
+            [['nis', 'kode_siswa', 'idcabang', 'idkategori', 'nama_lengkap', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'tlp_darurat', 'tahun_input'], 'required'],
+            [['idcabang', 'idkategori'], 'integer'],
+            [['tanggal_lahir', 'tahun_input', 'tgl_input'], 'safe'],
+            [['nis', 'kode_siswa', 'nisn'], 'string', 'max' => 20],
+            [['nama_lengkap', 'nama_panggilan', 'agama', 'tempat_lahir', 'tlp', 'tlp_darurat', 'nama_ayah', 'nama_ibu', 'pekerjaan_ayah', 'pekerjaan_ibu', 'email'], 'string', 'max' => 50],
+            [['jenis_kelamin'], 'string', 'max' => 1],
+            [['alamat'], 'string', 'max' => 1000],
+            [['idcabang'], 'exist', 'skipOnError' => true, 'targetClass' => Cabang::className(), 'targetAttribute' => ['idcabang' => 'idcabang']],
+            [['idkategori'], 'exist', 'skipOnError' => true, 'targetClass' => Kategori::className(), 'targetAttribute' => ['idkategori' => 'idkategori']],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {
         return [
-            'idsiswa' => 'Idsiswa',
-            'nama_lengkap' => 'Nama Lengkap',
-            'jenis_kelamin' => 'Jenis Kelamin',
+            'nis' => 'Nis',
+            'kode_siswa' => 'Kode Siswa',
+            'idcabang' => 'Idcabang',
+            'idkategori' => 'Idkategori',
             'nisn' => 'Nisn',
-            'no_seri_ijazah_smp' => 'No Seri Ijazah Smp',
-            'no_seri_skhun_smp' => 'No Seri Skhun Smp',
-            'no_ujian_nasional' => 'No Ujian Nasional',
-            'nik' => 'Nik',
+            'nama_lengkap' => 'Nama Lengkap',
+            'nama_panggilan' => 'Nama Panggilan',
+            'agama' => 'Agama',
+            'jenis_kelamin' => 'Jenis Kelamin',
             'tempat_lahir' => 'Tempat Lahir',
             'tanggal_lahir' => 'Tanggal Lahir',
-            'agama' => 'Agama',
             'alamat' => 'Alamat',
-            'kelurahan' => 'Kelurahan',
-            'kecamatan' => 'Kecamatan',
-            'kota' => 'Kota',
-            'provinsi' => 'Provinsi',
-            'transportasi' => 'Transportasi',
-            'tlp_rumah' => 'Tlp Rumah',
-            'hp' => 'Hp',
+            'tlp' => 'Tlp',
+            'tlp_darurat' => 'Tlp Darurat',
+            'nama_ayah' => 'Nama Ayah',
+            'nama_ibu' => 'Nama Ibu',
+            'pekerjaan_ayah' => 'Pekerjaan Ayah',
+            'pekerjaan_ibu' => 'Pekerjaan Ibu',
             'email' => 'Email',
-            'status_kps' => 'Status Kps',
-            'no_kps' => 'No Kps',
-            'tinggi_badan' => 'Tinggi Badan',
-            'berat_badan' => 'Berat Badan',
-            'jarak_tempat_tinggal' => 'Jarak Tempat Tinggal',
-            'waktu_tempuh' => 'Waktu Tempuh',
-            'jml_saudara' => 'Jml Saudara',
-            'user_create' => 'User Create',
-            'date_create' => 'Date Create',
-            'user_update' => 'User Update',
-            'date_update' => 'Date Update',
+            'tahun_input' => 'Tahun Input',
+            'tgl_input' => 'Tgl Input',
+            'urutan' => 'Urutan',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCabang()
+    {
+        return $this->hasOne(Cabang::className(), ['idcabang' => 'idcabang']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKategori()
+    {
+        return $this->hasOne(Kategori::className(), ['idkategori' => 'idkategori']);
     }
 }
