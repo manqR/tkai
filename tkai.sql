@@ -1,19 +1,14 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               10.1.6-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win64
--- HeidiSQL Version:             9.1.0.4867
+-- Host:                         localhost
+-- Server version:               10.1.25-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win32
+-- HeidiSQL Version:             9.3.0.4984
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-
--- Dumping database structure for tkai
-CREATE DATABASE IF NOT EXISTS `tkai` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `tkai`;
-
 
 -- Dumping structure for table tkai.agama
 CREATE TABLE IF NOT EXISTS `agama` (
@@ -44,6 +39,19 @@ INSERT INTO `cabang` (`keterangan`, `idcabang`, `nama_sekolah`, `alamat`, `kecam
 	('JAGAKARSA', 1, 'SEKOLAH DASAR KREATIVITAS ANAK INDONESIA', 'JL. KEDONDONG NO 18 JAGAKARSA', 'JAGAKARSA', 'KOTA '),
 	('CILANDAK', 2, 'SEKOLAH DASAR KREATIVITAS ANAK INDONESIA', '0', '0', '0');
 /*!40000 ALTER TABLE `cabang` ENABLE KEYS */;
+
+
+-- Dumping structure for table tkai.detail_menu
+CREATE TABLE IF NOT EXISTS `detail_menu` (
+  `id` int(11) NOT NULL,
+  `detail_name` varchar(50) NOT NULL,
+  `flag` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.detail_menu: ~0 rows (approximately)
+/*!40000 ALTER TABLE `detail_menu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detail_menu` ENABLE KEYS */;
 
 
 -- Dumping structure for table tkai.detil_kelas
@@ -98,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `kelas` (
   `kode` char(10) NOT NULL,
   `idkategori` int(11) NOT NULL,
   `idcabang` int(11) NOT NULL,
-  `tahun_ajaran` year(4) NOT NULL,
+  `tahun_ajaran` varchar(50) NOT NULL,
   `wali_kelas` varchar(50) DEFAULT NULL,
   `flag` int(11) DEFAULT NULL,
   `key_` char(20) NOT NULL,
@@ -110,11 +118,25 @@ CREATE TABLE IF NOT EXISTS `kelas` (
   CONSTRAINT `FK__kategori` FOREIGN KEY (`idkategori`) REFERENCES `kategori` (`idkategori`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- Dumping data for table tkai.kelas: ~1 rows (approximately)
+-- Dumping data for table tkai.kelas: ~0 rows (approximately)
 /*!40000 ALTER TABLE `kelas` DISABLE KEYS */;
 INSERT INTO `kelas` (`kode`, `idkategori`, `idcabang`, `tahun_ajaran`, `wali_kelas`, `flag`, `key_`, `urutan`) VALUES
-	('1B', 2, 1, '2018', 'Sari', 1, '1B-1-2-2018', 1);
+	('1B', 2, 1, '2018/2019', 'Sari', 1, '1B-1-2-2018', 1);
 /*!40000 ALTER TABLE `kelas` ENABLE KEYS */;
+
+
+-- Dumping structure for table tkai.menu
+CREATE TABLE IF NOT EXISTS `menu` (
+  `idmenu` int(11) NOT NULL AUTO_INCREMENT,
+  `role` int(11) NOT NULL,
+  `nama_menu` varchar(50) NOT NULL,
+  `flag` int(11) NOT NULL,
+  PRIMARY KEY (`idmenu`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.menu: ~0 rows (approximately)
+/*!40000 ALTER TABLE `menu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 
 
 -- Dumping structure for table tkai.migration
@@ -130,6 +152,21 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 	('m000000_000000_base', 1544035834),
 	('m130524_201442_init', 1544035837);
 /*!40000 ALTER TABLE `migration` ENABLE KEYS */;
+
+
+-- Dumping structure for table tkai.role
+CREATE TABLE IF NOT EXISTS `role` (
+  `idrole` int(11) NOT NULL AUTO_INCREMENT,
+  `role` char(50) NOT NULL,
+  PRIMARY KEY (`idrole`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.role: ~0 rows (approximately)
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` (`idrole`, `role`) VALUES
+	(1, 'Super User'),
+	(2, 'Admin');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
 
 
 -- Dumping structure for table tkai.siswa
@@ -203,9 +240,26 @@ INSERT INTO `siswa` (`nis`, `kode_siswa`, `idcabang`, `idkategori`, `nisn`, `nam
 /*!40000 ALTER TABLE `siswa` ENABLE KEYS */;
 
 
+-- Dumping structure for table tkai.tahun_ajaran
+CREATE TABLE IF NOT EXISTS `tahun_ajaran` (
+  `idtahun_ajaran` int(11) NOT NULL AUTO_INCREMENT,
+  `tahun_ajaran` varchar(20) NOT NULL,
+  `flag` int(11) NOT NULL,
+  PRIMARY KEY (`idtahun_ajaran`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.tahun_ajaran: ~1 rows (approximately)
+/*!40000 ALTER TABLE `tahun_ajaran` DISABLE KEYS */;
+INSERT INTO `tahun_ajaran` (`idtahun_ajaran`, `tahun_ajaran`, `flag`) VALUES
+	(1, '2018/2019', 1);
+/*!40000 ALTER TABLE `tahun_ajaran` ENABLE KEYS */;
+
+
 -- Dumping structure for table tkai.user
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role` int(11) NOT NULL DEFAULT '0',
+  `cabang` int(11) NOT NULL DEFAULT '0',
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -218,10 +272,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `password_reset_token` (`password_reset_token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table tkai.user: ~0 rows (approximately)
+-- Dumping data for table tkai.user: ~1 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`id`, `role`, `cabang`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
+	(1, 1, 0, 'admin', 'I7d86l9yJIE7KXwqoLHJvX9QKHyBq-NN', '$2y$13$JXc4Lc7m1SYcV3TE8hFsq.2O7iZSJFcJrYF4AyTk/4kZweg0V1Gz2', NULL, 'admin@tkai.com', 10, 1544059878, 1544059878);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 
@@ -251,7 +307,7 @@ CREATE TABLE `v_kelas_siswa` (
 	`pekerjaan_ayah` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
 	`pekerjaan_ibu` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
 	`email` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
-	`tahun_ajaran` YEAR NOT NULL,
+	`tahun_ajaran` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`idkategori` INT(11) NOT NULL,
 	`idcabang` INT(11) NOT NULL,
 	`key_` CHAR(20) NOT NULL COLLATE 'utf8_general_ci',
@@ -265,8 +321,8 @@ CREATE TABLE `v_siswa` (
 	`nis` CHAR(20) NOT NULL COLLATE 'utf8_general_ci',
 	`kategori` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`idkategori` INT(11) NOT NULL,
-	`Cabang` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
-	`kode_cabang` INT(11) NOT NULL,
+	`cabang` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`idcabang` INT(11) NOT NULL,
 	`nisn` CHAR(20) NULL COLLATE 'utf8_general_ci',
 	`nama_lengkap` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`nama_panggilan` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
@@ -282,7 +338,11 @@ CREATE TABLE `v_siswa` (
 	`pekerjaan_ayah` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
 	`pekerjaan_ibu` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
 	`email` VARCHAR(50) NULL COLLATE 'utf8_general_ci',
-	`tahun_ajaran` YEAR NOT NULL
+	`tahun_ajaran` YEAR NOT NULL,
+	`kode_siswa` CHAR(20) NOT NULL COLLATE 'utf8_general_ci',
+	`tahun_input` YEAR NOT NULL,
+	`tgl_input` DATETIME NOT NULL,
+	`urutan` INT(11) NOT NULL
 ) ENGINE=MyISAM;
 
 
@@ -330,8 +390,8 @@ DROP TABLE IF EXISTS `v_siswa`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` VIEW `v_siswa` AS SELECT a.nis
 		,b.keterangan 'kategori'
 		,b.idkategori idkategori
-		,c.keterangan 'Cabang'
-		,c.idcabang kode_cabang
+		,c.keterangan 'cabang'
+		,c.idcabang 
 		,a.nisn
 		,a.nama_lengkap
 		,a.nama_panggilan
@@ -348,6 +408,10 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` VIEW `v_siswa` AS SELECT a
 		,a.pekerjaan_ibu
 		,a.email
 		,a.tahun_input 'tahun_ajaran'
+		,a.kode_siswa
+		,a.tahun_input
+		,a.tgl_input
+		,a.urutan
 FROM siswa a 
 JOIN kategori b ON a.idkategori = b.idkategori
 JOIN cabang c ON a.idcabang = c.idcabang ;
