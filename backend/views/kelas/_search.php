@@ -4,28 +4,32 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\KelasGroupSearch */
+/* @var $model backend\models\KelasSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="kelas-group-search">
+<div class="kelas-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'idgroup') ?>
+    <?= $form->field($model, 'kode') ?>
 
-    <?= $form->field($model, 'idkelas') ?>
+    <?= $form->field($model, 'idkategori') ?>
 
-    <?= $form->field($model, 'idjurusan') ?>
-
-    <?= $form->field($model, 'wali_kelas') ?>
+    <?= $form->field($model, 'idcabang') ?>
 
     <?= $form->field($model, 'tahun_ajaran') ?>
 
-    <?php // echo $form->field($model, 'status') ?>
+    <?= $form->field($model, 'wali_kelas') ?>
+
+    <?php // echo $form->field($model, 'flag') ?>
+
+    <?php // echo $form->field($model, 'key_') ?>
+
+    <?php // echo $form->field($model, 'urutan') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

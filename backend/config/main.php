@@ -7,7 +7,8 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-backend',
+	'id' => 'app-backend',
+	'name' => 'TKAI',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
@@ -22,7 +23,7 @@ return [
 				
 				//---------------------------------- index -----------------------------//
 				'siswa'=>'siswa/index',
-				'f_table'=>'siswa/function-table',
+				'kelas-siswa'=>'kelas/index',				
 				
 				
 				//---------------------------------- Login -----------------------------//

@@ -12,6 +12,7 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'vendors/select2/select2.css',
         'vendors/bootstrap/dist/css/bootstrap.css',
         'vendors/pace/themes/blue/pace-theme-minimal.css',
         'vendors/font-awesome/css/font-awesome.css',
@@ -19,7 +20,8 @@ class AppAsset extends AssetBundle
         'styles/app.css',
         'styles/app.skins.css',        
         'vendors/datatables/media/css/dataTables.bootstrap4.css',
-        'vendors/sweetalert/dist/sweetalert.css',
+        'vendors/sweetalert/dist/sweetalert.css',        
+       
         
     ];
     public $js = [
@@ -31,7 +33,9 @@ class AppAsset extends AssetBundle
         'vendors/datatables/media/js/jquery.dataTables.js',
         'vendors/datatables/media/js/dataTables.bootstrap4.js',
         'vendors/sweetalert/dist/sweetalert.min.js',
-		'scripts/constants.js',
+        'vendors/select2/select2.js',
+        'scripts/constants.js',
+        'scripts/forms/plugins.js',
 		'scripts/main.js',
 		'inc/apiTable.js',
     ];

@@ -11,6 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 include './inc/table.php';
+include './inc/models.php';   
 /**
  * SiswaController implements the CRUD actions for Siswa model.
  */
@@ -37,12 +38,10 @@ class SiswaController extends Controller
      * @return mixed
      */
     public function actionIndex(){
-                     
-        $obj = new Siswa();
-        $arrFields = array_keys($obj->attributes); 
-        
+
+            
         return $this->render('index', [
-            'arrFields' => $arrFields,                   
+            'arrFields' => AttributeSiswa(),                   
         ]);
     }
 
@@ -67,14 +66,7 @@ class SiswaController extends Controller
      * @return mixed
      */
 
-    public function actionFunctionTable(){
-        $arr = array(
-            'Title1'
-            ,'Title2'
-            ,'Title3'
-        );
-        TablewithCrud($arr);
-    }
+ 
     public function actionCreate()
     {
         $model = new Siswa();

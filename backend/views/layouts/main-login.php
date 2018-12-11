@@ -75,12 +75,12 @@ $this->registerCss("
 						<?= $content ?>
 				
 						<footer class="text-xs-center p-y-1">
-							<p>
+							<!-- <p>
 								<a href="extra-forgot.html">
 									Forgot password?
 								</a>
 							
-							</p>
+							</p> -->
 						</footer>
 						
 					</div>

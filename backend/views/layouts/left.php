@@ -62,8 +62,7 @@
         </a>
         <div class="dropdown-menu">
             <a class="dropdown-item" href="javascript:;">Profile</a>                       
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="javascript:;">Help</a>			
+            <div class="dropdown-divider"></div>            		
 			<?=				  
 				  Html::beginForm(['/site/logout'], 'post')
 				. Html::submitButton(
@@ -104,7 +103,7 @@
                         </a>
                     </li>
 					<li>
-                        <a href="class">
+                        <a href="kelas-siswa">
                         <span>Kelas</span>
                         </a>
                     </li>      
@@ -133,8 +132,18 @@
                         </a>
                     </li>
                     <li>
-                        <a href="kelas">
+                        <a href="kelasx">
                         <span>Kelas</span>
+                        </a>
+                    </li>                                  
+                    <li>
+                        <a href="karyawan">
+                        <span>Karyawan</span>
+                        </a>
+                    </li>                                  
+                    <li>
+                        <a href="role">
+                        <span>Role Karyawan</span>
                         </a>
                     </li>                                  
                 </ul>
