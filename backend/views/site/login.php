@@ -7,6 +7,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
+$this->title = 'login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="session-content">
