@@ -3,20 +3,21 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Kelas;
-use backend\models\KelasSearch;
+use backend\models\TahunAjaran;
+use backend\models\TahunAjaranSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * KelasController implements the CRUD actions for Kelas model.
+ * TahunAjaranController implements the CRUD actions for TahunAjaran model.
  */
 
-include './inc/table.php';
-include './inc/models.php';   
 
-class KelasController extends Controller
+include './inc/table.php';
+include './inc/models.php';        
+       
+class TahunAjaranController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -34,47 +35,40 @@ class KelasController extends Controller
     }
 
     /**
-     * Lists all Kelas models.
+     * Lists all TahunAjaran models.
      * @return mixed
      */
     public function actionIndex()
     {
-   
         return $this->render('index', [
-            'arrFields' => AttributeKelas(),                   
+            'arrFields' => AttributeTahunAjaran(),                   
         ]);
     }
 
     /**
-     * Displays a single Kelas model.
-     * @param string $key_
-     * @param integer $urutan
+     * Displays a single TahunAjaran model.
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($key_, $urutan)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($key_, $urutan),
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Kelas model.
+     * Creates a new TahunAjaran model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Kelas();
+        $model = new TahunAjaran();
 
-        if ($model->load(Yii::$app->request->post())){
-            $tahun = explode('/',$model->tahun_ajaran);
-            $key = $model->kode.'-'.$model->idcabang.'-'.$model->idkategori.'-'.$tahun[0];
-            $model->key_ = $key;            
-
-            $model->save();
-            return $this->redirect('kelas');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect('tahun-ajaran');
         }
 
         return $this->render('create', [
@@ -83,19 +77,18 @@ class KelasController extends Controller
     }
 
     /**
-     * Updates an existing Kelas model.
+     * Updates an existing TahunAjaran model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $key_
-     * @param integer $urutan
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($key_, $urutan)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($key_, $urutan);
+        $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'key_' => $model->key_, 'urutan' => $model->urutan]);
+            return $this->redirect(['view', 'id' => $model->idtahun_ajaran]);
         }
 
         return $this->render('update', [
@@ -104,31 +97,29 @@ class KelasController extends Controller
     }
 
     /**
-     * Deletes an existing Kelas model.
+     * Deletes an existing TahunAjaran model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $key_
-     * @param integer $urutan
+     * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($key_, $urutan)
+    public function actionDelete($id)
     {
-        $this->findModel($key_, $urutan)->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Kelas model based on its primary key value.
+     * Finds the TahunAjaran model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $key_
-     * @param integer $urutan
-     * @return Kelas the loaded model
+     * @param integer $id
+     * @return TahunAjaran the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($key_, $urutan)
+    protected function findModel($id)
     {
-        if (($model = Kelas::findOne(['key_' => $key_, 'urutan' => $urutan])) !== null) {
+        if (($model = TahunAjaran::findOne($id)) !== null) {
             return $model;
         }
 

@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use backend\models\Kelas;
+use backend\models\TahunAjaran;
 
 /**
- * KelasSearch represents the model behind the search form of `backend\models\Kelas`.
+ * TahunAjaranSearch represents the model behind the search form of `backend\models\TahunAjaran`.
  */
-class KelasSearch extends Kelas
+class TahunAjaranSearch extends TahunAjaran
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,8 @@ class KelasSearch extends Kelas
     public function rules()
     {
         return [
-            [['kode', 'tahun_ajaran', 'wali_kelas', 'key_'], 'safe'],
-            [['idkategori', 'idcabang', 'flag', 'urutan'], 'integer'],
+            [['idtahun_ajaran', 'flag'], 'integer'],
+            [['tahun_ajaran'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class KelasSearch extends Kelas
      */
     public function search($params)
     {
-        $query = Kelas::find();
+        $query = TahunAjaran::find();
 
         // add conditions that should always apply here
 
@@ -59,16 +59,11 @@ class KelasSearch extends Kelas
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'idkategori' => $this->idkategori,
-            'idcabang' => $this->idcabang,
+            'idtahun_ajaran' => $this->idtahun_ajaran,
             'flag' => $this->flag,
-            'urutan' => $this->urutan,
         ]);
 
-        $query->andFilterWhere(['like', 'kode', $this->kode])
-            ->andFilterWhere(['like', 'tahun_ajaran', $this->tahun_ajaran])
-            ->andFilterWhere(['like', 'wali_kelas', $this->wali_kelas])
-            ->andFilterWhere(['like', 'key_', $this->key_]);
+        $query->andFilterWhere(['like', 'tahun_ajaran', $this->tahun_ajaran]);
 
         return $dataProvider;
     }

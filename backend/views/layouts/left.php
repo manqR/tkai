@@ -98,12 +98,17 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="siswa">
+                        <a href="registrasi">
                         <span>Registrasi</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="siswa">
+                        <span>Siswa</span>
+                        </a>
+                    </li>
 					<li>
-                        <a href="kelas-siswa">
+                        <a href="kelassiswa">
                         <span>Kelas</span>
                         </a>
                     </li>      
@@ -126,16 +131,23 @@
                 <span>Pengaturan</span>
                 </a>
                 <ul class="sub-menu">
+                    
+                    <li>
+                        <a href="tahun-ajaran">
+                        <span>Tahun Ajaran</span>
+                        </a>
+                    </li>    
+                    <li>
+                        <a href="kelas">
+                        <span>Kelas</span>
+                        </a>
+                    </li>    
                     <li>
                         <a href="tagihan">
                         <span>Tagihan</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="kelasx">
-                        <span>Kelas</span>
-                        </a>
-                    </li>                                  
+                                                 
                     <li>
                         <a href="karyawan">
                         <span>Karyawan</span>

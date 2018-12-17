@@ -22,10 +22,16 @@ return [
 			'rules'=>[
 				
 				//---------------------------------- index -----------------------------//
+				'registrasi'=>'registrasi/index',
 				'siswa'=>'siswa/index',
-				'kelas-siswa'=>'kelas/index',				
+				'kelassiswa'=>'kelas-siswa/index',				
+				'kelas'=>'kelas/index',				
+				'tahun-ajaran'=>'tahun-ajaran/index',				
 				
-				
+                //---------------------------------- Create -----------------------------//
+                'kelas-create'=>'kelas/create',			
+                'tahun-ajaran-create'=>'tahun-ajaran/create',			
+                
 				//---------------------------------- Login -----------------------------//
 				'login'=>'site/login',
 

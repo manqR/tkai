@@ -8,17 +8,17 @@ use yii\web\View;
 /* @var $searchModel backend\models\SiswaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Siswa';
+$this->title = 'Registrasi Siswa';
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJs("
-    tableShow('.datatable','./api/siswa');
+    tableShow('.datatable','./api/register');
 ");
 
 ?>
 <div class="card">
     <div class="card-block">
-        <!-- <p><?= Html::a(' Tambah Siswa', ['create'], ['class' => 'btn btn-success fa fa-plus']) ?></p> -->
+        <p><?= Html::a(' Tambah Siswa', ['create'], ['class' => 'btn btn-success fa fa-plus']) ?></p>
         <?php
             TablewithCrud($arrFields);            
         ?>

@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Kelas */
+/* @var $model backend\models\TahunAjaran */
 
-$this->title = $model->key_;
-$this->params['breadcrumbs'][] = ['label' => 'Kelas', 'url' => ['index']];
+$this->title = $model->idtahun_ajaran;
+$this->params['breadcrumbs'][] = ['label' => 'Tahun Ajarans', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="kelas-view card card-block">
+<div class="tahun-ajaran-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'key_' => $model->key_, 'urutan' => $model->urutan], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'key_' => $model->key_, 'urutan' => $model->urutan], [
+        <?= Html::a('Update', ['update', 'id' => $model->idtahun_ajaran], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->idtahun_ajaran], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -28,11 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'kode',
-            'idkategori',
-            'idcabang',
+            'idtahun_ajaran',
             'tahun_ajaran',
-            'wali_kelas',            
+            'flag',
         ],
     ]) ?>
 

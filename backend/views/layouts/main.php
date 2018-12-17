@@ -69,6 +69,30 @@
 			</div>			
 		<?php $this->endBody() ?>
 	</body>
+
+<script>
+	
+
+
+   	// const url = 'http://localhost/tkai/api/siswa';
+	// fetch(url)
+	// .then(response => response.json())
+	// .then(json => {                              
+	// 	// appendData(json)
+		
+	// })
+	// .catch(error => {
+	// 	console.log(error)
+	// })
+
+	if ('serviceWorker' in navigator) {
+  		navigator.serviceWorker.register('./sw.js').then(() => {
+    		console.log('[App] Service Worker Registered')
+  		})
+	}	
+
+</script>
+
 </html>
 <?php $this->endPage() ?>
 <?php } ?>
