@@ -63,5 +63,20 @@
 
         return $attribute;
     }
+    function AttributeTagihan(){
+        $attribute = array(
+             'Cabang'
+            ,'Grade'   
+            ,'Tahun Ajaran'
+            ,'Seragam'
+            ,'Peralatan'
+            ,'Uang Pangkal'
+            ,'Uang Bangunan'
+            ,'Material'
+            ,'Aksi'
+        );
+
+        return $attribute;
+    }
 
 ?>

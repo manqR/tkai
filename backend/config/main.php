@@ -27,10 +27,12 @@ return [
 				'kelassiswa'=>'kelas-siswa/index',				
 				'kelas'=>'kelas/index',				
 				'tahun-ajaran'=>'tahun-ajaran/index',				
+				'tagihan'=>'tagihan/index',				
 				
                 //---------------------------------- Create -----------------------------//
                 'kelas-create'=>'kelas/create',			
                 'tahun-ajaran-create'=>'tahun-ajaran/create',			
+                'tagihan-create'=>'tagihan/create',			
                 
 				//---------------------------------- Login -----------------------------//
 				'login'=>'site/login',

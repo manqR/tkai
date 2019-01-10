@@ -22,17 +22,5 @@
                 </div>';
         echo  $table;
 
-    }
-    function TablewithPost(){
-
-    }
-    function TableonlyRead(){
-
-    }
-    function TableonlyRE(){
-        
-    }
-    function TablewithPrint(){
-
-    }
+    }    
 ?>

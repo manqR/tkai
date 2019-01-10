@@ -14,6 +14,7 @@ use backend\models\Cabang;
 use backend\models\DetilKelas;
 
 
+include './inc/money.php';
 class ApiController extends Controller
 {
     public static function allowedDomains(){
@@ -375,6 +376,39 @@ class ApiController extends Controller
             $output[$i] = array($models->tahun_ajaran                                                      
                             ,$status                                                        
                             ,$aksi
+                        );
+		endforeach;
+		
+		$data = json_encode($output);
+		$data = [
+			'data'=>$output
+		];
+		
+		Yii::$app->response->format = Response::FORMAT_JSON;
+		return $data;
+    }
+
+    public function actionTagihan(){     
+        
+        $filter = Yii::$app->user->identity->cabang == 0 ? "" : "WHERE idcabang = ".Yii::$app->user->identity->cabang;
+        $connection = \Yii::$app->db;
+        $sql = $connection->createCommand("SELECT * FROM v_tagihan ".$filter);
+                                         
+        $model = $sql->queryAll();    
+        $output = array();        
+        $aksi = "<i class=\"material-icons view\" aria-hidden=\"true\" data-id=\"\">delete</i> | <i class=\"material-icons edit\" aria-hidden=\"true\" data-id=\"\">edit</i>";
+        foreach($model as $i => $models):          
+
+            $output[$i] = array(
+                             $models['cabang']                                                   
+                            ,$models['grade']                                                        
+                            ,$models['tahun_ajaran']                                                                                    
+                            ,FormatRupiah($models['seragam'])
+                            ,FormatRupiah($models['peralatan'])                                                                                    
+                            ,FormatRupiah($models['uang_pangkal'])                                                                                    
+                            ,FormatRupiah($models['uang_bangunan'])                                                                                    
+                            ,FormatRupiah($models['material'])
+                            ,$aksi                                                                                                                                                                                          
                         );
 		endforeach;
 		
