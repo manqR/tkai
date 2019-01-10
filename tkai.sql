@@ -1,8 +1,8 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               10.1.6-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win64
--- HeidiSQL Version:             9.1.0.4867
+-- Host:                         localhost
+-- Server version:               10.1.25-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win32
+-- HeidiSQL Version:             9.3.0.4984
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -61,9 +61,10 @@ CREATE TABLE IF NOT EXISTS `detil_kelas` (
   PRIMARY KEY (`key_`,`kode_siswa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table tkai.detil_kelas: ~21 rows (approximately)
+-- Dumping data for table tkai.detil_kelas: ~22 rows (approximately)
 /*!40000 ALTER TABLE `detil_kelas` DISABLE KEYS */;
 INSERT INTO `detil_kelas` (`key_`, `kode_siswa`) VALUES
+	('1A-1-2-2018', '1-2-﻿180514'),
 	('1B-1-2-2018', '1-2-180472'),
 	('1B-1-2-2018', '1-2-180474'),
 	('1B-1-2-2018', '1-2-180478'),
@@ -120,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `kelas` (
   CONSTRAINT `FK__kategori` FOREIGN KEY (`idkategori`) REFERENCES `kategori` (`idkategori`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- Dumping data for table tkai.kelas: ~3 rows (approximately)
+-- Dumping data for table tkai.kelas: ~4 rows (approximately)
 /*!40000 ALTER TABLE `kelas` DISABLE KEYS */;
 INSERT INTO `kelas` (`kode`, `idkategori`, `idcabang`, `tahun_ajaran`, `wali_kelas`, `flag`, `key_`, `urutan`) VALUES
 	('1B', 2, 1, '2018/2019', 'Sari', 1, '1B-1-2-2018', 1),
@@ -157,6 +158,35 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 	('m000000_000000_base', 1544035834),
 	('m130524_201442_init', 1544035837);
 /*!40000 ALTER TABLE `migration` ENABLE KEYS */;
+
+
+-- Dumping structure for table tkai.pembayaran
+CREATE TABLE IF NOT EXISTS `pembayaran` (
+  `idpembayaran` char(20) NOT NULL,
+  `kode_siswa` char(20) NOT NULL,
+  `idtagihan` char(20) NOT NULL,
+  `tahun_ajaran` varchar(20) NOT NULL,
+  `nominal` double NOT NULL,
+  `kasir` varchar(20) NOT NULL,
+  `tanggal_pembayaran` datetime NOT NULL,
+  PRIMARY KEY (`idpembayaran`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.pembayaran: ~0 rows (approximately)
+/*!40000 ALTER TABLE `pembayaran` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pembayaran` ENABLE KEYS */;
+
+
+-- Dumping structure for table tkai.pembayaran_detail
+CREATE TABLE IF NOT EXISTS `pembayaran_detail` (
+  `idpembayaran` char(20) NOT NULL,
+  `keterangan` varchar(50) NOT NULL,
+  `nominal` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.pembayaran_detail: ~0 rows (approximately)
+/*!40000 ALTER TABLE `pembayaran_detail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pembayaran_detail` ENABLE KEYS */;
 
 
 -- Dumping structure for table tkai.role
@@ -246,6 +276,53 @@ INSERT INTO `siswa` (`nis`, `kode_siswa`, `idcabang`, `idkategori`, `nisn`, `nam
 /*!40000 ALTER TABLE `siswa` ENABLE KEYS */;
 
 
+-- Dumping structure for table tkai.tagihan
+CREATE TABLE IF NOT EXISTS `tagihan` (
+  `idtagihan` char(20) NOT NULL,
+  `idcabang` int(11) NOT NULL,
+  `idkategori` int(11) NOT NULL,
+  `tahun_ajaran` varchar(10) NOT NULL,
+  `seragam` double NOT NULL,
+  `peralatan` double NOT NULL,
+  `uang_pangkal` double NOT NULL,
+  `uang_bangunan` double NOT NULL,
+  `material` double NOT NULL,
+  `urutan` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`urutan`,`idtagihan`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.tagihan: ~2 rows (approximately)
+/*!40000 ALTER TABLE `tagihan` DISABLE KEYS */;
+INSERT INTO `tagihan` (`idtagihan`, `idcabang`, `idkategori`, `tahun_ajaran`, `seragam`, `peralatan`, `uang_pangkal`, `uang_bangunan`, `material`, `urutan`) VALUES
+	('INV-011961384', 1, 2, '2018/2019', 250000, 2000000, 1500000, 5000000, 1000000, 8),
+	('INV-011983245', 1, 1, '2018/2019', 250000, 2000000, 1500000, 5000000, 1000000, 9);
+/*!40000 ALTER TABLE `tagihan` ENABLE KEYS */;
+
+
+-- Dumping structure for table tkai.tagihan_siswa
+CREATE TABLE IF NOT EXISTS `tagihan_siswa` (
+  `kode_siswa` char(20) NOT NULL,
+  `kode_kelas` char(10) NOT NULL,
+  `idtagihan` char(20) NOT NULL,
+  `idcabang` int(11) NOT NULL,
+  `idkategori` int(11) NOT NULL,
+  `tahun_ajaran` varchar(20) NOT NULL,
+  `seragam` double NOT NULL,
+  `peralatan` double NOT NULL,
+  `uang_pangkal` double NOT NULL,
+  `uang_bangunan` double NOT NULL,
+  `material` double NOT NULL,
+  `tanggal_assign` datetime NOT NULL,
+  `user_assign` varchar(50) NOT NULL,
+  `urutan` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`urutan`,`kode_siswa`,`idtagihan`,`tahun_ajaran`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.tagihan_siswa: ~0 rows (approximately)
+/*!40000 ALTER TABLE `tagihan_siswa` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tagihan_siswa` ENABLE KEYS */;
+
+
 -- Dumping structure for table tkai.tahun_ajaran
 CREATE TABLE IF NOT EXISTS `tahun_ajaran` (
   `idtahun_ajaran` int(11) NOT NULL AUTO_INCREMENT,
@@ -254,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `tahun_ajaran` (
   PRIMARY KEY (`idtahun_ajaran`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table tkai.tahun_ajaran: ~1 rows (approximately)
+-- Dumping data for table tkai.tahun_ajaran: ~2 rows (approximately)
 /*!40000 ALTER TABLE `tahun_ajaran` DISABLE KEYS */;
 INSERT INTO `tahun_ajaran` (`idtahun_ajaran`, `tahun_ajaran`, `flag`) VALUES
 	(1, '2018/2019', 1),
@@ -284,7 +361,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table tkai.user: ~0 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `role`, `cabang`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
-	(1, 1, 0, 'admin', 'I7d86l9yJIE7KXwqoLHJvX9QKHyBq-NN', '$2y$13$JXc4Lc7m1SYcV3TE8hFsq.2O7iZSJFcJrYF4AyTk/4kZweg0V1Gz2', NULL, 'admin@tkai.com', 10, 1544059878, 1544059878);
+	(1, 1, 1, 'admin', 'I7d86l9yJIE7KXwqoLHJvX9QKHyBq-NN', '$2y$13$JXc4Lc7m1SYcV3TE8hFsq.2O7iZSJFcJrYF4AyTk/4kZweg0V1Gz2', NULL, 'admin@tkai.com', 10, 1544059878, 1544059878);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 
@@ -351,6 +428,24 @@ CREATE TABLE `v_siswa` (
 	`tgl_input` DATETIME NOT NULL,
 	`status` TINYINT(4) NOT NULL,
 	`urutan` INT(11) NOT NULL
+) ENGINE=MyISAM;
+
+
+-- Dumping structure for view tkai.v_tagihan
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `v_tagihan` (
+	`idtagihan` CHAR(20) NOT NULL COLLATE 'latin1_swedish_ci',
+	`idcabang` INT(11) NOT NULL,
+	`idkategori` INT(11) NOT NULL,
+	`tahun_ajaran` VARCHAR(10) NOT NULL COLLATE 'latin1_swedish_ci',
+	`seragam` DOUBLE NOT NULL,
+	`peralatan` DOUBLE NOT NULL,
+	`uang_pangkal` DOUBLE NOT NULL,
+	`uang_bangunan` DOUBLE NOT NULL,
+	`material` DOUBLE NOT NULL,
+	`urutan` INT(11) NOT NULL,
+	`cabang` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
+	`grade` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
 
@@ -424,6 +519,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` VIEW `v_siswa` AS SELECT a
 FROM siswa a 
 JOIN kategori b ON a.idkategori = b.idkategori
 JOIN cabang c ON a.idcabang = c.idcabang ;
+
+
+-- Dumping structure for view tkai.v_tagihan
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `v_tagihan`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` VIEW `v_tagihan` AS SELECT a.*, b.keterangan `cabang`, c.keterangan grade
+FROM tagihan a 
+JOIN cabang b ON a.idcabang = b.idcabang 
+JOIN kategori c ON a.idkategori = c.idkategori ;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
