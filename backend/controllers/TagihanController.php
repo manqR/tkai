@@ -5,6 +5,8 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Tagihan;
 use backend\models\Kategori;
+use backend\models\TagihanSpp;
+use backend\models\BulanSpp;
 use backend\models\TagihanSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -68,6 +70,8 @@ class TagihanController extends Controller
      */
     public function actionCreate(){
         $model = new Tagihan();
+        $spp = new TagihanSpp();
+
         $kode = 'INV-'.date('my').rand(10000,99999);
 
         $grade = Kategori::find()
@@ -78,7 +82,8 @@ class TagihanController extends Controller
         $sql = $connection->createCommand("SELECT * FROM cabang ".$filter);
         $cabang = $sql->queryAll();  
 
-        if ($model->load(Yii::$app->request->post())){       
+        if ($model->load(Yii::$app->request->post()) && 
+            $spp->load(Yii::$app->request->post())){       
             if($_POST){
 
                 $check = Tagihan::find()
@@ -89,13 +94,27 @@ class TagihanController extends Controller
                 if($check > 0){
                     Yii::$app->session->setFlash('error');
                 }else{
+                    
+                    $listSpp = BulanSpp::find()
+                            ->all();
+                    
+                    foreach ($listSpp as $listSpps):
+                       $spps = new TagihanSpp();
+
+                       $spps->idtagihan = $kode;
+                       $spps->bulan = $listSpps->bulan;                    
+                       $spps->nominal = SaveRupiah($spp->nominal);                    
+                       $spps->save(false);
+                    endforeach;
+                    
                     $model->idcabang = $_POST['branchSelect'];     
                     $model->idkategori = $_POST['GradeSelect'];     
                     $model->seragam = SaveRupiah($model->seragam);
                     $model->peralatan = SaveRupiah($model->peralatan);
                     $model->uang_pangkal = SaveRupiah($model->uang_pangkal);
                     $model->uang_bangunan = SaveRupiah($model->uang_bangunan);
-                    $model->material = SaveRupiah($model->material);
+                    $model->material_penunjang = SaveRupiah($model->material_penunjang);
+                    $model->material_tahunan = SaveRupiah($model->material_tahunan);
                     $model->save();
                     Yii::$app->session->setFlash('success');
                     return $this->redirect(['index']);
@@ -109,7 +128,8 @@ class TagihanController extends Controller
             'model' => $model,
             'kode' =>$kode,
             'cabang' => $cabang,
-            'grade' => $grade
+            'grade' => $grade,
+            'spp' =>$spp
         ]);
     }
 

@@ -72,7 +72,8 @@
             ,'Peralatan'
             ,'Uang Pangkal'
             ,'Uang Bangunan'
-            ,'Material'
+            ,'Material Penunjang'
+            ,'Material Tahunan'
             ,'Aksi'
         );
 

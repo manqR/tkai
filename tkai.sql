@@ -1,14 +1,20 @@
 -- --------------------------------------------------------
--- Host:                         localhost
--- Server version:               10.1.25-MariaDB - mariadb.org binary distribution
--- Server OS:                    Win32
--- HeidiSQL Version:             9.3.0.4984
+-- Host:                         127.0.0.1
+-- Server version:               10.2.21-MariaDB - mariadb.org binary distribution
+-- Server OS:                    Win64
+-- HeidiSQL Version:             9.4.0.5125
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+-- Dumping database structure for tkai
+CREATE DATABASE IF NOT EXISTS `tkai` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `tkai`;
 
 -- Dumping structure for table tkai.agama
 CREATE TABLE IF NOT EXISTS `agama` (
@@ -21,6 +27,29 @@ CREATE TABLE IF NOT EXISTS `agama` (
 /*!40000 ALTER TABLE `agama` DISABLE KEYS */;
 /*!40000 ALTER TABLE `agama` ENABLE KEYS */;
 
+-- Dumping structure for table tkai.bulan_spp
+CREATE TABLE IF NOT EXISTS `bulan_spp` (
+  `bulan` varchar(50) NOT NULL,
+  `urutan` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`urutan`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.bulan_spp: ~12 rows (approximately)
+/*!40000 ALTER TABLE `bulan_spp` DISABLE KEYS */;
+INSERT INTO `bulan_spp` (`bulan`, `urutan`) VALUES
+	('Juli', 1),
+	('Agustus', 2),
+	('September', 3),
+	('Oktober', 4),
+	('November', 5),
+	('Desember', 6),
+	('Januari', 7),
+	('Februari', 8),
+	('Maret', 9),
+	('April', 10),
+	('Mei', 11),
+	('Juni', 12);
+/*!40000 ALTER TABLE `bulan_spp` ENABLE KEYS */;
 
 -- Dumping structure for table tkai.cabang
 CREATE TABLE IF NOT EXISTS `cabang` (
@@ -40,7 +69,6 @@ INSERT INTO `cabang` (`keterangan`, `idcabang`, `nama_sekolah`, `alamat`, `kecam
 	('CILANDAK', 2, 'SEKOLAH DASAR KREATIVITAS ANAK INDONESIA', '0', '0', '0');
 /*!40000 ALTER TABLE `cabang` ENABLE KEYS */;
 
-
 -- Dumping structure for table tkai.detail_menu
 CREATE TABLE IF NOT EXISTS `detail_menu` (
   `id` int(11) NOT NULL,
@@ -52,7 +80,6 @@ CREATE TABLE IF NOT EXISTS `detail_menu` (
 -- Dumping data for table tkai.detail_menu: ~0 rows (approximately)
 /*!40000 ALTER TABLE `detail_menu` DISABLE KEYS */;
 /*!40000 ALTER TABLE `detail_menu` ENABLE KEYS */;
-
 
 -- Dumping structure for table tkai.detil_kelas
 CREATE TABLE IF NOT EXISTS `detil_kelas` (
@@ -88,7 +115,6 @@ INSERT INTO `detil_kelas` (`key_`, `kode_siswa`) VALUES
 	('1B-1-2-2018', '1-2-﻿180514');
 /*!40000 ALTER TABLE `detil_kelas` ENABLE KEYS */;
 
-
 -- Dumping structure for table tkai.kategori
 CREATE TABLE IF NOT EXISTS `kategori` (
   `keterangan` varchar(50) NOT NULL,
@@ -102,7 +128,6 @@ INSERT INTO `kategori` (`keterangan`, `idkategori`) VALUES
 	('TK', 1),
 	('SD', 2);
 /*!40000 ALTER TABLE `kategori` ENABLE KEYS */;
-
 
 -- Dumping structure for table tkai.kelas
 CREATE TABLE IF NOT EXISTS `kelas` (
@@ -130,6 +155,23 @@ INSERT INTO `kelas` (`kode`, `idkategori`, `idcabang`, `tahun_ajaran`, `wali_kel
 	('1D', 2, 1, '2018/2019', 'Rina', 1, '1D-1-2-2018', 4);
 /*!40000 ALTER TABLE `kelas` ENABLE KEYS */;
 
+-- Dumping structure for table tkai.material
+CREATE TABLE IF NOT EXISTS `material` (
+  `nama` varchar(50) NOT NULL,
+  `keterangan` varchar(50) NOT NULL,
+  `urutan` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`urutan`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.material: ~5 rows (approximately)
+/*!40000 ALTER TABLE `material` DISABLE KEYS */;
+INSERT INTO `material` (`nama`, `keterangan`, `urutan`) VALUES
+	('Kunjungan-kunjungan belajar ke luar sekolah', 'material_penunjang', 1),
+	('Media kegiatan', 'material_penunjang', 2),
+	('Piknik', 'material_tahunan', 3),
+	('Foto kelas ukuran 10R', 'material_tahunan', 4),
+	('Pesta Akhir Tahun [siswa + 2 undangan]', 'material_tahunan', 5);
+/*!40000 ALTER TABLE `material` ENABLE KEYS */;
 
 -- Dumping structure for table tkai.menu
 CREATE TABLE IF NOT EXISTS `menu` (
@@ -144,7 +186,6 @@ CREATE TABLE IF NOT EXISTS `menu` (
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 
-
 -- Dumping structure for table tkai.migration
 CREATE TABLE IF NOT EXISTS `migration` (
   `version` varchar(180) NOT NULL,
@@ -158,7 +199,6 @@ INSERT INTO `migration` (`version`, `apply_time`) VALUES
 	('m000000_000000_base', 1544035834),
 	('m130524_201442_init', 1544035837);
 /*!40000 ALTER TABLE `migration` ENABLE KEYS */;
-
 
 -- Dumping structure for table tkai.pembayaran
 CREATE TABLE IF NOT EXISTS `pembayaran` (
@@ -176,7 +216,6 @@ CREATE TABLE IF NOT EXISTS `pembayaran` (
 /*!40000 ALTER TABLE `pembayaran` DISABLE KEYS */;
 /*!40000 ALTER TABLE `pembayaran` ENABLE KEYS */;
 
-
 -- Dumping structure for table tkai.pembayaran_detail
 CREATE TABLE IF NOT EXISTS `pembayaran_detail` (
   `idpembayaran` char(20) NOT NULL,
@@ -187,7 +226,6 @@ CREATE TABLE IF NOT EXISTS `pembayaran_detail` (
 -- Dumping data for table tkai.pembayaran_detail: ~0 rows (approximately)
 /*!40000 ALTER TABLE `pembayaran_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `pembayaran_detail` ENABLE KEYS */;
-
 
 -- Dumping structure for table tkai.role
 CREATE TABLE IF NOT EXISTS `role` (
@@ -202,7 +240,6 @@ INSERT INTO `role` (`idrole`, `role`) VALUES
 	(1, 'Super User'),
 	(2, 'Admin');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
-
 
 -- Dumping structure for table tkai.siswa
 CREATE TABLE IF NOT EXISTS `siswa` (
@@ -226,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `siswa` (
   `pekerjaan_ibu` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `tahun_input` year(4) NOT NULL,
-  `tgl_input` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tgl_input` datetime NOT NULL DEFAULT current_timestamp(),
   `status` tinyint(4) NOT NULL,
   `urutan` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`urutan`,`nis`,`kode_siswa`),
@@ -275,7 +312,6 @@ INSERT INTO `siswa` (`nis`, `kode_siswa`, `idcabang`, `idkategori`, `nisn`, `nam
 	('180507', '1-2-180507', 1, 2, '0128116115', 'Sarkara Laislana Sadajiwa Abhipraya', 'Sarkara', 'Islam', 'P', 'Jakarta', '2012-02-05', 'Jl. Syarpa No 114 C, Ciganjur, Jagakarsa', '81381016939', 'Mirza Siddhi Abhipraya', 'Chika Haryani', 'Karyawan Swasta', '', 'mirzajaing@gmail.com', 'mirzajaing@gmail.com', '0000', '2018-12-06 00:53:00', 1, 66);
 /*!40000 ALTER TABLE `siswa` ENABLE KEYS */;
 
-
 -- Dumping structure for table tkai.tagihan
 CREATE TABLE IF NOT EXISTS `tagihan` (
   `idtagihan` char(20) NOT NULL,
@@ -286,18 +322,18 @@ CREATE TABLE IF NOT EXISTS `tagihan` (
   `peralatan` double NOT NULL,
   `uang_pangkal` double NOT NULL,
   `uang_bangunan` double NOT NULL,
-  `material` double NOT NULL,
+  `material_penunjang` double NOT NULL,
+  `material_tahunan` double NOT NULL,
   `urutan` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`urutan`,`idtagihan`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table tkai.tagihan: ~2 rows (approximately)
 /*!40000 ALTER TABLE `tagihan` DISABLE KEYS */;
-INSERT INTO `tagihan` (`idtagihan`, `idcabang`, `idkategori`, `tahun_ajaran`, `seragam`, `peralatan`, `uang_pangkal`, `uang_bangunan`, `material`, `urutan`) VALUES
-	('INV-011961384', 1, 2, '2018/2019', 250000, 2000000, 1500000, 5000000, 1000000, 8),
-	('INV-011983245', 1, 1, '2018/2019', 250000, 2000000, 1500000, 5000000, 1000000, 9);
+INSERT INTO `tagihan` (`idtagihan`, `idcabang`, `idkategori`, `tahun_ajaran`, `seragam`, `peralatan`, `uang_pangkal`, `uang_bangunan`, `material_penunjang`, `material_tahunan`, `urutan`) VALUES
+	('INV-011915451', 1, 2, '2018/2019', 1500000, 2000000, 11450000, 7600000, 2200000, 1750000, 10),
+	('INV-011968798', 1, 1, '2018/2019', 20000, 100000, 10000, 100000, 100000, 100000, 14);
 /*!40000 ALTER TABLE `tagihan` ENABLE KEYS */;
-
 
 -- Dumping structure for table tkai.tagihan_siswa
 CREATE TABLE IF NOT EXISTS `tagihan_siswa` (
@@ -311,7 +347,8 @@ CREATE TABLE IF NOT EXISTS `tagihan_siswa` (
   `peralatan` double NOT NULL,
   `uang_pangkal` double NOT NULL,
   `uang_bangunan` double NOT NULL,
-  `material` double NOT NULL,
+  `material_penunjang` double NOT NULL,
+  `material_tahunan` double NOT NULL,
   `tanggal_assign` datetime NOT NULL,
   `user_assign` varchar(50) NOT NULL,
   `urutan` int(11) NOT NULL AUTO_INCREMENT,
@@ -322,6 +359,31 @@ CREATE TABLE IF NOT EXISTS `tagihan_siswa` (
 /*!40000 ALTER TABLE `tagihan_siswa` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tagihan_siswa` ENABLE KEYS */;
 
+-- Dumping structure for table tkai.tagihan_spp
+CREATE TABLE IF NOT EXISTS `tagihan_spp` (
+  `idtagihan` char(20) NOT NULL,
+  `bulan` varchar(50) NOT NULL,
+  `nominal` double NOT NULL,
+  `urutan` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`urutan`,`idtagihan`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.tagihan_spp: ~12 rows (approximately)
+/*!40000 ALTER TABLE `tagihan_spp` DISABLE KEYS */;
+INSERT INTO `tagihan_spp` (`idtagihan`, `bulan`, `nominal`, `urutan`) VALUES
+	('INV-011942187', 'Juli', 200000, 2),
+	('INV-011942187', 'Agustus', 200000, 3),
+	('INV-011942187', 'September', 200000, 4),
+	('INV-011942187', 'Oktober', 200000, 5),
+	('INV-011942187', 'November', 200000, 6),
+	('INV-011942187', 'Desember', 200000, 7),
+	('INV-011942187', 'Januari', 200000, 8),
+	('INV-011942187', 'Februari', 200000, 9),
+	('INV-011942187', 'Maret', 200000, 10),
+	('INV-011942187', 'April', 200000, 11),
+	('INV-011942187', 'Mei', 200000, 12),
+	('INV-011942187', 'Juni', 200000, 13);
+/*!40000 ALTER TABLE `tagihan_spp` ENABLE KEYS */;
 
 -- Dumping structure for table tkai.tahun_ajaran
 CREATE TABLE IF NOT EXISTS `tahun_ajaran` (
@@ -338,18 +400,17 @@ INSERT INTO `tahun_ajaran` (`idtahun_ajaran`, `tahun_ajaran`, `flag`) VALUES
 	(3, '2022/2023', 0);
 /*!40000 ALTER TABLE `tahun_ajaran` ENABLE KEYS */;
 
-
 -- Dumping structure for table tkai.user
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role` int(11) NOT NULL DEFAULT '0',
-  `cabang` int(11) NOT NULL DEFAULT '0',
+  `role` int(11) NOT NULL DEFAULT 0,
+  `cabang` int(11) NOT NULL DEFAULT 0,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `status` smallint(6) NOT NULL DEFAULT '10',
+  `status` smallint(6) NOT NULL DEFAULT 10,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
@@ -363,7 +424,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id`, `role`, `cabang`, `username`, `auth_key`, `password_hash`, `password_reset_token`, `email`, `status`, `created_at`, `updated_at`) VALUES
 	(1, 1, 1, 'admin', 'I7d86l9yJIE7KXwqoLHJvX9QKHyBq-NN', '$2y$13$JXc4Lc7m1SYcV3TE8hFsq.2O7iZSJFcJrYF4AyTk/4kZweg0V1Gz2', NULL, 'admin@tkai.com', 10, 1544059878, 1544059878);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
-
 
 -- Dumping structure for view tkai.v_kelas_siswa
 -- Creating temporary table to overcome VIEW dependency errors
@@ -398,7 +458,6 @@ CREATE TABLE `v_kelas_siswa` (
 	`kode_siswa` CHAR(20) NOT NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
-
 -- Dumping structure for view tkai.v_siswa
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_siswa` (
@@ -430,7 +489,6 @@ CREATE TABLE `v_siswa` (
 	`urutan` INT(11) NOT NULL
 ) ENGINE=MyISAM;
 
-
 -- Dumping structure for view tkai.v_tagihan
 -- Creating temporary table to overcome VIEW dependency errors
 CREATE TABLE `v_tagihan` (
@@ -442,12 +500,12 @@ CREATE TABLE `v_tagihan` (
 	`peralatan` DOUBLE NOT NULL,
 	`uang_pangkal` DOUBLE NOT NULL,
 	`uang_bangunan` DOUBLE NOT NULL,
-	`material` DOUBLE NOT NULL,
+	`material_penunjang` DOUBLE NOT NULL,
+	`material_tahunan` DOUBLE NOT NULL,
 	`urutan` INT(11) NOT NULL,
 	`cabang` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci',
 	`grade` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
-
 
 -- Dumping structure for view tkai.v_kelas_siswa
 -- Removing temporary table and create final VIEW structure
@@ -486,7 +544,6 @@ JOIN cabang c ON a.idcabang = c.idcabang
 JOIN detil_kelas d ON a.key_ = d.key_
 JOIN siswa e ON e.kode_siswa = d.kode_siswa ;
 
-
 -- Dumping structure for view tkai.v_siswa
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `v_siswa`;
@@ -520,7 +577,6 @@ FROM siswa a
 JOIN kategori b ON a.idkategori = b.idkategori
 JOIN cabang c ON a.idcabang = c.idcabang ;
 
-
 -- Dumping structure for view tkai.v_tagihan
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `v_tagihan`;
@@ -528,6 +584,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` VIEW `v_tagihan` AS SELECT
 FROM tagihan a 
 JOIN cabang b ON a.idcabang = b.idcabang 
 JOIN kategori c ON a.idkategori = c.idkategori ;
+
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

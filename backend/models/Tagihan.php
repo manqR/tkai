@@ -15,7 +15,8 @@ use Yii;
  * @property double $peralatan
  * @property double $uang_pangkal
  * @property double $uang_bangunan
- * @property double $material
+ * @property double $material_penunjang
+ * @property double $material_tahunan
  * @property int $urutan
  */
 class Tagihan extends \yii\db\ActiveRecord
@@ -34,7 +35,7 @@ class Tagihan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idtagihan', 'idcabang', 'idkategori', 'tahun_ajaran', 'seragam', 'peralatan', 'uang_pangkal', 'uang_bangunan', 'material'], 'required'],
+            [['idtagihan', 'idcabang', 'idkategori', 'tahun_ajaran', 'seragam', 'peralatan', 'uang_pangkal', 'uang_bangunan', 'material_penunjang','material_tahunan'], 'required'],
             [['idcabang', 'idkategori'], 'integer'],
             // [['seragam', 'peralatan', 'uang_pangkal', 'uang_bangunan', 'material'], 'number'],
             [['idtagihan'], 'string', 'max' => 20],
@@ -56,7 +57,8 @@ class Tagihan extends \yii\db\ActiveRecord
             'peralatan' => 'Peralatan',
             'uang_pangkal' => 'Uang Pangkal',
             'uang_bangunan' => 'Uang Bangunan',
-            'material' => 'Material',
+            'material_penunjang' => 'Material Penunjang',
+            'material_tahunan' => 'Material Tahunan',
             'urutan' => 'Urutan',
         ];
     }

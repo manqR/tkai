@@ -1335,6 +1335,64 @@ code {
 .chat-send > i {
   position: relative; }
 
+/* $tooltips
+ ------------------------------------------*/
+ .tooltipp {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  float:left;
+}
+
+.tooltipp .tooltiptext {
+  visibility: hidden;
+  width: 300px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltiptext li{
+  text-align:left
+}
+
+.tooltipp:hover .tooltiptext {
+  visibility: visible;
+}
+
+ .tooltipps {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  float:left;
+}
+
+.tooltipps .tooltiptexts {
+  visibility: hidden;
+  width: 300px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.tooltiptexts li{
+  text-align:left
+}
+.tooltipps:hover .tooltiptexts {
+  visibility: visible;
+}
+
 /* $offscreen-menu
  ------------------------------------------*/
 .off-canvas-overlay {

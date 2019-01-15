@@ -87,42 +87,8 @@
             </li>
             <!-- /dashboard -->
          
-			<!-- student -->
-            <li>
-                <a href="javascript:;">
-                <span class="menu-caret">
-                <i class="material-icons">arrow_drop_down</i>
-                </span>
-                <i class="material-icons text-success">face</i>               
-                <span>Siswa</span>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="registrasi">
-                        <span>Registrasi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="siswa">
-                        <span>Siswa</span>
-                        </a>
-                    </li>
-					<li>
-                        <a href="kelassiswa">
-                        <span>Kelas</span>
-                        </a>
-                    </li>      
-                    <li>
-                        <a href="billing">
-                        <span>Tagihan</span>
-                        </a>
-                    </li> 					            
-                </ul>
-            </li>
-            <!-- /student -->			
-			
-            <!-- setup -->
-            <li>
+          <!-- setup -->
+             <li>
                 <a href="javascript:;">
                 <span class="menu-caret">
                 <i class="material-icons">arrow_drop_down</i>
@@ -162,6 +128,42 @@
             </li>
             <!-- /setup -->
 
+
+			<!-- student -->
+            <li>
+                <a href="javascript:;">
+                <span class="menu-caret">
+                <i class="material-icons">arrow_drop_down</i>
+                </span>
+                <i class="material-icons text-success">face</i>               
+                <span>Siswa</span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a href="registrasi">
+                        <span>Registrasi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="siswa">
+                        <span>Siswa</span>
+                        </a>
+                    </li>
+					<li>
+                        <a href="kelassiswa">
+                        <span>Kelas</span>
+                        </a>
+                    </li>      
+                    <li>
+                        <a href="billing">
+                        <span>Tagihan</span>
+                        </a>
+                    </li> 					            
+                </ul>
+            </li>
+            <!-- /student -->			
+			
+           
           
 
             <!-- Import -->

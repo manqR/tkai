@@ -5,6 +5,8 @@ use yii\widgets\ActiveForm;
 use yii\web\View;
 use yii\helpers\ArrayHelper;
 
+use backend\models\Material;
+
 /* @var $model backend\models\Tagihan */
 /* @var $form yii\widgets\ActiveForm */
 
@@ -20,71 +22,114 @@ $this->registerJsFile($root."/scripts/forms/masks.js",
 
 ?>
 
-<div class="tagihan-form">
+<?php $form = ActiveForm::begin(); ?>
 
-    <?php if (Yii::$app->session->hasFlash('error')): ?>
-        <div>
-            <div class="alert alert-danger">Simpan Gagal ! Data Sudah pernah ada</div>
-            <!-- <?= Yii::$app->session->getFlash('error') ?> -->
-        </div>
-    <?php endif; ?>
+    <div class="card card-block" style="width:50%">    
+        <?= $form->field($spp, 'nominal')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ])->label('Biaya SPP') ?>
+    </div>
 
-    <?php $form = ActiveForm::begin(); ?>
+    <div class="tagihan-form card card-block">
 
-    <?= $form->field($model, 'idtagihan')->textInput(['maxlength' => true,'value'=>$kode,'readonly'=>true])->label('No Tagihan') ?>
-           
+        <?php if (Yii::$app->session->hasFlash('error')): ?>
+            <div>
+                <div class="alert alert-danger">Simpan Gagal ! Data Sudah pernah ada</div>
+                <!-- <?= Yii::$app->session->getFlash('error') ?> -->
+            </div>
+        <?php endif; ?>
+
+
+        
+        <?= $form->field($model, 'idtagihan')->textInput(['maxlength' => true,'value'=>$kode,'readonly'=>true])->label('No Tagihan') ?>
+            
         <!-- BRANCH -->
         <label>Cabang</label>
         <select data-placeholder="Branch .." class="select2 m-b-1" id="mySelect" name="branchSelect" style="width: 100%;">
-			
-			<?php                
+            
+            <?php                
                 $class = '';                
                 $option = '<option value="0" selected="selected">-- Pilih --</option>';                
                 $class = 'selected="selected"';                
                 
-				foreach($cabang as $cabangs):							
-					 echo "<option ".$class." value=".$cabangs['idcabang'].">".$cabangs['keterangan']."</option>";
+                foreach($cabang as $cabangs):							
+                    echo "<option ".$class." value=".$cabangs['idcabang'].">".$cabangs['keterangan']."</option>";
                 endforeach;
                 
-               
-			?>
-		</select>
-       <!-- END BRANCH -->
+            
+            ?>
+        </select>
+        <!-- END BRANCH -->
 
-         <!-- GRADE -->
-    <label>Grade</label>
-     <select data-placeholder="Grade .." class="select2 m-b-1" id="GradeSelect" name="GradeSelect" style="width: 100%;">
-			
-			<?php
-               
+        <!-- GRADE -->
+        <label>Grade</label>
+        <select data-placeholder="Grade .." class="select2 m-b-1" id="GradeSelect" name="GradeSelect" style="width: 100%;">
+            
+            <?php
+            
                 echo '<option value="0" selected="selected">-- Pilih --</option>';
-				foreach($grade as $grades):							
-					 echo "<option value=\"$grades->idkategori\">$grades->keterangan</option>";
+                foreach($grade as $grades):							
+                    echo "<option value=\"$grades->idkategori\">$grades->keterangan</option>";
                 endforeach;
                 
-               
-			?>
-		</select>
+            
+            ?>
+        </select>
         <!-- END GRADE -->
-
         <?= $form->field($model, 'tahun_ajaran', ['options' => ['tag' => 'false']])-> dropDownList(
-			ArrayHelper::map(TahunAjaran::find()->where(['flag'=>1])->all(),'tahun_ajaran','tahun_ajaran'),
-			['prompt'=>'- Pilih -','class'=>'select2 m-b-1','style' => 'width: 100%'])->label('Tahun Ajaran');  ?>	
+            ArrayHelper::map(TahunAjaran::find()->where(['flag'=>1])->all(),'tahun_ajaran','tahun_ajaran'),
+            ['prompt'=>'- Pilih -','class'=>'select2 m-b-1','style' => 'width: 100%'])->label('Tahun Ajaran');  ?>	
 
-    <?= $form->field($model, 'seragam')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
-    <?= $form->field($model, 'peralatan')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
-    <?= $form->field($model, 'uang_pangkal')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
-    <?= $form->field($model, 'uang_bangunan')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
-    <?= $form->field($model, 'material')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
+        <?= $form->field($model, 'seragam')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
+        <?= $form->field($model, 'peralatan')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ])->label('Peralatan Belajar') ?>
+        <?= $form->field($model, 'uang_pangkal')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
+        <?= $form->field($model, 'uang_bangunan')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
+        
+        <div class="tooltipp">
+            (?) 
+            <div class="tooltiptext" >
+                <ul>
+                    <?php 
+                        $material_p = Material::find()
+                                ->where(['keterangan'=>'material_penunjang'])                               
+                                ->all();
+                       
+                        foreach ($material_p as $material_ps):
+                            echo '<li>'.$material_ps->nama.'</li>';                        
+                        endforeach;
+                    ?>
+
+                   
+                </ul>
+
+            </div>
+        </div>    
+        <?= $form->field($model, 'material_penunjang')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ])->label('Material Penunjang Kegiatan') ?>
+            
+        
+        <div class="tooltipps">
+            (?) 
+            <div class="tooltiptexts">
+                <ul>
+                    <?php 
+                        $material_p = Material::find()
+                                ->where(['keterangan'=>'material_tahunan'])                               
+                                ->all();
+                    
+                        foreach ($material_p as $material_ps):
+                            echo '<li>'.$material_ps->nama.'</li>';                        
+                        endforeach;
+                    ?>
+                
+                </ul>
+            </div>
+        </div>
+        <?= $form->field($model, 'material_tahunan')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ])->label('Kegiatan Tahunan') ?>
 
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <div class="form-group">
+            <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        </div>       
     </div>
-
-    <?php ActiveForm::end(); ?>
-
-</div>
+<?php ActiveForm::end(); ?>
 
 <?php
 $this->registerJs("

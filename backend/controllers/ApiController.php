@@ -407,7 +407,8 @@ class ApiController extends Controller
                             ,FormatRupiah($models['peralatan'])                                                                                    
                             ,FormatRupiah($models['uang_pangkal'])                                                                                    
                             ,FormatRupiah($models['uang_bangunan'])                                                                                    
-                            ,FormatRupiah($models['material'])
+                            ,FormatRupiah($models['material_penunjang'])
+                            ,FormatRupiah($models['material_tahunan'])
                             ,$aksi                                                                                                                                                                                          
                         );
 		endforeach;

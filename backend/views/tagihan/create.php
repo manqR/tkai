@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
-<div class="kelas-create  card card-block">
+<div class="kelas-create">
 
     <!-- <h5><?= Html::encode($this->title) ?></h5> -->
 
@@ -20,7 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
          'model' => $model,
          'kode' =>$kode,
          'cabang' => $cabang,
-         'grade' => $grade
+         'grade' => $grade,
+         'spp' => $spp
     ]) ?>
 
 </div>
