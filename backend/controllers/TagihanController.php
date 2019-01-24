@@ -95,18 +95,6 @@ class TagihanController extends Controller
                     Yii::$app->session->setFlash('error');
                 }else{
                     
-                    $listSpp = BulanSpp::find()
-                            ->all();
-                    
-                    foreach ($listSpp as $listSpps):
-                       $spps = new TagihanSpp();
-
-                       $spps->idtagihan = $kode;
-                       $spps->bulan = $listSpps->bulan;                    
-                       $spps->nominal = SaveRupiah($spp->nominal);                    
-                       $spps->save(false);
-                    endforeach;
-                    
                     $model->idcabang = $_POST['branchSelect'];     
                     $model->idkategori = $_POST['GradeSelect'];     
                     $model->seragam = SaveRupiah($model->seragam);
@@ -116,6 +104,20 @@ class TagihanController extends Controller
                     $model->material_penunjang = SaveRupiah($model->material_penunjang);
                     $model->material_tahunan = SaveRupiah($model->material_tahunan);
                     $model->save();
+
+                    $listSpp = BulanSpp::find()
+                                ->all();
+                    
+                    foreach ($listSpp as $listSpps):
+                       $spps = new TagihanSpp();
+
+                       $spps->idtagihan = $model->idtagihan;
+                       $spps->bulan = $listSpps->bulan;                    
+                       $spps->nominal = SaveRupiah($spp->nominal);                    
+                       $spps->save(false);
+                    endforeach;
+                    
+                   
                     Yii::$app->session->setFlash('success');
                     return $this->redirect(['index']);
                 }

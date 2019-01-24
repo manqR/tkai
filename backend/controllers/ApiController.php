@@ -12,9 +12,14 @@ use backend\models\Kelas;
 use backend\models\TahunAjaran;
 use backend\models\Cabang;
 use backend\models\DetilKelas;
+use backend\models\TagihanSiswaSpp;
+use backend\models\TagihanSpp;
+use backend\models\Tagihan;
+use backend\models\TagihanSiswa;
 
 
 include './inc/money.php';
+
 class ApiController extends Controller
 {
     public static function allowedDomains(){
@@ -243,10 +248,11 @@ class ApiController extends Controller
         $key = explode("-",$key_);
 
         $connection = \Yii::$app->db;
-        $sql = $connection->createCommand("SELECT (SELECT b.key_ FROM detil_kelas b WHERE a.kode_siswa = b.kode_siswa AND b.key_ = '".$key_."')key_ 
-                                                    ,a.* 
-                                                    FROM v_siswa a
-                                         WHERE a.idcabang = '".$key[1]."' AND a.idkategori = '".$key[2]."'");
+        $sql = $connection->createCommand("SELECT a.*, b.key_ 
+                                            FROM v_siswa a 
+                                            LEFT JOIN detil_kelas b ON a.kode_siswa = b.kode_siswa
+                                         WHERE a.idcabang = '".$key[1]."' AND a.idkategori = '".$key[2]."'
+                                         ");
                                          
         $model = $sql->queryAll();
 
@@ -254,8 +260,10 @@ class ApiController extends Controller
             
         $aksi = '';
         foreach($model as $i => $models):
+
+            $kelas = explode("-",$models['key_']);
             if($models['key_']){
-                $aksi = '<span class="tag tag-success">kelas '.$key[0].' </span>';
+                $aksi = '<span class="tag tag-success">kelas '.$kelas[0].' </span>';
             }else{
                 $aksi = '<i class="material-icons tambah" aria-hidden="true" data-id='.$models['kode_siswa'].';'.$key_.'>add_box</i>';
             }
@@ -287,15 +295,85 @@ class ApiController extends Controller
         $model->key_ = $return[1];        
         $model->save();
         
+        $find = Kelas::find()
+            ->where(['key_'=>$return[1]])
+            ->One();
+
+        
+        $detail = explode("-",$return[0]);
+        $detail_kelas = explode("-",$return[1]);
+
+        \Yii::$app->db->createCommand("INSERT INTO tagihan_siswa (
+            kode_siswa
+            ,kode_kelas
+            ,idtagihan
+            ,idcabang
+            ,idkategori
+            ,tahun_ajaran
+            ,seragam
+            ,peralatan
+            ,uang_pangkal
+            ,uang_bangunan
+            ,material_penunjang
+            ,material_tahunan
+            ,tanggal_assign
+            ,user_assign
+        )
+        SELECT  '".$return[0]."'
+                ,'".$detail_kelas[0]."'
+                ,idtagihan
+                ,idcabang
+                ,idkategori
+                ,tahun_ajaran
+                ,seragam
+                ,peralatan
+                ,uang_pangkal
+                ,uang_bangunan
+                ,material_penunjang
+                ,material_tahunan 
+                ,now()
+                ,'Admin'
+        FROM tagihan WHERE idkategori = '".$detail[1]."' AND idcabang = '".$detail[0]."' AND `tahun_ajaran` = '".$find->tahun_ajaran."'")->execute();
+
+        
+        $view = Tagihan::find()
+                ->where(['idkategori' => $detail[1]])
+                ->where(['idcabang' => $detail[0]])
+                ->Andwhere(['tahun_ajaran'=>$find->tahun_ajaran])
+                ->One();
+       
+
+
+
+        // INSERT TAGIHAN SPP
+       
+        $spp = TagihanSpp::find()
+            ->where(['idtagihan'=>$view->idtagihan])
+            ->All();
+        
+        foreach($spp as $spps):
+            $spp_siswa = new TagihanSiswaSpp();
+            $spp_siswa->idtagihan = $view->idtagihan;
+            $spp_siswa->kode_siswa = $return[0];
+            $spp_siswa->bulan = $spps->bulan;
+            $spp_siswa->nominal = $spps->nominal;
+            $spp_siswa->tahun_ajaran = $find->tahun_ajaran;
+            $spp_siswa->flag = 1;
+            $spp_siswa->date_create = date('Y-m-d');
+            $spp_siswa->user_create = Yii::$app->user->identity->username;
+            $spp_siswa->urutan = $spps->urutan;
+            $spp_siswa->save();        
+        endforeach;
+        
+        
         $data = array();
-		if($model){            
+		if($model && $spp_siswa){            
             $data = ['err'=>'sukses'];
         }else{
             $data = [
 				'data'=>['']
 			];
         }
-		
         
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		return $data;
@@ -307,7 +385,40 @@ class ApiController extends Controller
                 ->where(['key_'=>$return[1]])
                 ->AndWhere(['kode_siswa'=>$return[0]])
                 ->One();
-                       
+        
+                
+        $detail = explode("-",$return[0]);
+        $detail_kelas = explode("-",$return[1]);
+
+
+        $find = Kelas::find()
+                ->where(['key_'=>$return[1]])
+                ->One();
+
+        $view = Tagihan::find()
+                ->where(['idkategori' => $detail[1]])
+                ->where(['idcabang' => $detail[0]])
+                ->Andwhere(['tahun_ajaran'=>$find->tahun_ajaran])
+                ->One();
+       
+
+        // DELETE TAGIHAN SPP
+        $delete_spp = TagihanSiswaSpp::find()
+                    ->where(['idtagihan'=>$view->idtagihan])
+                    ->AndWhere(['kode_siswa'=>$return[0]])
+                    ->All();       
+        foreach ($delete_spp as $delete_spps) {
+            $delete_spps->delete();  
+        }
+         
+        $tagihanSiswa = TagihanSiswa::find()
+                    ->where(['idtagihan'=>$view->idtagihan])
+                    ->AndWhere(['kode_siswa'=>$return[0]])
+                    ->AndWhere(['kode_kelas'=>$detail_kelas[0]])
+                    ->One();
+        
+        $tagihanSiswa->delete();
+                
         $data = array();
 		if($query->delete()){            
             $data = ['err'=>'sukses'];

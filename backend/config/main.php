@@ -33,6 +33,14 @@ return [
                 'kelas-create'=>'kelas/create',			
                 'tahun-ajaran-create'=>'tahun-ajaran/create',			
                 'tagihan-create'=>'tagihan/create',			
+
+                //---------------------------------- Kasir -----------------------------//
+                'kasir'=>'kasir/index',		
+
+
+                //---------------------------------- Billing -----------------------------//
+                'billing-<page:\d+>'=>'billing/index',
+                'billing-detail-<id>'=>'billing/detail',
                 
 				//---------------------------------- Login -----------------------------//
 				'login'=>'site/login',

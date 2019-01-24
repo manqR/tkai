@@ -45,6 +45,7 @@
 				<!-- content panel -->
 				<div class="main-panel">
 					
+				
 					
 					<?= $this->render(
 						'header.php',
@@ -52,7 +53,32 @@
 					?>
 					
 					<!-- main area -->
+
+					<!-- <ol class="breadcrumb" style="margin-bottom: 5px;">
+						<li class="breadcrumb-item">
+							<a href="#">
+							Home
+							</a>
+						</li>
+						<li class="breadcrumb-item">
+							<a href="#">
+							Library
+							</a>
+						</li>
+						<li class="breadcrumb-item active">
+							Data
+						</li>
+					</ol> -->
+					
+
 					<div class="main-content">
+						
+							<?= Breadcrumbs::widget([
+									'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+								]) 
+							?>
+						
+
 						<div class="content-view">
 							<?= $content ?> <!-- Content Area -->						
 						</div>

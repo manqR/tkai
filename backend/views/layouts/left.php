@@ -164,8 +164,15 @@
             <!-- /student -->			
 			
            
-          
-
+            <!-- Kasir -->
+            <li>
+                <a href="kasir">
+                    <i class="material-icons text-danger">attach_money</i>
+                    <span>Kasir</span>
+                </a>
+            </li>
+            <!-- /kasir -->
+            
             <!-- Import -->
              <li>
                 <a href="upload">

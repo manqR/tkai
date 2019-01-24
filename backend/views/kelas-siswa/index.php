@@ -57,7 +57,8 @@ $this->registerJs("
               function(data, status){	
                   if(data.err == 'sukses'){	
                         var key_ = datas.split(';');				
-                        tableShow('.datatable','./api/siswa-list-add?key_='+key_[1]);   		                    
+                        tableShow('.datatable','./api/siswa-list-add?key_='+key_[1]);   
+                        myFunction();		                    
                       swal('Saving!', 'Data Siswa Berhasil ditambahkan', 'success');
                   }else{		
                       console.log(data)								
@@ -88,7 +89,7 @@ $this->registerJs("
                   if(data.err == 'sukses'){										
                      var key_ = datas.split(';');				
                      tableShow('.datatable','./api/siswa-list?key_='+key_[1]);   		          									
-                      
+                     myFunction();
                       swal('Saving!', 'Data Siswa Berhasil dihapus', 'success');
                   }else{										
                       swal('Saving!', 'Data Tidak Berhasil dihapus', 'error');
