@@ -11,11 +11,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
-
--- Dumping database structure for tkai
-CREATE DATABASE IF NOT EXISTS `tkai` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `tkai`;
-
 -- Dumping structure for table tkai.agama
 CREATE TABLE IF NOT EXISTS `agama` (
   `keterangan` varchar(50) NOT NULL,
@@ -88,31 +83,12 @@ CREATE TABLE IF NOT EXISTS `detil_kelas` (
   PRIMARY KEY (`key_`,`kode_siswa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- Dumping data for table tkai.detil_kelas: ~22 rows (approximately)
+-- Dumping data for table tkai.detil_kelas: ~3 rows (approximately)
 /*!40000 ALTER TABLE `detil_kelas` DISABLE KEYS */;
 INSERT INTO `detil_kelas` (`key_`, `kode_siswa`) VALUES
-	('1A-1-2-2018', '1-2-﻿180514'),
+	('1A-1-2-2018', '1-2-180474'),
 	('1B-1-2-2018', '1-2-180472'),
-	('1B-1-2-2018', '1-2-180474'),
-	('1B-1-2-2018', '1-2-180478'),
-	('1B-1-2-2018', '1-2-180480'),
-	('1B-1-2-2018', '1-2-180481'),
-	('1B-1-2-2018', '1-2-180482'),
-	('1B-1-2-2018', '1-2-180483'),
-	('1B-1-2-2018', '1-2-180484'),
-	('1B-1-2-2018', '1-2-180487'),
-	('1B-1-2-2018', '1-2-180489'),
-	('1B-1-2-2018', '1-2-180493'),
-	('1B-1-2-2018', '1-2-180495'),
-	('1B-1-2-2018', '1-2-180499'),
-	('1B-1-2-2018', '1-2-180503'),
-	('1B-1-2-2018', '1-2-180505'),
-	('1B-1-2-2018', '1-2-180507'),
-	('1B-1-2-2018', '1-2-180508'),
-	('1B-1-2-2018', '1-2-180514'),
-	('1B-1-2-2018', '1-2-180516'),
-	('1B-1-2-2018', '1-2-180522'),
-	('1B-1-2-2018', '1-2-﻿180514');
+	('1B-1-2-2018', '1-2-180478');
 /*!40000 ALTER TABLE `detil_kelas` ENABLE KEYS */;
 
 -- Dumping structure for table tkai.kategori
@@ -326,13 +302,12 @@ CREATE TABLE IF NOT EXISTS `tagihan` (
   `material_tahunan` double NOT NULL,
   `urutan` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`urutan`,`idtagihan`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
--- Dumping data for table tkai.tagihan: ~2 rows (approximately)
+-- Dumping data for table tkai.tagihan: ~0 rows (approximately)
 /*!40000 ALTER TABLE `tagihan` DISABLE KEYS */;
 INSERT INTO `tagihan` (`idtagihan`, `idcabang`, `idkategori`, `tahun_ajaran`, `seragam`, `peralatan`, `uang_pangkal`, `uang_bangunan`, `material_penunjang`, `material_tahunan`, `urutan`) VALUES
-	('INV-011915451', 1, 2, '2018/2019', 1500000, 2000000, 11450000, 7600000, 2200000, 1750000, 10),
-	('INV-011968798', 1, 1, '2018/2019', 20000, 100000, 10000, 100000, 100000, 100000, 14);
+	('INV-011962113', 1, 2, '2018/2019', 250000, 2000000, 1500000, 5000000, 2200000, 1750000, 17);
 /*!40000 ALTER TABLE `tagihan` ENABLE KEYS */;
 
 -- Dumping structure for table tkai.tagihan_siswa
@@ -353,11 +328,72 @@ CREATE TABLE IF NOT EXISTS `tagihan_siswa` (
   `user_assign` varchar(50) NOT NULL,
   `urutan` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`urutan`,`kode_siswa`,`idtagihan`,`tahun_ajaran`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.tagihan_siswa: ~3 rows (approximately)
+/*!40000 ALTER TABLE `tagihan_siswa` DISABLE KEYS */;
+INSERT INTO `tagihan_siswa` (`kode_siswa`, `kode_kelas`, `idtagihan`, `idcabang`, `idkategori`, `tahun_ajaran`, `seragam`, `peralatan`, `uang_pangkal`, `uang_bangunan`, `material_penunjang`, `material_tahunan`, `tanggal_assign`, `user_assign`, `urutan`) VALUES
+	('1-2-180472', '1B', 'INV-011962113', 1, 2, '2018/2019', 250000, 2000000, 1500000, 5000000, 2200000, 1750000, '2019-01-24 10:06:21', 'Admin', 47),
+	('1-2-180474', '1A', 'INV-011962113', 1, 2, '2018/2019', 250000, 2000000, 1500000, 5000000, 2200000, 1750000, '2019-01-24 13:13:16', 'Admin', 48),
+	('1-2-180478', '1B', 'INV-011962113', 1, 2, '2018/2019', 250000, 2000000, 1500000, 5000000, 2200000, 1750000, '2019-01-24 14:12:35', 'Admin', 49);
+/*!40000 ALTER TABLE `tagihan_siswa` ENABLE KEYS */;
+
+-- Dumping structure for table tkai.tagihan_siswa_spp
+CREATE TABLE IF NOT EXISTS `tagihan_siswa_spp` (
+  `idtagihan` char(20) NOT NULL,
+  `kode_siswa` char(20) NOT NULL,
+  `bulan` varchar(50) NOT NULL,
+  `nominal` double NOT NULL,
+  `tahun_ajaran` varchar(50) NOT NULL,
+  `flag` int(11) NOT NULL,
+  `date_create` datetime NOT NULL,
+  `date_update` datetime DEFAULT NULL,
+  `user_create` varchar(50) NOT NULL,
+  `user_update` varchar(50) DEFAULT NULL,
+  `urutan` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idtagihan`,`kode_siswa`,`bulan`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table tkai.tagihan_siswa: ~0 rows (approximately)
-/*!40000 ALTER TABLE `tagihan_siswa` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tagihan_siswa` ENABLE KEYS */;
+-- Dumping data for table tkai.tagihan_siswa_spp: ~36 rows (approximately)
+/*!40000 ALTER TABLE `tagihan_siswa_spp` DISABLE KEYS */;
+INSERT INTO `tagihan_siswa_spp` (`idtagihan`, `kode_siswa`, `bulan`, `nominal`, `tahun_ajaran`, `flag`, `date_create`, `date_update`, `user_create`, `user_update`, `urutan`) VALUES
+	('INV-011962113', '1-2-180472', 'Agustus', 200000, '', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 39),
+	('INV-011962113', '1-2-180472', 'April', 200000, '', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 47),
+	('INV-011962113', '1-2-180472', 'Desember', 200000, '', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 43),
+	('INV-011962113', '1-2-180472', 'Februari', 200000, '', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 45),
+	('INV-011962113', '1-2-180472', 'Januari', 200000, '', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 44),
+	('INV-011962113', '1-2-180472', 'Juli', 200000, '', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 38),
+	('INV-011962113', '1-2-180472', 'Juni', 200000, '', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 49),
+	('INV-011962113', '1-2-180472', 'Maret', 200000, '', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 46),
+	('INV-011962113', '1-2-180472', 'Mei', 200000, '', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 48),
+	('INV-011962113', '1-2-180472', 'November', 200000, '', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 42),
+	('INV-011962113', '1-2-180472', 'Oktober', 200000, '', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 41),
+	('INV-011962113', '1-2-180472', 'September', 200000, '', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 40),
+	('INV-011962113', '1-2-180474', 'Agustus', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 39),
+	('INV-011962113', '1-2-180474', 'April', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 47),
+	('INV-011962113', '1-2-180474', 'Desember', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 43),
+	('INV-011962113', '1-2-180474', 'Februari', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 45),
+	('INV-011962113', '1-2-180474', 'Januari', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 44),
+	('INV-011962113', '1-2-180474', 'Juli', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 38),
+	('INV-011962113', '1-2-180474', 'Juni', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 49),
+	('INV-011962113', '1-2-180474', 'Maret', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 46),
+	('INV-011962113', '1-2-180474', 'Mei', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 48),
+	('INV-011962113', '1-2-180474', 'November', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 42),
+	('INV-011962113', '1-2-180474', 'Oktober', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 41),
+	('INV-011962113', '1-2-180474', 'September', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 40),
+	('INV-011962113', '1-2-180478', 'Agustus', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 39),
+	('INV-011962113', '1-2-180478', 'April', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 47),
+	('INV-011962113', '1-2-180478', 'Desember', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 43),
+	('INV-011962113', '1-2-180478', 'Februari', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 45),
+	('INV-011962113', '1-2-180478', 'Januari', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 44),
+	('INV-011962113', '1-2-180478', 'Juli', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 38),
+	('INV-011962113', '1-2-180478', 'Juni', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 49),
+	('INV-011962113', '1-2-180478', 'Maret', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 46),
+	('INV-011962113', '1-2-180478', 'Mei', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 48),
+	('INV-011962113', '1-2-180478', 'November', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 42),
+	('INV-011962113', '1-2-180478', 'Oktober', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 41),
+	('INV-011962113', '1-2-180478', 'September', 200000, '2018/2019', 1, '2019-01-24 00:00:00', NULL, 'admin', NULL, 40);
+/*!40000 ALTER TABLE `tagihan_siswa_spp` ENABLE KEYS */;
 
 -- Dumping structure for table tkai.tagihan_spp
 CREATE TABLE IF NOT EXISTS `tagihan_spp` (
@@ -366,23 +402,23 @@ CREATE TABLE IF NOT EXISTS `tagihan_spp` (
   `nominal` double NOT NULL,
   `urutan` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`urutan`,`idtagihan`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table tkai.tagihan_spp: ~12 rows (approximately)
 /*!40000 ALTER TABLE `tagihan_spp` DISABLE KEYS */;
 INSERT INTO `tagihan_spp` (`idtagihan`, `bulan`, `nominal`, `urutan`) VALUES
-	('INV-011942187', 'Juli', 200000, 2),
-	('INV-011942187', 'Agustus', 200000, 3),
-	('INV-011942187', 'September', 200000, 4),
-	('INV-011942187', 'Oktober', 200000, 5),
-	('INV-011942187', 'November', 200000, 6),
-	('INV-011942187', 'Desember', 200000, 7),
-	('INV-011942187', 'Januari', 200000, 8),
-	('INV-011942187', 'Februari', 200000, 9),
-	('INV-011942187', 'Maret', 200000, 10),
-	('INV-011942187', 'April', 200000, 11),
-	('INV-011942187', 'Mei', 200000, 12),
-	('INV-011942187', 'Juni', 200000, 13);
+	('INV-011962113', 'Juli', 200000, 38),
+	('INV-011962113', 'Agustus', 200000, 39),
+	('INV-011962113', 'September', 200000, 40),
+	('INV-011962113', 'Oktober', 200000, 41),
+	('INV-011962113', 'November', 200000, 42),
+	('INV-011962113', 'Desember', 200000, 43),
+	('INV-011962113', 'Januari', 200000, 44),
+	('INV-011962113', 'Februari', 200000, 45),
+	('INV-011962113', 'Maret', 200000, 46),
+	('INV-011962113', 'April', 200000, 47),
+	('INV-011962113', 'Mei', 200000, 48),
+	('INV-011962113', 'Juni', 200000, 49);
 /*!40000 ALTER TABLE `tagihan_spp` ENABLE KEYS */;
 
 -- Dumping structure for table tkai.tahun_ajaran
@@ -507,6 +543,17 @@ CREATE TABLE `v_tagihan` (
 	`grade` VARCHAR(50) NOT NULL COLLATE 'utf8_general_ci'
 ) ENGINE=MyISAM;
 
+-- Dumping structure for view tkai.v_tagihan_siswa
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `v_tagihan_siswa` (
+	`kode_siswa` CHAR(20) NOT NULL COLLATE 'latin1_swedish_ci',
+	`kode_kelas` CHAR(10) NOT NULL COLLATE 'latin1_swedish_ci',
+	`idtagihan` CHAR(20) NOT NULL COLLATE 'latin1_swedish_ci',
+	`tahun_ajaran` VARCHAR(20) NOT NULL COLLATE 'latin1_swedish_ci',
+	`remarks` VARCHAR(18) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`nominal` DOUBLE NOT NULL
+) ENGINE=MyISAM;
+
 -- Dumping structure for view tkai.v_kelas_siswa
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `v_kelas_siswa`;
@@ -584,6 +631,21 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` VIEW `v_tagihan` AS SELECT
 FROM tagihan a 
 JOIN cabang b ON a.idcabang = b.idcabang 
 JOIN kategori c ON a.idkategori = c.idkategori ;
+
+-- Dumping structure for view tkai.v_tagihan_siswa
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `v_tagihan_siswa`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` VIEW `v_tagihan_siswa` AS SELECT kode_siswa, kode_kelas, idtagihan, tahun_ajaran, 'Seragam' remarks, seragam nominal FROM tagihan_siswa
+UNION ALL
+SELECT kode_siswa, kode_kelas, idtagihan, tahun_ajaran, 'Peralatan' remarks, peralatan nominal FROM tagihan_siswa
+UNION ALL
+SELECT kode_siswa, kode_kelas, idtagihan, tahun_ajaran, 'Uang Pangkal' remarks, uang_pangkal nominal FROM tagihan_siswa
+UNION ALL
+SELECT kode_siswa, kode_kelas, idtagihan, tahun_ajaran, 'Uang Bangunan' remarks, uang_bangunan nominal FROM tagihan_siswa
+UNION ALL
+SELECT kode_siswa, kode_kelas, idtagihan, tahun_ajaran, 'Material Penunjang' material_penunjang, seragam nominal FROM tagihan_siswa
+UNION ALL
+SELECT kode_siswa, kode_kelas, idtagihan, tahun_ajaran, 'Material Tahunan' remarks, material_tahunan nominal FROM tagihan_siswa ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
