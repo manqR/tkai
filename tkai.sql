@@ -64,6 +64,36 @@ INSERT INTO `cabang` (`keterangan`, `idcabang`, `nama_sekolah`, `alamat`, `kecam
 	('CILANDAK', 2, 'SEKOLAH DASAR KREATIVITAS ANAK INDONESIA', '0', '0', '0');
 /*!40000 ALTER TABLE `cabang` ENABLE KEYS */;
 
+-- Dumping structure for table tkai.cart
+CREATE TABLE IF NOT EXISTS `cart` (
+  `kode_siswa` char(20) NOT NULL,
+  `idtagihan` char(20) NOT NULL,
+  `remarks` varchar(50) NOT NULL,
+  `keterangan` varchar(50) NOT NULL,
+  `nominal` double NOT NULL,
+  `jumlah_bayar` double NOT NULL,
+  `tahun_ajaran` varchar(20) NOT NULL,
+  `flag` int(11) NOT NULL,
+  `date` datetime NOT NULL,
+  `urutan` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`urutan`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table tkai.cart: ~2 rows (approximately)
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` (`kode_siswa`, `idtagihan`, `remarks`, `keterangan`, `nominal`, `jumlah_bayar`, `tahun_ajaran`, `flag`, `date`, `urutan`) VALUES
+	('1-2-180472', 'INV-011962113', 'Peralatan', 'tagihan', 2000000, 2000000, '2018/2019', 1, '2019-02-08 08:25:51', 3),
+	('1-2-180472', 'INV-011962113', 'Material Tahunan', 'tagihan', 1750000, 1750000, '2018/2019', 1, '2019-02-08 08:26:03', 4),
+	('1-2-180472', 'INV-011962113', 'Seragam', 'tagihan', 250000, 250000, '2018/2019', 1, '2019-02-08 08:26:50', 5),
+	('1-2-180474', 'INV-011962113', 'Oktober', 'spp', 200000, 200000, '2018/2019', 1, '2019-02-08 08:27:12', 6),
+	('1-2-180472', 'INV-011962113', 'Material Penunjang', 'tagihan', 250000, 250000, '2018/2019', 1, '2019-02-08 08:33:59', 7),
+	('1-2-180472', 'INV-011962113', 'Uang Bangunan', 'tagihan', 5000000, 5000000, '2018/2019', 1, '2019-02-08 08:35:26', 8),
+	('1-2-180472', 'INV-011962113', 'Uang Pangkal', 'tagihan', 1500000, 1500000, '2018/2019', 1, '2019-02-08 08:36:23', 9),
+	('1-2-180472', 'INV-011962113', 'Juli', 'spp', 200000, 200000, '', 1, '2019-02-08 09:04:16', 10),
+	('1-2-180474', 'INV-011962113', 'Peralatan', 'tagihan', 2000000, 2000000, '2018/2019', 1, '2019-02-08 09:04:36', 11),
+	('1-2-180474', 'INV-011962113', 'Material Tahunan', 'tagihan', 1750000, 1750000, '2018/2019', 1, '2019-02-08 09:04:37', 12);
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+
 -- Dumping structure for table tkai.detail_menu
 CREATE TABLE IF NOT EXISTS `detail_menu` (
   `id` int(11) NOT NULL,
@@ -554,6 +584,19 @@ CREATE TABLE `v_tagihan_siswa` (
 	`nominal` DOUBLE NOT NULL
 ) ENGINE=MyISAM;
 
+-- Dumping structure for view tkai.v_tagihan_siswa_all
+-- Creating temporary table to overcome VIEW dependency errors
+CREATE TABLE `v_tagihan_siswa_all` (
+	`kode_siswa` CHAR(20) NOT NULL COLLATE 'latin1_swedish_ci',
+	`kode_kelas` CHAR(10) NOT NULL COLLATE 'latin1_swedish_ci',
+	`idtagihan` CHAR(20) NOT NULL COLLATE 'latin1_swedish_ci',
+	`tahun_ajaran` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+	`keterangan` VARCHAR(7) NOT NULL COLLATE 'utf8mb4_general_ci',
+	`remarks` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci',
+	`nominal` DOUBLE NOT NULL,
+	`urutan` BIGINT(11) NULL
+) ENGINE=MyISAM;
+
 -- Dumping structure for view tkai.v_kelas_siswa
 -- Removing temporary table and create final VIEW structure
 DROP TABLE IF EXISTS `v_kelas_siswa`;
@@ -646,6 +689,31 @@ UNION ALL
 SELECT kode_siswa, kode_kelas, idtagihan, tahun_ajaran, 'Material Penunjang' material_penunjang, seragam nominal FROM tagihan_siswa
 UNION ALL
 SELECT kode_siswa, kode_kelas, idtagihan, tahun_ajaran, 'Material Tahunan' remarks, material_tahunan nominal FROM tagihan_siswa ;
+
+-- Dumping structure for view tkai.v_tagihan_siswa_all
+-- Removing temporary table and create final VIEW structure
+DROP TABLE IF EXISTS `v_tagihan_siswa_all`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` VIEW `v_tagihan_siswa_all` AS SELECT kode_siswa
+		,kode_kelas
+		,idtagihan
+		,tahun_ajaran
+		,'tagihan' keterangan
+		,remarks
+		,nominal
+		,0 urutan
+FROM v_tagihan_siswa 
+UNION ALL
+SELECT a.kode_siswa
+		,b.kode_kelas
+		,a.idtagihan
+		,a.tahun_ajaran
+		,'spp' keterangan
+		,a.bulan remarks
+		,a.nominal	
+		,a.urutan	
+FROM tagihan_siswa_spp a 
+JOIN tagihan_siswa b ON a.idtagihan = b.idtagihan AND a.kode_siswa = b.kode_siswa
+ORDER BY urutan ASC ;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

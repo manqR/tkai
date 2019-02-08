@@ -25,7 +25,7 @@ class AppAsset extends AssetBundle
         
     ];
     public $js = [
-		'vendor/jquery/dist/jquery.js',
+		// 'vendor/jquery/dist/jquery.js',
 		'vendors/pace/pace.js',
 		'vendors/tether/dist/js/tether.js',
 		'vendors/bootstrap/dist/js/bootstrap.js',

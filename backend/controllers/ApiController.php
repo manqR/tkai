@@ -16,6 +16,7 @@ use backend\models\TagihanSiswaSpp;
 use backend\models\TagihanSpp;
 use backend\models\Tagihan;
 use backend\models\TagihanSiswa;
+use backend\models\Cart;
 
 
 include './inc/money.php';
@@ -531,6 +532,178 @@ class ApiController extends Controller
 		
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		return $data;
+    }
+    public function actionListsiswa(){     
+        $cabang =  Yii::$app->user->identity->cabang != 0 ? ['idcabang'=>Yii::$app->user->identity->cabang] : "";
+        $model = Siswa::find()
+                ->where(['status'=>1])
+                ->AndWhere($cabang)
+                ->all();
+       
+        $output = array();        
+        $aksi = '';
+        foreach($model as $i => $models):       
+            $aksi = "<i class=\"material-icons add\" aria-hidden=\"true\" data-id=\"".$models->kode_siswa.';'.$models->nis.';'.$models->nama_lengkap."\">add_box</i>";   
+
+            $output[$i] = array(
+                             $models['nis']                                                   
+                            ,$models['nama_lengkap']                                                        
+                            ,$models['tempat_lahir']                                                                                                             
+                            ,$models['tanggal_lahir']                                                                                                             
+                            ,$models['jenis_kelamin']                                                                                                             
+                            ,$aksi                                                                                                                                                                                          
+                        );
+		endforeach;
+		
+		$data = json_encode($output);
+		$data = [
+			'data'=>$output
+		];
+		
+		Yii::$app->response->format = Response::FORMAT_JSON;
+		return $data;
+    }
+    public function actionPostsiswa(){     
+        
+        if($_POST){
+            
+            $val = explode(";",$_POST['data']);        
+            $output = array();        
+                           
+            $data = [
+                'data'=>[
+                    'kode_siswa'=>$val[0],
+                    'nis'=>$val[1],
+                    'nama'=>$val[2]
+                ]
+            ];
+		
+		
+        }else{           
+            $data = [
+                'data'=>'Method Not Allowed'
+            ];
+        }
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+		return $data;
+        
+    }
+
+    public function actionListtagihanall($kode=''){     
+        
+
+        $kode_siswa = $kode;
+        $connection = \Yii::$app->db;
+        $sql = $connection->createCommand("SELECT * FROM v_tagihan_siswa_all a WHERE a.remarks NOT IN (SELECT b.remarks FROM cart b WHERE a.kode_siswa = b.kode_siswa AND a.tahun_ajaran = b.tahun_ajaran AND a.idtagihan = b.idtagihan)
+                                           AND  a.kode_siswa = '$kode_siswa'");
+                                      
+        $model = $sql->queryAll();    
+        $output = array();        
+        $aksi = '';
+        foreach($model as $i => $models):          
+            $aksi = "<i class=\"material-icons addCart\" aria-hidden=\"true\" data-id=\"".$models['keterangan'].';'.$models['kode_siswa'].';'.$models['remarks'].';'.$models['idtagihan'].';'.$models['tahun_ajaran'].';'.$models['nominal']."\">add_box</i>";   
+            $nis = explode("-",$models['kode_siswa']);
+
+            $output[$i] = array(
+                            $nis[2]
+                            ,'<span class="tag tag-primary">'.ucwords($models['keterangan']).'</span>'  
+                            ,$models['remarks']  
+                            ,FormatRupiah($models['nominal'])                                                      
+                            ,$models['tahun_ajaran']                                                             
+                            ,$aksi                                                                                                                                                                                          
+                        );
+        endforeach;
+        
+        $data = json_encode($output);
+        $data = [
+            'data'=>$output
+        ];
+            
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $data;
+       
+    }
+
+    public function actionAddCart(){     
+        
+        $output = array();
+
+        if($_POST){
+            $data = explode(";",$_POST['data']);
+            $model = new Cart();
+
+            $model->kode_siswa = $data[1];
+            $model->idtagihan = $data[3];
+            $model->remarks = $data[2];
+            $model->keterangan = $data[0];
+            $model->nominal = $data[5];
+            $model->jumlah_bayar = $data[5];
+            $model->tahun_ajaran = $data[4];
+            $model->flag = 1;
+            $model->date = date('Y-m-d H:i:s');
+
+            $model->save(false);
+
+            $data = json_encode($output);
+            $data = [
+                'error'=>'success',
+                'siswa'=>$model->kode_siswa,
+
+            ];                
+        }else{
+            $data = json_encode($output);
+            $data = [
+                'error'=>'error'
+            ];
+        }
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $data;
+       
+    }
+
+    public function actionListcart($kode){
+        $model = Cart::find()
+                ->Where(['kode_siswa'=>$kode])
+                ->andWhere(['flag'=>1])
+                ->all();
+
+        $data = '';
+        
+        if($model){
+            foreach($model as $models):    
+                $nis = explode("-",$models['kode_siswa']);            
+                $data .="<tr>
+                            <td>".$nis[2]."</td>
+                            <td>".$models->remarks."</td>
+                            <td>".$models->tahun_ajaran."</td>
+                            <td>".number_format($models->nominal,0,".",".")."</td>
+                            <td><input type=\"text\" class=\"form-control\" name=\"nominal_bayar\" id=\"nominal_bayar\" value='$models->jumlah_bayar'/></td>
+                           
+                            <td><i class=\"material-icons delete\" aria-hidden=\"true\"  data-id=".$models->urutan.">delete</i></td>
+                        </tr>";                                               
+            endforeach;
+        }else{
+            $data = " <tr>
+                    <td colspan=\"6\" class=\"text-xs-center\">No data available in table</td>
+                </tr>";
+        }
+        return $data;
+    }
+
+    public function actionJumlahList($kode){
+        $nominal = Cart::find()
+            ->where(['kode_siswa'=>$kode])    
+            ->AndWhere(['flag'=>1])        
+            ->sum('nominal');    
+        
+            $data =  "<div class=\"invoice-totals-row\">
+                         <strong class=\"invoice-totals-title\">Subtotal</strong>
+                         <span class=\"invoice-totals-value\"><b>Rp ".number_format($nominal,0,".",".")."</b></span>
+                         <input type='hidden' id='nominal' name='nominal' value=".$nominal.">
+                     </div>";  
+            return $data;   
     }
 }
 
