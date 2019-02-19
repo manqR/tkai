@@ -14,13 +14,18 @@ $this->registerJs("
         function listTagihan(kode){
             tableShow('.datatagihan','./api/listtagihanall?kode='+kode);
         }
+
+        
+
         function listCart(kode) {
             $.ajax({
                 type: 'GET',
                 url: 'api/listcart?kode='+kode,
                 cache: false,
                 success: function(html) {											
-                    $('#show').html(html);   				
+                    $('#show').html(html);  
+                   
+                     				
                 }
             });
             
@@ -29,7 +34,8 @@ $this->registerJs("
                 url: 'api/jumlah-list?kode='+kode,
                 cache: false,
                 success: function(html) {											
-                    $('#jml').html(html);   				
+                    $('#jml').html(html);   	
+                   		
                 }
             });
             
@@ -49,6 +55,8 @@ $this->registerJs("
                 
                 listTagihan(data.data.kode_siswa);
                 listCart(data.data.kode_siswa);
+
+                
             });
                                                            
         })    
@@ -78,7 +86,7 @@ $this->registerJs("
               animation: 'slide-from-top',
               inputPlaceholder: 'Write something'
             }, function(inputValue) {
-                
+                console.log(nominal)
                 if (inputValue === false) {
                     return false;
                 }else if (inputValue === '' ) {
@@ -96,20 +104,25 @@ $this->registerJs("
                     console.log(nominal);
                     swal.showInputError('Nominal yang dimasukan tidak cukup');
                     return false;
+                }else{
+
+                    var urutan = $(\"input[name='urutan[]']\").map(function(){return $(this).val();}).get();
+                    var bayar = $(\"input[name='nominal_bayar[]']\").map(function(){return $(this).val();}).get();
+                    var kode = $(\"input[name='kode[]']\").map(function(){return $(this).val();}).get();
+
+                    for(var i = 0 ; i < urutan.length ; i++){
+
+                        $.post('kasir/checkout',{
+                            urutan: urutan[i],
+                            bayar: bayar[i],
+                            kode: kode[i],
+                        },
+                        function(data, status){ 
+                                                                                                
+                        });
+                    }
                 }
-                    $.post('kasir/checkout',{
-                        data: siswa
-                    },
-                    function(data, status){	
-                        if(data.err == 'sukses'){										                    
-                            var kembalian = inputValue - nominal;
-                            swal('Nilai Kembailan: Rp ' + rupiah(kembalian) , 'Pembayaran Berhasil', 'success');
-                         
-                        }else{                    									
-                            swal('Saving!', 'Proses Checkout Gagal !', 'error');
-                        }
-                                                            
-                });
+                    
               
             });
           });
@@ -125,7 +138,28 @@ $this->registerCss("
 
 $root = '@web';
 $this->registerJs("
-				
+                
+    function findTotal(){
+        var arr = document.getElementsByName('nominal_bayar[]');
+        var tot=0;
+        for(var i=0;i<arr.length;i++){
+            if(parseInt(arr[i].value))
+                tot += parseInt(arr[i].value);
+        }
+        console.log(tot)
+       
+       var	number_string = tot.toString(),
+            sisa 	= number_string.length % 3,
+            rupiah 	= number_string.substr(0, sisa),
+            ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+                
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+       $('#total').html('<span class=\"invoice-totals-value\"><b>Rp '+rupiah+'</b></span>'); 
+    }
+   
 	function formatRupiah(angka, prefix){
 		var number_string = angka.value.replace(/[^,\d]/g, '').toString(),
 			split    = number_string.split(','),
@@ -231,6 +265,7 @@ View::POS_HEAD);
         Cetak
         </button>        
     </div>
+    </form>
 </div>
 
 

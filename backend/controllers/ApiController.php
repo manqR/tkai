@@ -672,14 +672,19 @@ class ApiController extends Controller
         $data = '';
         
         if($model){
-            foreach($model as $models):    
+            $kode = 'K-'.date('ymd').'.'.rand(10000,99999);
+            foreach($model as $i => $models):    
                 $nis = explode("-",$models['kode_siswa']);            
                 $data .="<tr>
                             <td>".$nis[2]."</td>
                             <td>".$models->remarks."</td>
                             <td>".$models->tahun_ajaran."</td>
                             <td>".number_format($models->nominal,0,".",".")."</td>
-                            <td><input type=\"text\" class=\"form-control\" name=\"nominal_bayar\" id=\"nominal_bayar\" value='$models->jumlah_bayar'/></td>
+                            <td><input type=\"text\" class=\"form-control\" onKeyup =  \"findTotal()\" 	 name=\"nominal_bayar[]\" id=\"nominal_bayar\" value='$models->jumlah_bayar'/></td>
+                           
+                               
+                                <input type='hidden' name=\"urutan[]\" value='".$models->urutan."' />
+                                <input type='hidden' name=\"kode[]\" value='".$kode."' />
                            
                             <td><i class=\"material-icons delete\" aria-hidden=\"true\"  data-id=".$models->urutan.">delete</i></td>
                         </tr>";                                               
@@ -700,11 +705,13 @@ class ApiController extends Controller
         
             $data =  "<div class=\"invoice-totals-row\">
                          <strong class=\"invoice-totals-title\">Subtotal</strong>
-                         <span class=\"invoice-totals-value\"><b>Rp ".number_format($nominal,0,".",".")."</b></span>
+                         <span class=\"invoice-totals-value\" id='total'><b>Rp ".number_format($nominal,0,".",".")."</b></span>
                          <input type='hidden' id='nominal' name='nominal' value=".$nominal.">
                      </div>";  
             return $data;   
     }
+
+    
 }
 
 ?>
