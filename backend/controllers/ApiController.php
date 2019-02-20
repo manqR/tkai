@@ -58,7 +58,7 @@ class ApiController extends Controller
  
         if(Yii::$app->user->identity->auth_key){
             $connection = \Yii::$app->db;
-            $query = $connection->createCommand("SELECT * FROM v_siswa WHERE status <> 1");
+            $query = $connection->createCommand("SELECT * FROM v_siswa WHERE status = 0");
             $data = $query->queryAll();
             
             $output = array();
@@ -66,15 +66,16 @@ class ApiController extends Controller
          
             foreach($data as $key => $models):              
             
-                $output[$key] = array($models['nis']
+                $output[$key] = array($models['no_registrasi']
                                     ,$models['nama_lengkap']
                                     ,$models['cabang']
                                     ,$models['kategori']
-                                    ,$models['nisn']
                                     ,$models['jenis_kelamin']
                                     ,$models['tempat_lahir']
-                                    ,$models['tanggal_lahir']                                    
-                                    ,'<i class="material-icons view" aria-hidden="true" data-id="">open_in_new</i> | <i class="material-icons edit" aria-hidden="true" data-id="">edit</i>'
+                                    ,$models['tanggal_lahir']    
+                                    ,'<input type="checkbox" name="action[]" value="'.$models['no_registrasi'].'">'                                
+                                    ,'<a href="registrasi-view-'.$models['no_registrasi'].'"><i class="material-icons view" aria-hidden="true" data-id="">open_in_new</i></a> | 
+                                     <a href="registrasi-update-'.$models['no_registrasi'].'"><i class="material-icons edit" aria-hidden="true" data-id="">edit</i></a>'
                                 );
             
             endforeach;
@@ -123,7 +124,8 @@ class ApiController extends Controller
                                     ,$models['jenis_kelamin']
                                     ,$models['tempat_lahir']
                                     ,$models['tanggal_lahir']                                    
-                                    ,'<i class="material-icons view" aria-hidden="true" data-id="">open_in_new</i> | <i class="material-icons edit" aria-hidden="true" data-id="">edit</i>'
+                                    ,'<a href="siswa-view-'.$models['kode_siswa'].'"><i class="material-icons view" aria-hidden="true" data-id="">open_in_new</i></a> | 
+                                    <a href="siswa-update-'.$models['kode_siswa'].'"><i class="material-icons edit" aria-hidden="true" data-id="">edit</i></a>'
                                 );
             
             endforeach;

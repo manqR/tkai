@@ -18,8 +18,8 @@ class SiswaSearch extends Siswa
     public function rules()
     {
         return [
-            [['nis', 'kode_siswa', 'nisn', 'nama_lengkap', 'nama_panggilan', 'agama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'tlp', 'tlp_darurat', 'nama_ayah', 'nama_ibu', 'pekerjaan_ayah', 'pekerjaan_ibu', 'email', 'tahun_input', 'tgl_input'], 'safe'],
-            [['idcabang', 'idkategori', 'urutan'], 'integer'],
+            [['nis', 'kode_siswa', 'nisn', 'no_registrasi', 'nama_lengkap', 'nama_panggilan', 'agama', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'tlp', 'tlp_darurat', 'nama_ayah', 'nama_ibu', 'pekerjaan_ayah', 'pekerjaan_ibu', 'email', 'tahun_input', 'tgl_input'], 'safe'],
+            [['idcabang', 'idkategori', 'status', 'urutan'], 'integer'],
         ];
     }
 
@@ -64,12 +64,14 @@ class SiswaSearch extends Siswa
             'tanggal_lahir' => $this->tanggal_lahir,
             'tahun_input' => $this->tahun_input,
             'tgl_input' => $this->tgl_input,
+            'status' => $this->status,
             'urutan' => $this->urutan,
         ]);
 
         $query->andFilterWhere(['like', 'nis', $this->nis])
             ->andFilterWhere(['like', 'kode_siswa', $this->kode_siswa])
             ->andFilterWhere(['like', 'nisn', $this->nisn])
+            ->andFilterWhere(['like', 'no_registrasi', $this->no_registrasi])
             ->andFilterWhere(['like', 'nama_lengkap', $this->nama_lengkap])
             ->andFilterWhere(['like', 'nama_panggilan', $this->nama_panggilan])
             ->andFilterWhere(['like', 'agama', $this->agama])

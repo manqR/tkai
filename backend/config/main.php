@@ -33,10 +33,26 @@ return [
                 'kelas-create'=>'kelas/create',			
                 'tahun-ajaran-create'=>'tahun-ajaran/create',			
                 'tagihan-create'=>'tagihan/create',			
+                'registrasi-create'=>'registrasi/create',			
+
+
+                //---------------------------------- Update -----------------------------//
+                'registrasi-update-<id>'=>'registrasi/update',	
+                'siswa-update-<id>'=>'siswa/update',	
+                
+                
+                //---------------------------------- View -----------------------------//
+                'registrasi-view-<id>'=>'registrasi/view',			
+                'siswa-view-<id>'=>'siswa/view',			
+
+
 
                 //---------------------------------- Kasir -----------------------------//
                 'kasir'=>'kasir/index',		
 
+                
+                //---------------------------------- REGISTRASI POST -----------------------------//
+                'registrasi-proses'=>'registrasi/proses',
 
                 //---------------------------------- Billing -----------------------------//
                 'billing-<page:\d+>'=>'billing/index',

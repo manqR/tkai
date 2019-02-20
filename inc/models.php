@@ -14,6 +14,21 @@
 
         return $attribute;
     }
+    function AttributeRegister(){
+        $attribute = array(
+             'No Registrasi'
+            ,'Nama Siswa'
+            ,'Cabang'
+            ,'Grade'
+            ,'Jenis Kelamin'
+            ,'Tempat Lahir'
+            ,'Tanggal Lahir'
+            ,'<input type="checkbox" id= "checkAll" />'
+            ,'Aksi '
+        );
+
+        return $attribute;
+    }
     function AttributeKelasSiswa(){
         $attribute = array(
              'Nis'

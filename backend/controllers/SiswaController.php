@@ -53,10 +53,10 @@ class SiswaController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($nis, $kode_siswa, $urutan)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($nis, $kode_siswa, $urutan),
+            'model' => $this->findModel($id),
         ]);
     }
 
@@ -89,12 +89,15 @@ class SiswaController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($nis, $kode_siswa, $urutan)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($nis, $kode_siswa, $urutan);
+        $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'nis' => $model->nis, 'kode_siswa' => $model->kode_siswa, 'urutan' => $model->urutan]);
+        if ($model->load(Yii::$app->request->post())){
+            
+            $model->save();
+            Yii::$app->session->setFlash('success');
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
@@ -127,9 +130,9 @@ class SiswaController extends Controller
      * @return Siswa the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($nis, $kode_siswa, $urutan)
+    protected function findModel($id)
     {
-        if (($model = Siswa::findOne(['nis' => $nis, 'kode_siswa' => $kode_siswa, 'urutan' => $urutan])) !== null) {
+        if (($model = Siswa::findOne(['kode_siswa' => $id])) !== null) {
             return $model;
         }
 

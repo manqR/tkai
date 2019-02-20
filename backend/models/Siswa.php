@@ -12,6 +12,7 @@ use Yii;
  * @property int $idcabang
  * @property int $idkategori
  * @property string $nisn
+ * @property string $no_registrasi
  * @property string $nama_lengkap
  * @property string $nama_panggilan
  * @property string $agama
@@ -28,6 +29,7 @@ use Yii;
  * @property string $email
  * @property string $tahun_input
  * @property string $tgl_input
+ * @property int $status
  * @property int $urutan
  *
  * @property Cabang $cabang
@@ -49,10 +51,10 @@ class Siswa extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nis', 'kode_siswa', 'idcabang', 'idkategori', 'nama_lengkap', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'tlp_darurat', 'tahun_input'], 'required'],
-            [['idcabang', 'idkategori'], 'integer'],
+            [['nis', 'kode_siswa', 'idcabang', 'idkategori', 'nama_lengkap', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'tlp_darurat', 'tahun_input', 'status'], 'required'],
+            [['idcabang', 'idkategori', 'status'], 'integer'],
             [['tanggal_lahir', 'tahun_input', 'tgl_input'], 'safe'],
-            [['nis', 'kode_siswa', 'nisn'], 'string', 'max' => 20],
+            [['nis', 'kode_siswa', 'nisn', 'no_registrasi'], 'string', 'max' => 20],
             [['nama_lengkap', 'nama_panggilan', 'agama', 'tempat_lahir', 'tlp', 'tlp_darurat', 'nama_ayah', 'nama_ibu', 'pekerjaan_ayah', 'pekerjaan_ibu', 'email'], 'string', 'max' => 50],
             [['jenis_kelamin'], 'string', 'max' => 1],
             [['alamat'], 'string', 'max' => 1000],
@@ -72,6 +74,7 @@ class Siswa extends \yii\db\ActiveRecord
             'idcabang' => 'Idcabang',
             'idkategori' => 'Idkategori',
             'nisn' => 'Nisn',
+            'no_registrasi' => 'No Registrasi',
             'nama_lengkap' => 'Nama Lengkap',
             'nama_panggilan' => 'Nama Panggilan',
             'agama' => 'Agama',
@@ -88,6 +91,7 @@ class Siswa extends \yii\db\ActiveRecord
             'email' => 'Email',
             'tahun_input' => 'Tahun Input',
             'tgl_input' => 'Tgl Input',
+            'status' => 'Status',
             'urutan' => 'Urutan',
         ];
     }

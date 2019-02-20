@@ -21,7 +21,7 @@
             <!-- /toggle offscreen menu -->
             <!-- logo -->
             <a class="brand-logo hidden-xs-down">
-            <img src="images/logo_white.png" alt="logo"/>
+            <!-- <img src="images/logo_white.png" alt="logo"/> -->
             </a>
             <!-- /logo -->
         </div>
