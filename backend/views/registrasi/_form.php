@@ -21,6 +21,10 @@ $(document).ready(function() {
 ");
 
 ?>
+<div class="card card-block">
+    <label>Biaya Registrasi</label>
+    <input type="text" name="biaya" class="form-control" />
+</div>
 
 <div class="siswa-form">
 

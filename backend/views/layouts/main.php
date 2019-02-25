@@ -73,10 +73,10 @@
 
 					<div class="main-content">
 						
-							<?= Breadcrumbs::widget([
+							<!-- <?= Breadcrumbs::widget([
 									'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
 								]) 
-							?>
+							?> -->
 						
 
 						<div class="content-view">
