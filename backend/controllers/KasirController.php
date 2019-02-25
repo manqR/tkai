@@ -72,7 +72,8 @@ class KasirController extends \yii\web\Controller
             $model->date = date('Y-m-d H:i:s');
             $model->save();
             $data = [
-                'msg'=>'Method  allowed'
+                'msg'=>'success',
+                'siswa'=>$model->kode_siswa
             ];
         }else{
             $data = [

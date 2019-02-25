@@ -664,6 +664,30 @@ class ApiController extends Controller
         return $data;
        
     }
+    public function actionDeleteCart(){     
+        
+        $output = array();
+
+        if($_POST){
+            $id = $_POST['data'];
+            $model = Cart::findOne($id);
+
+            $model->delete();
+
+
+            $data = [
+                'error'=>'success',
+                'siswa'=>$model->kode_siswa,
+            ];                
+        }else{
+            $data = [
+                'error'=>'error'
+            ];
+        }
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $data;
+       
+    }
 
     public function actionListcart($kode){
         $model = Cart::find()

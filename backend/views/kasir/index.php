@@ -75,6 +75,22 @@ $this->registerJs("
             });                        
         })    
 
+        $(document).on(\"click\", \".delete\", function () {		
+            var datas = $(this).data('id');
+
+        $.post('api/delete-cart',{
+                data:datas
+            },
+            function(data, status){   
+                if(data.error == 'success'){
+                    listTagihan(data.siswa);
+                    listCart(data.siswa);
+                }
+               
+            });                        
+        })    
+
+        
         $(document).on(\"click\", \".checkout\", function (){
             var nominal = document.getElementById('nominal').value;
             swal({
@@ -86,26 +102,21 @@ $this->registerJs("
               animation: 'slide-from-top',
               inputPlaceholder: 'Write something'
             }, function(inputValue) {
-                console.log(nominal)
+                console.log('nominal ',nominal)
+                console.log('inputValue ',inputValue)
                 if (inputValue === false) {
                     return false;
                 }else if (inputValue === '' ) {
-                    console.log(inputValue);
-                    console.log(nominal);
                     swal.showInputError('Nilai Tidak boleh kosong');
                     return false;
-                }else if (inputValue === 0 ) {
-                    console.log(inputValue);
-                    console.log(nominal);
+                }else if (inputValue === '0' || nominal === '0') {
                     swal.showInputError('Nilai Tidak boleh kosong');
                     return false;
-                }else if (inputValue < nominal) {
-                    console.log(inputValue);
-                    console.log(nominal);
+                }else if (parseInt(inputValue,10) < parseInt(nominal,10)){
                     swal.showInputError('Nominal yang dimasukan tidak cukup');
                     return false;
                 }else{
-
+                    console.log('Send');
                     var urutan = $(\"input[name='urutan[]']\").map(function(){return $(this).val();}).get();
                     var bayar = $(\"input[name='nominal_bayar[]']\").map(function(){return $(this).val();}).get();
                     var kode = $(\"input[name='kode[]']\").map(function(){return $(this).val();}).get();
@@ -118,7 +129,17 @@ $this->registerJs("
                             kode: kode[i],
                         },
                         function(data, status){ 
-                                                                                                
+                            if(data.msg == 'success'){
+                                var kembalian = inputValue - nominal;
+                                swal('Nilai kembalian ' + kembalian, 'Pembayaran berhasil', 'success');
+                                listTagihan(data.siswa);
+                                listCart(data.siswa);
+                                $(\"button[name='print']\").removeAttr(\"disabled\");
+                                $(\"button[name='checkout']\").attr(\"disabled\", \"disabled\");
+                            }else{                    									
+                                swal('Saving!', 'Data Pembayaran gagal ditambahkan', 'error');
+                                console.log(err)
+                            }
                         });
                     }
                 }
@@ -126,11 +147,26 @@ $this->registerJs("
               
             });
           });
+
+          $(document).on(\"click\", \".print\", function () {		
+           
+           var nis = $(\"#nis\").val(data.data.nis);	                                                                         
+           var nama = $(\"#nama\").val(data.data.nama);	
+           
+           $.post('kasir/print',{
+                nis: urutan[i],
+                nama: bayar[i],
+            },
+            function(data, status){ 
+
+            });
+                                                           
+        })    
     
 
     ");
 $this->registerCss("
-    .cari, .add, .cariTagihan, .addCart{
+    .cari, .add, .cariTagihan, .addCart, .delete{
         cursor:pointer;
     }
 ");
@@ -238,7 +274,7 @@ View::POS_HEAD);
                 </thead>
                 <tbody id="show">
                     <tr>
-                        <td colspan="4" class="text-xs-center">No data available in table</td>
+                        <td colspan="6" class="text-xs-center">No data available in table</td>
                     </tr>            
                 </tbody>
             </table>
@@ -256,14 +292,14 @@ View::POS_HEAD);
         </div>      
     </div>
     <div class="card-footer text-xs-right" style="background-color:#f7f7f700">      
-        <button type="button" class="btn btn-danger btn-icon btn-sm checkout">
+        <button type="button" name="checkout" class="btn btn-danger btn-icon btn-sm checkout">
         <i class="material-icons">shopping_basket</i>
         Bayar
         </button>
-        <button type="button" class="btn btn-warning btn-icon btn-sm print">
+        <a href="#"  name="print" class="btn btn-warning btn-icon btn-sm print">
         <i class="material-icons">print</i>
         Cetak
-        </button>        
+        </a>        
     </div>
     </form>
 </div>
