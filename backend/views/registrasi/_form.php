@@ -21,14 +21,15 @@ $(document).ready(function() {
 ");
 
 ?>
-<div class="card card-block">
-    <label>Biaya Registrasi</label>
-    <input type="text" name="biaya" class="form-control" />
-</div>
 
 <div class="siswa-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <div class="card card-block">
+        <?= $form->field($model, 'biaya_registrasi')->textInput() ?>
+    </div>
+
     <div class="col-md-12 card card-block">
         <div class="card card-block col-md-6">
             

@@ -13,6 +13,7 @@ use Yii;
  * @property int $idkategori
  * @property string $nisn
  * @property string $no_registrasi
+ * @property double $biaya_registrasi
  * @property string $nama_lengkap
  * @property string $nama_panggilan
  * @property string $agama
@@ -53,6 +54,7 @@ class Siswa extends \yii\db\ActiveRecord
         return [
             [['nis', 'kode_siswa', 'idcabang', 'idkategori', 'nama_lengkap', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'tlp_darurat', 'tahun_input', 'status'], 'required'],
             [['idcabang', 'idkategori', 'status'], 'integer'],
+            [['biaya_registrasi'], 'number'],
             [['tanggal_lahir', 'tahun_input', 'tgl_input'], 'safe'],
             [['nis', 'kode_siswa', 'nisn', 'no_registrasi'], 'string', 'max' => 20],
             [['nama_lengkap', 'nama_panggilan', 'agama', 'tempat_lahir', 'tlp', 'tlp_darurat', 'nama_ayah', 'nama_ibu', 'pekerjaan_ayah', 'pekerjaan_ibu', 'email'], 'string', 'max' => 50],
@@ -75,6 +77,7 @@ class Siswa extends \yii\db\ActiveRecord
             'idkategori' => 'Idkategori',
             'nisn' => 'Nisn',
             'no_registrasi' => 'No Registrasi',
+            'biaya_registrasi' => 'Biaya Registrasi',
             'nama_lengkap' => 'Nama Lengkap',
             'nama_panggilan' => 'Nama Panggilan',
             'agama' => 'Agama',
