@@ -30,8 +30,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'tempat_lahir',
             'tanggal_lahir',
             'alamat',
-            'tlp',
             'tlp_darurat',
+            [
+                'label'=>'Nama',
+                'attribute'=>'nama_darurat'
+            ],
+            [
+                'label'=>'Hubungan',
+                'attribute'=>'status_hubungan'
+            ],
+            'tlp',            
             'nama_ayah',
             'nama_ibu',
             'pekerjaan_ayah',

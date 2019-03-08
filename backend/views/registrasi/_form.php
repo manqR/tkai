@@ -61,8 +61,11 @@ $(document).ready(function() {
        
 
             <?= $form->field($model, 'alamat')->textArea(['rows' => 5]) ?>
-            <?= $form->field($model, 'tlp')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'tlp_darurat')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'nama_darurat')->textInput(['maxlength' => true])->label('Nama') ?>
+            <?= $form->field($model, 'status_hubungan')->textInput(['maxlength' => true])->label('Hubungan') ?>
+
+            <?= $form->field($model, 'tlp')->textInput(['maxlength' => true]) ?>           
             <?= $form->field($model, 'nama_ayah')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'pekerjaan_ayah')->textArea(['rows' => 2]) ?>
             <?= $form->field($model, 'nama_ibu')->textInput(['maxlength' => true]) ?>           
