@@ -172,6 +172,15 @@
                 </a>
             </li>
             <!-- /kasir -->
+
+            <!-- kuitansi -->
+            <li>
+                <a href="kwitansi">
+                    <i class="material-icons text-warning">print</i>
+                    <span>Kwitansi</span>
+                </a>
+            </li>
+            <!-- /kuitansi -->
             
             <!-- Import -->
              <li>

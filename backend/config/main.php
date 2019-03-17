@@ -45,10 +45,15 @@ return [
                 'registrasi-view-<id>'=>'registrasi/view',			
                 'siswa-view-<id>'=>'siswa/view',			
 
+                //---------------------------------- Print -----------------------------//
 
+                'registrasi-print-<id>'=>'registrasi/print',		
 
                 //---------------------------------- Kasir -----------------------------//
                 'kasir'=>'kasir/index',		
+
+                //---------------------------------- Kwitansi -----------------------------//
+                'kwitansi'=>'kwitansi/index',		
 
                 
                 //---------------------------------- REGISTRASI POST -----------------------------//

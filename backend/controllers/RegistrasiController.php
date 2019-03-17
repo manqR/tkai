@@ -7,6 +7,8 @@ namespace backend\controllers;
 use Yii;
 use yii\web\Response;
 use backend\models\Siswa;
+use backend\models\Cart;
+use backend\models\Kuitansi;
 use backend\models\SiswaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -68,6 +70,35 @@ class RegistrasiController extends \yii\web\Controller
             $model->tgl_input = date('Y-m-d H:i:s');
             $model->tahun_input = date('Y');
             $model->save();
+
+            $cart = new Cart();
+            $cart->kode_siswa = $model->kode_siswa;
+            $cart->idtagihan = $kode;
+            $cart->remarks = 'Registrasi';
+            $cart->keterangan = 'tagihan';
+            $cart->nominal = $model->biaya_registrasi;
+            $cart->jumlah_bayar = $model->biaya_registrasi;
+            $cart->tahun_ajaran = $model->tahun_input;
+            $cart->flag = 2;
+            $cart->date = date('Y-m-d H:i:s');
+            $cart->save();
+
+            $kuitansi = new Kuitansi();                        
+            $kuitansi->no_kuitansi = 'K-'.date('ymd').'.'.rand(10000,99999);
+            $kuitansi->idcart = $cart->urutan;
+            $kuitansi->kode_siswa = $cart->kode_siswa;
+            $kuitansi->idtagihan = $cart->idtagihan;
+            $kuitansi->remarks = $cart->remarks;
+            $kuitansi->keterangan = $cart->keterangan;
+            $kuitansi->nominal = $cart->nominal;
+            $kuitansi->jumlah_bayar = $cart->jumlah_bayar;
+            $kuitansi->tahun_ajaran = $cart->tahun_ajaran;
+            $kuitansi->flag = $cart->flag;
+            $kuitansi->date = $cart->date;
+            $kuitansi->save();
+
+
+
             Yii::$app->session->setFlash('success');
             return $this->redirect(['index']);
         }
@@ -76,6 +107,8 @@ class RegistrasiController extends \yii\web\Controller
             'kode'  => $kode              
         ]);
     }
+
+
 
     public function actionUpdate($id)
     {
@@ -93,6 +126,12 @@ class RegistrasiController extends \yii\web\Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+
+
+    public function actionPrint($id){
+        include './inc/pdf.php';
+        PrintRegKuitansi($id);
     }
 
     public function actionView($id)
