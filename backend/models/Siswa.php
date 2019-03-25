@@ -118,4 +118,8 @@ class Siswa extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Kategori::className(), ['idkategori' => 'idkategori']);
     }
+    public function getKuitansi()
+    {
+        return $this->hasOne(Kuitansi::className(), ['kode_siswa' => 'kode_siswa']);
+    }
 }

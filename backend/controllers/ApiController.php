@@ -76,7 +76,7 @@ class ApiController extends Controller
                                     ,'<input type="checkbox" name="action[]" value="'.$models['no_registrasi'].'">'                                
                                     ,'<a href="registrasi-view-'.$models['no_registrasi'].'"><i class="material-icons view" aria-hidden="true" data-id="">open_in_new</i></a> | 
                                      <a href="registrasi-update-'.$models['no_registrasi'].'"><i class="material-icons edit" aria-hidden="true" data-id="">edit</i></a> | 
-                                     <a href="registrasi-print-'.$models['no_registrasi'].'"><i class="material-icons print" aria-hidden="true" data-id="">print</i></a> |' 
+                                     <a href="registrasi-print-'.$models['no_registrasi'].'"  target="_blank"><i class="material-icons print" aria-hidden="true" data-id="">print</i></a> |' 
                                 );
             
             endforeach;
