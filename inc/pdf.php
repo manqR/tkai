@@ -52,7 +52,7 @@ use backend\models\Siswa;
 
         $mpdf->writeHTML($head.' 
                         
-                            <div style="text-align:center;line-height:100px">
+                            <div style="text-align:center;line-height:80px">
                                 <b>K   W   I   T   A   N   S   I </b>
                             </div>
             
@@ -75,15 +75,13 @@ use backend\models\Siswa;
                             </tr> 
                             <br/>
                             <br/>
-                            <br/>
-                            <br/>
-                            <br/>
+                           
                             <tr style="tex-align:center;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
                                 <td ></td>                                                                                   
                                 <td></td>                                                                                   
                                 <td> </td>                                                                                   
                                                                                                                   
-                                <td style="text-align:center;">Jakarta, '.date('d M  Y').'<br/>Bag Adm TKAI<br/><br/><br/><br/>('.Yii::$app->user->identity->username.')</td>                                                                                   
+                                <td style="text-align:center;">Jakarta, '.date('d M  Y').'<br/>Bag Adm TKAI<br/><br/><br/>('.Yii::$app->user->identity->username.')</td>                                                                                   
                             </tr>
                            
                         
