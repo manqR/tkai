@@ -74,7 +74,8 @@ $(document).ready(function() {
                 <h5>Data Orang Dekat yang Dapat dihubungi</h5>
                 
                 <?= $form->field($model, 'nama_darurat')->textInput(['maxlength' => true])->label('Nama') ?>   
-                <?= $form->field($model, 'tlp_darurat')->textInput(['maxlength' => true]) ?>            
+                <?= $form->field($model, 'tlp_darurat')->textInput(['maxlength' => true]) ?>   
+                <?= $form->field($model, 'alamat_darurat')->textArea(['rows' => 5]) ?>         
                 <?= $form->field($model, 'status_hubungan')->textInput(['maxlength' => true])->label('Hubungan') ?>
                 
             </div>

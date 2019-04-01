@@ -37,7 +37,7 @@ $(document).ready(function() {
                     ArrayHelper::map(Kategori::find()->all(),'idkategori','keterangan'),
                     ['prompt'=>'- Select -','class'=>'select2 m-b-1','style' => 'width: 100%'])->label('Grade');  
                 ?>
-                <?= $form->field($model, 'biaya_registrasi')->textInput() ?>
+                <?= $form->field($model, 'biaya_registrasi')->textInput(['required'=>true]) ?>
             </div>
             <div class="card card-block">
                 <h4> Informasi Siswa </h4>  
@@ -76,7 +76,8 @@ $(document).ready(function() {
                 <h5>Data Orang Dekat yang Dapat dihubungi</h5>
                 
                 <?= $form->field($model, 'nama_darurat')->textInput(['maxlength' => true])->label('Nama') ?>   
-                <?= $form->field($model, 'tlp_darurat')->textInput(['maxlength' => true]) ?>            
+                <?= $form->field($model, 'tlp_darurat')->textInput(['maxlength' => true]) ?>    
+                <?= $form->field($model, 'alamat_darurat')->textArea(['rows' => 5]) ?>        
                 <?= $form->field($model, 'status_hubungan')->textInput(['maxlength' => true])->label('Hubungan') ?>
                 
             </div>

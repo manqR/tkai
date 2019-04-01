@@ -23,6 +23,7 @@ use Yii;
  * @property string $alamat
  * @property string $tlp_darurat
  * @property string $nama_darurat
+ * @property string $alamat_darurat
  * @property string $status_hubungan
  * @property string $tlp
  * @property string $nama_ayah
@@ -54,7 +55,7 @@ class Siswa extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nis', 'kode_siswa', 'idcabang', 'idkategori', 'nama_lengkap', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'tlp_darurat', 'nama_darurat', 'status_hubungan', 'tahun_input', 'status'], 'required'],
+            [['nis', 'kode_siswa', 'idcabang', 'idkategori', 'nama_lengkap', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'alamat', 'tahun_input', 'status'], 'required'],
             [['idcabang', 'idkategori', 'status'], 'integer'],
             [['biaya_registrasi'], 'number'],
             [['tanggal_lahir', 'tahun_input', 'tgl_input'], 'safe'],
@@ -62,6 +63,7 @@ class Siswa extends \yii\db\ActiveRecord
             [['nama_lengkap', 'nama_panggilan', 'agama', 'tempat_lahir', 'tlp_darurat', 'nama_darurat', 'status_hubungan', 'tlp', 'nama_ayah', 'nama_ibu', 'pekerjaan_ayah', 'pekerjaan_ibu', 'email'], 'string', 'max' => 50],
             [['jenis_kelamin'], 'string', 'max' => 1],
             [['alamat'], 'string', 'max' => 1000],
+            [['alamat_darurat'], 'string', 'max' => 500],
             [['idcabang'], 'exist', 'skipOnError' => true, 'targetClass' => Cabang::className(), 'targetAttribute' => ['idcabang' => 'idcabang']],
             [['idkategori'], 'exist', 'skipOnError' => true, 'targetClass' => Kategori::className(), 'targetAttribute' => ['idkategori' => 'idkategori']],
         ];
@@ -89,6 +91,7 @@ class Siswa extends \yii\db\ActiveRecord
             'alamat' => 'Alamat',
             'tlp_darurat' => 'Tlp Darurat',
             'nama_darurat' => 'Nama Darurat',
+            'alamat_darurat' => 'Alamat Darurat',
             'status_hubungan' => 'Status Hubungan',
             'tlp' => 'Tlp',
             'nama_ayah' => 'Nama Ayah',
@@ -102,8 +105,7 @@ class Siswa extends \yii\db\ActiveRecord
             'urutan' => 'Urutan',
         ];
     }
-
-    /**
+ /**
      * @return \yii\db\ActiveQuery
      */
     public function getCabang()

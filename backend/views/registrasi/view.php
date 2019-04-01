@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label'=>'Hubungan',
                 'attribute'=>'status_hubungan'
             ],
+            'alamat_darurat',
             'tlp',            
             'nama_ayah',
             'nama_ibu',

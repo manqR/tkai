@@ -58,11 +58,12 @@ class ApiController extends Controller
  
         if(Yii::$app->user->identity->auth_key){
             $connection = \Yii::$app->db;
-            $query = $connection->createCommand("SELECT * FROM v_siswa WHERE status = 0");
+            $query = $connection->createCommand("SELECT * FROM v_siswa WHERE status = 0 ORDER BY urutan DESC");
             $data = $query->queryAll();
             
             $output = array();
           
+            
          
             foreach($data as $key => $models):              
             
