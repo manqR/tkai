@@ -26,7 +26,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index','tunggakan-list'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -58,9 +58,25 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
-    {
-        return $this->render('index');
+    public function actionIndex(){
+        
+        $connection = \Yii::$app->db;
+        $sql = $connection->createCommand("SELECT c.keterangan, a.tahun_ajaran, (a.nominal) nominal 
+                                            FROM v_tagihan_siswa_all a 
+                                            JOIN siswa b ON a.kode_siswa = b.kode_siswa
+                                            JOIN kategori c ON b.idkategori = c.idkategori
+                                            GROUP BY c.keterangan, a.tahun_ajaran");
+        $model = $sql->queryAll();
+
+        return $this->render('index',[
+            'model'=>$model
+        ]);
+    }
+
+    public function actionTunggakanList($thn,$grade){
+
+
+        return $this->render('list-tagihan');
     }
 
     /**

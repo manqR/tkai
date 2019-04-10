@@ -64,7 +64,8 @@ return [
                 'billing-detail-<id>'=>'billing/detail',
                 
 				//---------------------------------- Login -----------------------------//
-				'login'=>'site/login',
+                'login'=>'site/login',
+                'tunggakan-list-<thn>-<grade>'=>'site/tunggakan-list'
 
 			],
 		],
