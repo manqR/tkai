@@ -739,6 +739,45 @@ class ApiController extends Controller
             return $data;   
     }
 
+    public function actionListTunggakan($thn,$grade){    
+
+        $tahun = explode('-',$thn);
+        $tahun = $tahun[0].'/'.$tahun[1];
+        
+        $connection = \Yii::$app->db;
+        $sql = $connection->createCommand("SELECT * FROM v_tagihan_siswa_all a 
+                                            JOIN siswa b ON a.kode_siswa = b.kode_siswa
+                                            JOIN kategori c ON b.idkategori = c.idkategori
+                                            WHERE a.tahun_ajaran = '".$tahun."' AND c.keterangan = '".$grade."' ORDER BY nama_lengkap");
+
+                                            
+           
+        $model = $sql->queryAll();            
+        $output = array();  
+        foreach($model as $i => $models):       
+        
+            $output[$i] = array(
+                             $models['nis']                                                   
+                            ,$models['nama_lengkap']                                                                                                                                       
+                            ,$models['jenis_kelamin']                                                         
+                            ,$models['tempat_lahir']                                                                                                             
+                            ,$models['tanggal_lahir']     
+                            ,$models['tahun_ajaran']     
+                            ,$models['remarks']     
+                            ,FormatRupiah($models['nominal'])     
+                            
+                        );
+		endforeach;
+		
+		$data = json_encode($output);
+		$data = [
+			'data'=>$output
+		];
+		
+		Yii::$app->response->format = Response::FORMAT_JSON;
+		return $data;
+    }
+
     
 }
 

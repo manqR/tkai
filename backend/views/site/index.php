@@ -9,8 +9,9 @@ $this->title = 'TKAI - Jakarta';
         
         <?php
             foreach($model as $models):
+                $tahun = explode("/",$models['tahun_ajaran']);
         ?>
-        <a href="tunggakan-list-<?= $models['tahun_ajaran'] ?>-<?= $models['keterangan'] ?>">
+        <a href="tunggakan-list-<?= $tahun[0].'-'.$tahun[1] ?>-<?= $models['keterangan'] ?>">
             <div class="col-md-3">
                 <div class="card card-block">
                     <h5 class="m-b-0 v-align-middle text-overflow">

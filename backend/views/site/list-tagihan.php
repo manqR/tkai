@@ -1,9 +1,16 @@
 <?php
 /* @var $this yii\web\View */
-?>
-<h1>kwitansi/index</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+$this->registerJs("
+    tableShow('.datatable','./api/list-tunggakan?thn=".$tahun."&grade=".$grade."');
+");
+   $this->title = 'List Tagihan';
+?>
+<h5>List Tagihan</h5>
+<div class="card">
+    <div class="card-block">
+        <?php
+            TablewithCrud($arrFields);            
+        ?>
+    </div>
+</div>

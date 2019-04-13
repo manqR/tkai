@@ -10,6 +10,10 @@ use common\models\LoginForm;
 /**
  * Site controller
  */
+
+include './inc/table.php';
+include './inc/models.php';
+
 class SiteController extends Controller
 {
     /**
@@ -75,8 +79,11 @@ class SiteController extends Controller
 
     public function actionTunggakanList($thn,$grade){
 
-
-        return $this->render('list-tagihan');
+        return $this->render('list-tagihan', [
+            'arrFields' => AttributeListTunggakan(),                   
+            'tahun' => $thn,                   
+            'grade' => $grade,                   
+        ]);
     }
 
     /**

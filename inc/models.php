@@ -94,5 +94,21 @@
 
         return $attribute;
     }
+    function AttributeListTunggakan(){
+        $attribute = array(
+             'Nis'
+            ,'Nama Lengkap'   
+            ,'Jenis Kelamin'
+            ,'Tempat Lahir'
+            ,'Tanggal Lahir'
+            ,'Tahun Ajaran'
+            ,'Remarks'
+            ,'Nominal'
+
+         
+        );
+
+        return $attribute;
+    }
 
 ?>
