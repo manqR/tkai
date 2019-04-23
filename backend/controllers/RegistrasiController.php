@@ -65,7 +65,7 @@ class RegistrasiController extends \yii\web\Controller
             
             $model->status = 0;
             $model->nis = $nis;
-            $model->kode_siswa = $model->idcabang.'-'.$nis.'-'.$model->idkategori;
+            $model->kode_siswa = $model->idcabang.'-'.$model->idkategori.'-'.$nis;
             // var_dump($model);
             $model->tgl_input = date('Y-m-d H:i:s');
             $model->tahun_input = date('Y');
