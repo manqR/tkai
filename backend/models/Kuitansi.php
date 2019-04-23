@@ -17,6 +17,7 @@ use Yii;
  * @property double $jumlah_bayar
  * @property string $tahun_ajaran
  * @property int $flag
+ * @property string $payment_method
  * @property string $date
  * @property int $urutan
  */
@@ -36,11 +37,11 @@ class Kuitansi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['no_kuitansi', 'idcart', 'kode_siswa', 'idtagihan', 'remarks', 'keterangan', 'nominal', 'jumlah_bayar', 'tahun_ajaran', 'flag', 'date'], 'required'],
+            [['no_kuitansi', 'idcart', 'kode_siswa', 'idtagihan', 'remarks', 'keterangan', 'nominal', 'jumlah_bayar', 'tahun_ajaran', 'flag', 'payment_method', 'date'], 'required'],
             [['idcart', 'flag'], 'integer'],
             [['nominal', 'jumlah_bayar'], 'number'],
             [['date'], 'safe'],
-            [['no_kuitansi', 'kode_siswa', 'idtagihan', 'remarks', 'keterangan', 'tahun_ajaran'], 'string', 'max' => 50],
+            [['no_kuitansi', 'kode_siswa', 'idtagihan', 'remarks', 'keterangan', 'tahun_ajaran', 'payment_method'], 'string', 'max' => 50],
         ];
     }
 
@@ -60,6 +61,7 @@ class Kuitansi extends \yii\db\ActiveRecord
             'jumlah_bayar' => 'Jumlah Bayar',
             'tahun_ajaran' => 'Tahun Ajaran',
             'flag' => 'Flag',
+            'payment_method' => 'Payment Method',
             'date' => 'Date',
             'urutan' => 'Urutan',
         ];

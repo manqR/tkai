@@ -4909,6 +4909,10 @@ a.text-bluegrey:focus, a.text-bluegrey:hover {
     display: inline-block;
     min-width: 140px;
     text-align: left; }
+  .invoice-totals-values {
+    display: inline-block;
+    min-width: 140px;
+    text-align: left; }
 
 /* $messages
  ------------------------------------------*/

@@ -127,6 +127,7 @@ $this->registerJs("
                             urutan: urutan[i],
                             bayar: bayar[i],
                             kode: kode[i],
+                            payment : $('#payment').val(),
                         },
                         function(data, status){ 
                             if(data.msg == 'success'){
@@ -288,9 +289,21 @@ View::POS_HEAD);
                 <b>Rp 0</b>
                 </span>
                 <input type='hidden' id='nominal' name='nominal' value=0>
-            </div>        
-        </div>      
+            </div>  
+        </div>   
+        <div class="invoice-totals-row" style="float:right">
+            <strong class="invoice-totals-title">
+                Payment Method
+            </strong>
+            <span class="invoice-totals-values">
+                <select name="payment" id="payment" class="form-control" >
+                    <option value="Cash"> Cash </option>
+                    <option value="Transfer"> Transfer </option>
+                </select>      
+            </span>
+        </div>     
     </div>
+   
     <div class="card-footer text-xs-right" style="background-color:#f7f7f700">      
         <button type="button" name="checkout" class="btn btn-danger btn-icon btn-sm checkout">
         <i class="material-icons">shopping_basket</i>

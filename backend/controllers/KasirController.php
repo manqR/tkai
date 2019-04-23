@@ -68,6 +68,7 @@ class KasirController extends \yii\web\Controller
             $model->nominal = $cart->nominal;
             $model->jumlah_bayar = $_POST['bayar'];
             $model->tahun_ajaran = $cart->tahun_ajaran;
+            $model->payment_method = $_POST['payment'];
             $model->flag = $cart->flag;
             $model->date = date('Y-m-d H:i:s');
             $model->save();
