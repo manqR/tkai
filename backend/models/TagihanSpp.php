@@ -29,7 +29,6 @@ class TagihanSpp extends \yii\db\ActiveRecord
     {
         return [
             [['idtagihan', 'bulan', 'nominal'], 'required'],
-            [['nominal'], 'number'],
             [['idtagihan'], 'string', 'max' => 20],
             [['bulan'], 'string', 'max' => 50],
         ];
