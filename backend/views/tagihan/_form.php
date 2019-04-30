@@ -78,10 +78,10 @@ $this->registerJsFile($root."/scripts/forms/masks.js",
             ArrayHelper::map(TahunAjaran::find()->where(['flag'=>1])->all(),'tahun_ajaran','tahun_ajaran'),
             ['prompt'=>'- Pilih -','class'=>'select2 m-b-1','style' => 'width: 100%'])->label('Tahun Ajaran');  ?>	
 
-        <?= $form->field($model, 'seragam')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
         <?= $form->field($model, 'peralatan')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ])->label('Peralatan Belajar') ?>
         <?= $form->field($model, 'uang_pangkal')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
-        <?= $form->field($model, 'uang_bangunan')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
+        <?= $form->field($model, 'uang_bangunan')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ])->label('Uang Gedung') ?>        
+        <?= $form->field($model, 'seragam')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
         
         <div class="tooltipp">
             (?) 

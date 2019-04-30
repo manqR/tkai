@@ -63,6 +63,7 @@
             ,'Grade'
             ,'Tahun Ajaran'            
             ,'Wali Kelas'
+            ,'Guru Kelas'
             ,'Status Kelas'   
             ,'Aksi'        
         );

@@ -39,11 +39,16 @@ return [
                 //---------------------------------- Update -----------------------------//
                 'registrasi-update-<id>'=>'registrasi/update',	
                 'siswa-update-<id>'=>'siswa/update',	
+                'kelas-update-<urutan>'=>'kelas/update',	
+                'tahun-ajaran-update-<id>'=>'tahun-ajaran/update',	
                 
                 
                 //---------------------------------- View -----------------------------//
                 'registrasi-view-<id>'=>'registrasi/view',			
-                'siswa-view-<id>'=>'siswa/view',			
+                'siswa-view-<id>'=>'siswa/view',	
+
+                //---------------------------------- Delete -----------------------------//
+                'kelas-delete-<urutan>'=>'kelas/delete',				
 
                 //---------------------------------- Print -----------------------------//
 

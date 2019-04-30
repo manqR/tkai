@@ -440,16 +440,16 @@ class ApiController extends Controller
     public function actionKelas(){
    
         $connection = \Yii::$app->db;
-        $sql = $connection->createCommand("SELECT a.kode, b.keterangan `cabang`, c.keterangan `grade`, a.key_, a.flag, a.tahun_ajaran, a.wali_kelas
+        $sql = $connection->createCommand("SELECT a.kode, b.keterangan `cabang`, c.keterangan `grade`, a.key_, a.flag, a.tahun_ajaran, a.wali_kelas, a.guru_kelas, a.urutan
                                             FROM kelas a
                                             JOIN cabang b ON a.idcabang = b.idcabang
                                             JOIN kategori c ON a.idkategori  = c.idkategori");
                                          
         $model = $sql->queryAll();        
         $output = array();
-        $status = '';
-        $aksi = "<i class=\"material-icons view\" aria-hidden=\"true\" data-id=\"\">delete</i> | <i class=\"material-icons edit\" aria-hidden=\"true\" data-id=\"\">edit</i>";
+        $status = '';       
         foreach($model as $i => $models):
+            $aksi = "<a href='kelas-update-".$models['urutan']."' class=\"material-icons edit\" aria-hidden=\"true\" data-id=\"\">edit</a>";
             if($models['flag'] == 1){
                 $status = '<span class="tag tag-success">Aktif</span>';
             }else{
@@ -461,6 +461,7 @@ class ApiController extends Controller
                             ,$models['grade']
                             ,$models['tahun_ajaran']                       
                             ,$models['wali_kelas']
+                            ,$models['guru_kelas']
                             ,$status                                                        
                             ,$aksi
                         );
@@ -479,9 +480,9 @@ class ApiController extends Controller
         $model = TahunAjaran::find()
                 ->all();
         $output = array();
-        $status = '';
-        $aksi = "<i class=\"material-icons view\" aria-hidden=\"true\" data-id=\"\">delete</i> | <i class=\"material-icons edit\" aria-hidden=\"true\" data-id=\"\">edit</i>";
+        $status = '';        
         foreach($model as $i => $models):
+            $aksi = "<a href='tahun-ajaran-update-".$models->idtahun_ajaran."' class=\"material-icons edit\" aria-hidden=\"true\" data-id=\"\">edit</a>";
             if($models->flag == 1){
                 $status = '<span class="tag tag-success">Aktif</span>';
             }else{

@@ -90,12 +90,14 @@ class KelasController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($key_, $urutan)
+    public function actionUpdate($urutan)
     {
-        $model = $this->findModel($key_, $urutan);
+        $model = $this->findModel($urutan);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'key_' => $model->key_, 'urutan' => $model->urutan]);
+        if ($model->load(Yii::$app->request->post())){
+            
+            $model->save();
+            return $this->redirect('kelas');
         }
 
         return $this->render('update', [
@@ -111,11 +113,11 @@ class KelasController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($key_, $urutan)
-    {
-        $this->findModel($key_, $urutan)->delete();
-
-        return $this->redirect(['index']);
+    public function actionDelete($urutan){
+        
+        // $this->findModel($urutan)->delete();
+        echo "xxx";
+        // return $this->redirect(['index']);
     }
 
     /**
@@ -126,9 +128,9 @@ class KelasController extends Controller
      * @return Kelas the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($key_, $urutan)
+    protected function findModel($urutan)
     {
-        if (($model = Kelas::findOne(['key_' => $key_, 'urutan' => $urutan])) !== null) {
+        if (($model = Kelas::findOne(['urutan' => $urutan])) !== null) {
             return $model;
         }
 

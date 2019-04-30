@@ -12,6 +12,7 @@ use Yii;
  * @property int $idcabang
  * @property string $tahun_ajaran
  * @property string $wali_kelas
+ * @property string $guru_kelas
  * @property int $flag
  * @property string $key_
  * @property int $urutan
@@ -38,7 +39,7 @@ class Kelas extends \yii\db\ActiveRecord
             [['kode', 'idkategori', 'idcabang', 'tahun_ajaran', 'key_'], 'required'],
             [['idkategori', 'idcabang', 'flag'], 'integer'],
             [['kode'], 'string', 'max' => 10],
-            [['tahun_ajaran', 'wali_kelas'], 'string', 'max' => 50],
+            [['tahun_ajaran', 'wali_kelas', 'guru_kelas'], 'string', 'max' => 50],
             [['key_'], 'string', 'max' => 20],
             [['idcabang'], 'exist', 'skipOnError' => true, 'targetClass' => Cabang::className(), 'targetAttribute' => ['idcabang' => 'idcabang']],
             [['idkategori'], 'exist', 'skipOnError' => true, 'targetClass' => Kategori::className(), 'targetAttribute' => ['idkategori' => 'idkategori']],
@@ -56,6 +57,7 @@ class Kelas extends \yii\db\ActiveRecord
             'idcabang' => 'Idcabang',
             'tahun_ajaran' => 'Tahun Ajaran',
             'wali_kelas' => 'Wali Kelas',
+            'guru_kelas' => 'Guru Kelas',
             'flag' => 'Flag',
             'key_' => 'Key',
             'urutan' => 'Urutan',

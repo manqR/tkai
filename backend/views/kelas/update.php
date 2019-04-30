@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Kelas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->key_, 'url' => ['view', 'key_' => $model->key_, 'urutan' => $model->urutan]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="kelas-update">
+<div class="kelas-update card card-block">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -32,6 +32,8 @@ use yii\helpers\ArrayHelper;
 
 
     <?= $form->field($model, 'wali_kelas')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'guru_kelas')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'flag')->dropDownList(['1' => 'Aktif', '0' => 'Tidak Aktif'])->label('Status'); ?>
 
