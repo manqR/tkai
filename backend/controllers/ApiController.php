@@ -343,12 +343,11 @@ class ApiController extends Controller
         
         $view = Tagihan::find()
                 ->where(['idkategori' => $detail[1]])
-                ->where(['idcabang' => $detail[0]])
+                ->Andwhere(['idcabang' => $detail[0]])
                 ->Andwhere(['tahun_ajaran'=>$find->tahun_ajaran])
                 ->One();
-       
-
-
+        
+	
 
         // INSERT TAGIHAN SPP
        

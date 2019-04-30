@@ -91,3 +91,41 @@
 [23-Apr-2019 14:42:55 UTC] PHP Notice:  unserialize(): Error at offset 8190 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
 [23-Apr-2019 14:58:43 UTC] PHP Notice:  unserialize(): Error at offset 8158 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
 [23-Apr-2019 15:01:06 UTC] PHP Notice:  unserialize(): Error at offset 8184 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[25-Apr-2019 02:26:42 UTC] PHP Notice:  unserialize(): Error at offset 8192 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[25-Apr-2019 02:26:42 UTC] PHP Notice:  unserialize(): Error at offset 8192 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[25-Apr-2019 02:33:45 UTC] PHP Notice:  unserialize(): Error at offset 8191 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[25-Apr-2019 06:43:33 UTC] PHP Notice:  unserialize(): Error at offset 8188 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[25-Apr-2019 07:09:21 UTC] PHP Notice:  unserialize(): Error at offset 8187 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[26-Apr-2019 06:27:05 UTC] PHP Notice:  unserialize(): Error at offset 16384 of 16384 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[26-Apr-2019 06:54:11 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[26-Apr-2019 06:54:11 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[26-Apr-2019 06:54:12 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[28-Apr-2019 01:18:56 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[28-Apr-2019 08:25:41 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 00:33:10 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 00:33:10 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 00:54:15 UTC] PHP Notice:  unserialize(): Error at offset 8189 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 00:54:29 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 00:54:29 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 00:56:07 UTC] PHP Notice:  unserialize(): Error at offset 8190 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 00:57:26 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 00:57:26 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 00:57:26 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 00:57:26 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 00:57:27 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 01:07:12 UTC] PHP Notice:  unserialize(): Error at offset 8188 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 01:20:10 UTC] PHP Notice:  unserialize(): Error at offset 8192 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 01:41:10 UTC] PHP Notice:  unserialize(): Error at offset 8187 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 01:44:23 UTC] PHP Notice:  unserialize(): Error at offset 8183 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 01:46:01 UTC] PHP Notice:  unserialize(): Error at offset 8167 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 03:16:17 UTC] PHP Notice:  unserialize(): Error at offset 8188 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 03:34:09 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 03:55:01 UTC] PHP Notice:  unserialize(): Error at offset 16382 of 16384 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 04:05:11 UTC] PHP Notice:  unserialize(): Error at offset 8188 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 04:22:19 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 08:44:16 UTC] PHP Notice:  unserialize(): Error at offset 8189 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 08:44:16 UTC] PHP Notice:  unserialize(): Error at offset 8189 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 08:46:14 UTC] PHP Notice:  unserialize(): Error at offset 8137 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 09:03:06 UTC] PHP Notice:  unserialize(): Error at offset 8188 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[29-Apr-2019 09:18:17 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[29-Apr-2019 09:18:17 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
