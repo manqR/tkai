@@ -293,7 +293,7 @@ View::POS_HEAD);
         </div>   
         <div class="invoice-totals-row" style="float:right">
             <strong class="invoice-totals-title">
-                Payment Method
+                Metode Pembayaran
             </strong>
             <span class="invoice-totals-values">
                 <select name="payment" id="payment" class="form-control" >
@@ -301,6 +301,12 @@ View::POS_HEAD);
                     <option value="Transfer"> Transfer </option>
                 </select>      
             </span>
+        </div>     
+        <div class="invoice-totals-row" style="float:right">
+            <strong class="invoice-totals-title">
+                Nama Bank
+            </strong>
+            <input type="text" class="form-control" name="bank" />
         </div>     
     </div>
    

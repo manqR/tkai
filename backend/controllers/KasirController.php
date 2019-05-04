@@ -30,6 +30,17 @@ class KasirController extends \yii\web\Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'rules' => [
+                  // allow authenticated users
+                      [
+                        'allow' => true,
+                        'roles' => ['@'],
+                      ],
+                  // everything else is denied
+                ],
+            ],
         ];
 		return array_merge(parent::behaviors(), [
 			'corsFilter'  => [
