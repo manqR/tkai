@@ -103,6 +103,7 @@ class TagihanController extends Controller
                     $model->uang_bangunan = SaveRupiah($model->uang_bangunan);
                     $model->material_penunjang = SaveRupiah($model->material_penunjang);
                     $model->material_tahunan = SaveRupiah($model->material_tahunan);
+                    $model->daftar_ulang = SaveRupiah($model->daftar_ulang);
                     $model->save();
 
                     $listSpp = BulanSpp::find()

@@ -125,6 +125,7 @@ $this->registerJsFile($root."/scripts/forms/masks.js",
             </div>
         </div>
         <?= $form->field($model, 'material_tahunan')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ])->label('Kegiatan Tahunan') ?>
+        <?= $form->field($model, 'daftar_ulang')->textInput(['onkeyup' => 'js:formatAsRupiah(this);' ]) ?>
 
 
         <div class="form-group">

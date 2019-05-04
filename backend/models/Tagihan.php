@@ -35,7 +35,7 @@ class Tagihan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idtagihan', 'idcabang', 'idkategori', 'tahun_ajaran', 'seragam', 'peralatan', 'uang_pangkal', 'uang_bangunan', 'material_penunjang','material_tahunan'], 'required'],
+            [['idtagihan', 'idcabang', 'idkategori', 'tahun_ajaran', 'seragam', 'peralatan', 'uang_pangkal', 'uang_bangunan', 'material_penunjang','material_tahunan','daftar_ulang'], 'required'],
             [['idcabang', 'idkategori'], 'integer'],
             // [['seragam', 'peralatan', 'uang_pangkal', 'uang_bangunan', 'material'], 'number'],
             [['idtagihan'], 'string', 'max' => 20],
