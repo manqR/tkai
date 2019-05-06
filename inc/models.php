@@ -1,7 +1,7 @@
 <?php
     function AttributeSiswa(){
         $attribute = array(
-             'Nis'
+             'NIS'
             ,'Nama Siswa'
             ,'Cabang'
             ,'Grade'
@@ -17,7 +17,7 @@
     function AttributeRegister(){
         $attribute = array(
              'No Registrasi'
-            ,'NIS'
+            ,'NISN'
             ,'Nama Siswa'
             ,'Cabang'
             ,'Grade'
