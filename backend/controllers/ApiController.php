@@ -517,13 +517,14 @@ class ApiController extends Controller
         foreach($model as $i => $models):          
 
             $output[$i] = array(
+                
                              $models['cabang']                                                   
                             ,$models['grade']                                                        
-                            ,$models['tahun_ajaran']                                                                                    
-                            ,FormatRupiah($models['seragam'])
-                            ,FormatRupiah($models['peralatan'])                                                                                    
+                            ,$models['tahun_ajaran']                                                                                                                                                                                           
                             ,FormatRupiah($models['uang_pangkal'])                                                                                    
-                            ,FormatRupiah($models['uang_bangunan'])                                                                                    
+                            ,FormatRupiah($models['uang_bangunan']) 
+                            ,FormatRupiah($models['seragam'])
+                            ,FormatRupiah($models['peralatan'])                                                                                          
                             ,FormatRupiah($models['material_penunjang'])
                             ,FormatRupiah($models['material_tahunan'])
                             ,$aksi                                                                                                                                                                                          
