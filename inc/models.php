@@ -17,6 +17,7 @@
     function AttributeRegister(){
         $attribute = array(
              'No Registrasi'
+            ,'NIS'
             ,'Nama Siswa'
             ,'Cabang'
             ,'Grade'
@@ -61,6 +62,7 @@
              'Kode'
             ,'Cabang'
             ,'Grade'
+
             ,'Tahun Ajaran'            
             ,'Wali Kelas'
             ,'Guru Kelas'

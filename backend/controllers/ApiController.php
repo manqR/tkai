@@ -68,6 +68,7 @@ class ApiController extends Controller
             foreach($data as $key => $models):              
             
                 $output[$key] = array($models['no_registrasi']
+                                    ,$models['nisn']
                                     ,$models['nama_lengkap']
                                     ,$models['cabang']
                                     ,$models['kategori']
