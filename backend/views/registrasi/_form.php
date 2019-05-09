@@ -29,7 +29,7 @@ $(document).ready(function() {
             <div class="card card-block">
                 <h5> Informasi Umum </h5>  
                 <?= $form->field($model, 'no_registrasi')->textInput(['value'=>($model->isNewRecord) ? $kode : $model->no_registrasi, 'readonly'=>true]) ?>
-                <?= $form->field($model, 'nisn')->textInput()->label('NIS') ?>
+                <?= $form->field($model, 'nisn')->textInput()->label('NISN') ?>
                 <?= $form->field($model, 'idcabang', ['options' => ['tag' => 'false']])-> dropDownList(
                     ArrayHelper::map(Cabang::find()->all(),'idcabang','keterangan'),
                     ['prompt'=>'- Select -','class'=>'select2 m-b-1','style' => 'width: 100%'])->label('Cabang');  
