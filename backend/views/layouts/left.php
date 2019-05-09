@@ -211,14 +211,9 @@
                 <i class="material-icons text-warning">assessment</i>
                 <span>Laporan</span>
                 </a>
-                <ul class="sub-menu">
+                <ul class="sub-menu">                   
                     <li>
-                        <a href="tunggakan">
-                        <span>Surat Tunggakan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="keuangan">
+                        <a href="admin-keuangan">
                         <span>Laporan Keuangan</span>
                         </a>
                     </li>                                 
