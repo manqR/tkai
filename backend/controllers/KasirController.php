@@ -71,6 +71,7 @@ class KasirController extends \yii\web\Controller
 
             $model = new Kuitansi();
             $model->no_kuitansi = $_POST['kode'];
+            $model->bank_name = $_POST['bank'];
             $model->idcart = $cart->urutan;
             $model->kode_siswa = $cart->kode_siswa;
             $model->idtagihan = $cart->idtagihan;
@@ -83,6 +84,21 @@ class KasirController extends \yii\web\Controller
             $model->flag = $cart->flag;
             $model->date = date('Y-m-d H:i:s');
             $model->save();
+
+            // \Yii::$app->db->createCommand("UPDATE tagihan_siswa
+            //             SET seragam = (".str_replace(' ','_',strtolower($cart->keterangan))." + ".$_POST['bayar'].")
+            //             WHERE idtagihan = '".$model->idtagihan."'
+            //             AND kode_siswa = '".$model->kode_siswa."'")->execute();
+
+            $sql = "UPDATE tagihan_siswa
+            SET seragam = (".str_replace(' ','_',strtolower($cart->keterangan))." + ".$_POST['bayar'].")
+            WHERE idtagihan = '".$model->idtagihan."'
+            AND kode_siswa = '".$model->kode_siswa."'";
+            echo nl2br($sql);
+            die;
+    
+           
+
             $data = [
                 'msg'=>'success',
                 'siswa'=>$model->kode_siswa

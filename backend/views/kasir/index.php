@@ -128,6 +128,7 @@ $this->registerJs("
                             bayar: bayar[i],
                             kode: kode[i],
                             payment : $('#payment').val(),
+                            bank : $('#bank_name').val(),
                         },
                         function(data, status){ 
                             if(data.msg == 'success'){
@@ -195,6 +196,7 @@ $this->registerJs("
             rupiah += separator + ribuan.join('.');
         }
        $('#total').html('<span class=\"invoice-totals-value\"><b>Rp '+rupiah+'</b></span>'); 
+       $('#nominal').val(tot);
     }
    
 	function formatRupiah(angka, prefix){
@@ -306,7 +308,7 @@ View::POS_HEAD);
             <strong class="invoice-totals-title">
                 Nama Bank
             </strong>
-            <input type="text" class="form-control" name="bank" />
+            <input type="text" class="form-control" name="bank" id="bank_name" />
         </div>     
     </div>
    

@@ -91,7 +91,8 @@
             ,'Seragam'
             ,'Peralatan'
             ,'Material Penunjang'
-            ,'Material Tahunan'
+            ,'Kegiatan Tahunan'
+            ,'Daftar Ulang'
             ,'Aksi'
         );
 

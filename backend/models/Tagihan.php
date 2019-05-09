@@ -59,6 +59,7 @@ class Tagihan extends \yii\db\ActiveRecord
             'uang_bangunan' => 'Uang Bangunan',
             'material_penunjang' => 'Material Penunjang',
             'material_tahunan' => 'Material Tahunan',
+            'daftar_ulang' => 'Daftar Ulang',
             'urutan' => 'Urutan',
         ];
     }

@@ -511,11 +511,12 @@ class ApiController extends Controller
         $connection = \Yii::$app->db;
         $sql = $connection->createCommand("SELECT * FROM v_tagihan ".$filter);
                                          
-        $model = $sql->queryAll();    
+        $model = $sql->queryAll();      
         $output = array();        
         $aksi = "<i class=\"material-icons view\" aria-hidden=\"true\" data-id=\"\">delete</i> | <i class=\"material-icons edit\" aria-hidden=\"true\" data-id=\"\">edit</i>";
         foreach($model as $i => $models):          
 
+            
             $output[$i] = array(
                 
                              $models['cabang']                                                   
@@ -527,6 +528,7 @@ class ApiController extends Controller
                             ,FormatRupiah($models['peralatan'])                                                                                          
                             ,FormatRupiah($models['material_penunjang'])
                             ,FormatRupiah($models['material_tahunan'])
+                            ,FormatRupiah($models['daftar_ulang'])
                             ,$aksi                                                                                                                                                                                          
                         );
 		endforeach;
