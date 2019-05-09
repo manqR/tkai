@@ -82,7 +82,7 @@ class KasirController extends \yii\web\Controller
             $model->tahun_ajaran = $cart->tahun_ajaran;
             $model->payment_method = $_POST['payment'];
             $model->flag = $cart->flag;
-            $model->date = (isset($_POST['tgl_bayar']) ? $_POST['tgl_bayar'] : date('Y-m-d H:i:s'));
+            $model->date = (isset($_POST['tgl']) ? $_POST['tgl'] : date('Y-m-d H:i:s'));
             $model->save();
 
             // \Yii::$app->db->createCommand("UPDATE tagihan_siswa
