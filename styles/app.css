@@ -8138,6 +8138,15 @@ label.error {
 .listMenu a {
   margin: 0 20px;
 }
+
+.right-pos{
+  float: right;
+  clear: both;
+  display: block;
+  position: relative;
+  margin-bottom: 10px;
+}
+
 /* $portlets
  ------------------------------------------*/
 .draggable-portlets-wrapper .draggable-portlets {

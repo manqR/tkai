@@ -82,7 +82,7 @@ class KasirController extends \yii\web\Controller
             $model->tahun_ajaran = $cart->tahun_ajaran;
             $model->payment_method = $_POST['payment'];
             $model->flag = $cart->flag;
-            $model->date = date('Y-m-d H:i:s');
+            $model->date = (isset($_POST['tgl_bayar']) ? $_POST['tgl_bayar'] : date('Y-m-d H:i:s'));
             $model->save();
 
             // \Yii::$app->db->createCommand("UPDATE tagihan_siswa
@@ -90,12 +90,12 @@ class KasirController extends \yii\web\Controller
             //             WHERE idtagihan = '".$model->idtagihan."'
             //             AND kode_siswa = '".$model->kode_siswa."'")->execute();
 
-            $sql = "UPDATE tagihan_siswa
-            SET seragam = (".str_replace(' ','_',strtolower($cart->keterangan))." + ".$_POST['bayar'].")
-            WHERE idtagihan = '".$model->idtagihan."'
-            AND kode_siswa = '".$model->kode_siswa."'";
-            echo nl2br($sql);
-            die;
+            // $sql = "UPDATE tagihan_siswa
+            // SET seragam = (".str_replace(' ','_',strtolower($cart->keterangan))." + ".$_POST['bayar'].")
+            // WHERE idtagihan = '".$model->idtagihan."'
+            // AND kode_siswa = '".$model->kode_siswa."'";
+            // echo nl2br($sql);
+            // die;
     
            
 

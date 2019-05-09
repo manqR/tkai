@@ -1,6 +1,8 @@
 <?php
 /* @var $this yii\web\View */
 use yii\web\View;
+use backend\models\Bank;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -129,6 +131,7 @@ $this->registerJs("
                             kode: kode[i],
                             payment : $('#payment').val(),
                             bank : $('#bank_name').val(),
+                            tgl : $('#tgl_bayar').val(),
                         },
                         function(data, status){ 
                             if(data.msg == 'success'){
@@ -164,6 +167,12 @@ $this->registerJs("
             });
                                                            
         })    
+
+        $(document).ready(function() {
+            $(\".datepicker\").datepicker({ 
+                format: 'yyyy-mm-dd'
+            });
+        });
     
 
     ");
@@ -293,7 +302,7 @@ View::POS_HEAD);
                 <input type='hidden' id='nominal' name='nominal' value=0>
             </div>  
         </div>   
-        <div class="invoice-totals-row" style="float:right">
+        <div class="invoice-totals-row right-pos">
             <strong class="invoice-totals-title">
                 Metode Pembayaran
             </strong>
@@ -304,12 +313,31 @@ View::POS_HEAD);
                 </select>      
             </span>
         </div>     
-        <div class="invoice-totals-row" style="float:right">
+        <div class="invoice-totals-row right-pos">
             <strong class="invoice-totals-title">
-                Nama Bank
+                Nama Bank 
             </strong>
-            <input type="text" class="form-control" name="bank" id="bank_name" />
+            <span class="invoice-totals-values">
+                <select name="bank_name" id="bank_name" class="select2 m-b-1" style="width: 100%">
+                    <option value="">- pilih -</option>
+                    <?php
+                        $model = Bank::find()
+                                ->where(['flag'=>1])
+                                ->all();
+                        foreach($model as $models):
+                            echo "<option value='".$models->bank_name."'>".$models->bank_name."</option>";
+                        endforeach;                                            
+                    ?>
+                </select>             
+            </span>
         </div>     
+        <div class="invoice-totals-row right-pos">
+            <span class="invoice-totals-values">                 
+            <input type="text" name="tgl_pembayaran" id="tgl_bayar" value="" required placeholder="Tanggal Pembayaran" class="form-control m-b-1 datepicker" date-provide="datepicker" style="width: 100%;margin-top: -18px;float: right;font-size: 11px;">
+            </span>
+        </div>     
+        
+       
     </div>
    
     <div class="card-footer text-xs-right" style="background-color:#f7f7f700">      
