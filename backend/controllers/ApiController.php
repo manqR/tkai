@@ -603,7 +603,7 @@ class ApiController extends Controller
 
         $kode_siswa = $kode;
         $connection = \Yii::$app->db;
-        $sql = $connection->createCommand("SELECT * FROM v_tagihan_siswa_all a WHERE a.remarks NOT IN (SELECT b.remarks FROM cart b WHERE a.kode_siswa = b.kode_siswa AND a.tahun_ajaran = b.tahun_ajaran AND a.idtagihan = b.idtagihan)
+        $sql = $connection->createCommand("SELECT * FROM v_tagihan_siswa_all a WHERE nominal <> 0                                            
                                            AND  a.kode_siswa = '$kode_siswa'");
                                       
         $model = $sql->queryAll();    

@@ -82,22 +82,25 @@ class KasirController extends \yii\web\Controller
             $model->tahun_ajaran = $cart->tahun_ajaran;
             $model->payment_method = $_POST['payment'];
             $model->flag = $cart->flag;
-            $model->date = (isset($_POST['tgl']) ? $_POST['tgl'] : date('Y-m-d H:i:s'));
-            $model->save();
+            $model->date = ($_POST['tgl'] != '' ? $_POST['tgl'] : date('Y-m-d H:i:s'));
+            $model->save(false);
 
-            // \Yii::$app->db->createCommand("UPDATE tagihan_siswa
-            //             SET seragam = (".str_replace(' ','_',strtolower($cart->keterangan))." + ".$_POST['bayar'].")
-            //             WHERE idtagihan = '".$model->idtagihan."'
-            //             AND kode_siswa = '".$model->kode_siswa."'")->execute();
+            if(strtolower($cart->keterangan) == 'spp'){
+                \Yii::$app->db->createCommand("UPDATE tagihan_siswa_spp
+                                                SET nominal = (nominal - ".$_POST['bayar']."),
+                                                    date_update = '".date('Y-m-d H:i:s')."',
+                                                    user_update = '".Yii::$app->user->identity->username ."'
+                                                WHERE idtagihan = '".$model->idtagihan."'
+                                                AND kode_siswa = '".$model->kode_siswa."'
+                                                AND bulan = '".$cart->remarks."'")->execute();     
 
-            // $sql = "UPDATE tagihan_siswa
-            // SET seragam = (".str_replace(' ','_',strtolower($cart->keterangan))." + ".$_POST['bayar'].")
-            // WHERE idtagihan = '".$model->idtagihan."'
-            // AND kode_siswa = '".$model->kode_siswa."'";
-            // echo nl2br($sql);
-            // die;
-    
-           
+            }else{
+                 \Yii::$app->db->createCommand("UPDATE tagihan_siswa
+                                                SET ".str_replace(' ','_',strtolower($cart->remarks))." = (".str_replace(' ','_',strtolower($cart->remarks))." - ".$_POST['bayar'].")
+                                                WHERE idtagihan = '".$model->idtagihan."'
+                                                AND kode_siswa = '".$model->kode_siswa."'")->execute();          
+            }
+            
 
             $data = [
                 'msg'=>'success',
