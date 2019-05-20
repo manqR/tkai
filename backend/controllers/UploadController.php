@@ -5,8 +5,8 @@ namespace backend\controllers;
 use Yii;
 use yii\web\UploadedFile;
 use backend\models\Import;
-use backend\models\BiayaTidakTetap;
-use backend\models\TagihanBiayaTidaktetap;
+use backend\models\TagihanLain;
+use backend\models\TagihanSiswaLain;
 
 class UploadController extends \yii\web\Controller
 {
@@ -15,70 +15,60 @@ class UploadController extends \yii\web\Controller
     //     return parent::beforeAction($action);
     // }
 
+    function getnominal($kode){
+
+        $tagihan = TagihanLain::findOne(['idtagihan'=>$kode]);
+        return $tagihan;
+        // var_dump($tagihan);
+
+    }
+    
     public function actionIndex()
     {
         $model = new Import();
+        
+        $path = Yii::getAlias("@vendor/excelReader/src/SimpleXLSX.php");
+        require $path; 
 
         if ($model->load(Yii::$app->request->post()) ) {
 
-            $model->file = UploadedFile::getInstance($model, 'file');
+            $model->filename = UploadedFile::getInstance($model, 'filename');
 
-            if ( $model->file )
-                {
+            if ( $model->filename ){
 
-                    $time = time();
-                    $model->file->saveAs('import/' .$time. '.' . $model->file->extension);
-                    $model->file = 'import/' .$time. '.' . $model->file->extension;
+                    
+                $model->filename->saveAs('import/' .$model->filename. '.' . $model->filename->extension);
+                $model->filename = 'import/' .$model->filename. '.' . $model->filename->extension;  
+                
+                if ( $xlsx = \SimpleXLSX::parse($model->filename) ) {
+                    $i = 1;
+                    foreach($xlsx->rows() as $r):
+                        $i++;
+                        
+                        $kode = $xlsx->getCell(0,'D'.$i);
+                        $tagihan = TagihanLain::findOne(['idtagihan'=>$kode]);
+                        $upload = new TagihanSiswaLain();
+                        $upload->kode_siswa = $xlsx->getCell(0,'A'.$i);
+                        $upload->kode_kelas = $xlsx->getCell(0,'E'.$i);
+                        $upload->idtagihan = $xlsx->getCell(0,'D'.$i);
+                        $upload->nominal = (isset($tagihan->nominal) ? $tagihan->nominal : '');
+                        $upload->tahun_ajaran = $xlsx->getCell(0,'G'.$i);
+                        $upload->key_ = $xlsx->getCell(0,'F'.$i);
+                        $upload->assign_by = Yii::$app->user->identity->username;
+                        $upload->assign_date = date('Y-m-d H:i:s');
+                        $upload->save();
+                        
+                    endforeach;
 
-                     $handle = fopen($model->file, "r");
-                     while (($fileop = fgetcsv($handle, 1000, ";")) !== false) 
-                     {
-                         if($model->kategori == 'master'){
-                             $master = new BiayaTidakTetap();
+                    
+                    Yii::$app->session->setFlash('success');
+                    return $this->redirect(['index']);
 
-                             $master->keterangan = $fileop[0];
-                             $master->nominal = $fileop[1];
-                             $master->user_created = Yii::$app->user->identity->username;
-                             $master->date_created = date('Y-m-d H:i:s');
-                             $master->save();
-
-                         }else{
-                            $tagihan = new TagihanBiayaTidaktetap();
-                            
-                            $tagihan->idbiaya = $fileop[0];
-                            $tagihan->no_tagihan = $fileop[1];
-                            $tagihan->idsiswa = $fileop[2];
-                            $tagihan->keterangan = $fileop[3];
-                            $tagihan->nominal = $fileop[4];
-                            $tagihan->flag = $fileop[5];
-                            $tagihan->tgl_assign = date('Y-m-d H:i:s',strtotime($fileop[6]));
-                            $tagihan->tgl_payment = date('Y-m-d H:i:s',strtotime($fileop[7]));
-                            $tagihan->user = $fileop[8];
-
-                            $tagihan->save(false);
-
-                         }
-                        //  var_dump($fileop);
-                        // $name = $fileop[0];
-                        // $age = $fileop[1];
-                        // $location = $fileop[2];
-                        // // print_r($fileop);exit();
-                        // $sql = "INSERT INTO details(name, age, location) VALUES ('$name', '$age', '$location')";
-                        // $query = Yii::$app->db->createCommand($sql)->execute();
-                     }
-
-                    //  if ($query) 
-                    //  {
-                    //     echo "data upload successfully";
-                    //  }
-
+                } else {
+                    echo \SimpleXLSX::parseError();
                 }
+            }
 
-            // $model->save();
-            // return $this->redirect(['index', 'id' => $model->id]);
-            return $this->render('index', [
-                'model' => $model,
-            ]);
         } else {
             return $this->render('index', [
                 'model' => $model,
@@ -86,6 +76,8 @@ class UploadController extends \yii\web\Controller
         }
     }
      
+
+   
 
     public function actionUpload(){
         $_POST;

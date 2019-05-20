@@ -106,6 +106,7 @@ class RegistrasiController extends \yii\web\Controller
             $kuitansi->tahun_ajaran = $cart->tahun_ajaran;
             $kuitansi->flag = $cart->flag;
             $kuitansi->date = $cart->date;
+            $kuitansi->payment_method = 'Cash';
             $kuitansi->save();
 
 

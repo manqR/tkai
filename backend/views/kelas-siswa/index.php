@@ -178,6 +178,7 @@ $this->registerCss(".addSiswa{cursor: pointer;} .tambah{cursor: pointer;} .kuran
                 <div class="pricing-plan">
                     <h5><?= $models->kode ?> - <?= $grd ?></h5>
                     <i class="material-icons addSiswa" aria-hidden="true" title="tambah siswa" data-toggle="modal" data-id=<?= $models->key_ ?> data-target=".add-siswa">add_circle_outline</i>
+                    <a class="material-icons" href="kelassiswa-export-<?= $models->key_ ?>">import_export</a>
                     <p class="plan-title text-primary"><?= $models->wali_kelas?> <br/><?= $brnch  ?></p>
                     <div class="plan-price text-primary">
                         <span><?= $count['jml'] ?></span>

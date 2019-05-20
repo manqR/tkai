@@ -5,11 +5,17 @@ use yii\widgets\ActiveForm;
 ?>
 
 
+<?php if (Yii::$app->session->hasFlash('success')): ?>
+    <div>
+        <div class="alert alert-success">Upload Berhasil ! </div>
+        <!-- <?= Yii::$app->session->getFlash('success') ?> -->
+    </div>
+<?php endif; ?>
+
 <?php $form = ActiveForm::begin();  ?>
 <div class="card">
     <div class="card-block">
-        <?= $form->field($model, 'file')->fileInput(['class'=>'form-control']) ?>
-        <?= $form->field($model, 'kategori')->dropDownList(['master' => 'Master Tagihan', 'tagihan' => 'Biaya Tagihan'], ['prompt'=>'Kategori...','class'=>'form-control']); ?>        
+        <?= $form->field($model, 'filename')->fileInput(['class'=>'form-control']) ?>        
         <div class="form-group">
             <?= Html::submitButton('Import', ['class' => 'btn btn-success']) ?>
         </div>

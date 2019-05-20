@@ -49,8 +49,7 @@ include 'inc/money.php';
                 ->AndWhere(['like','idtagihan','RG'])
                 ->One();
         
-        // var_dump($model);
-        // die;
+      
 
         $mpdf->writeHTML($head.' 
                         

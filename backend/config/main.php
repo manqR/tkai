@@ -28,11 +28,14 @@ return [
 				'kelas'=>'kelas/index',				
 				'tahun-ajaran'=>'tahun-ajaran/index',				
 				'tagihan'=>'tagihan/index',				
+                'tagihan-lain'=>'tagihan-lain/index',		
+                'upload'=>'upload/index',		
 				
                 //---------------------------------- Create -----------------------------//
                 'kelas-create'=>'kelas/create',			
                 'tahun-ajaran-create'=>'tahun-ajaran/create',			
                 'tagihan-create'=>'tagihan/create',			
+                'tagihan-lain-create'=>'tagihan-lain/create',			
                 'registrasi-create'=>'registrasi/create',			
 
 
@@ -42,11 +45,17 @@ return [
                 'kelas-update-<urutan>'=>'kelas/update',	
                 'tahun-ajaran-update-<id>'=>'tahun-ajaran/update',	
                 'tagihan-update-<id>'=>'tagihan/update',	
+                'tagihan-lain-<id>'=>'tagihan/lain',	
                 
                 
                 //---------------------------------- View -----------------------------//
                 'registrasi-view-<id>'=>'registrasi/view',			
                 'siswa-view-<id>'=>'siswa/view',	
+
+
+                //---------------------------------- Export -----------------------------//
+                'kelassiswa-export-<key>'=>'kelas-siswa/export',	
+
 
                 //---------------------------------- Delete -----------------------------//
                 'kelas-delete-<urutan>'=>'kelas/delete',				

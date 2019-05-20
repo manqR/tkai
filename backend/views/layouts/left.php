@@ -113,7 +113,11 @@
                         <span>Tagihan</span>
                         </a>
                     </li>
-                                                 
+                    <li>
+                        <a href="tagihan-lain">
+                        <span>Tagihan Lain</span>
+                        </a>
+                    </li>                                                 
                     <li>
                         <a href="karyawan">
                         <span>Karyawan</span>
@@ -194,7 +198,7 @@
 
               <!-- Import -->
               <li>
-                <a href="upload">
+                <a href="kas">
                     <i class="material-icons text-danger">account_balance_wallet</i>
                     <span>Kas</span>
                 </a>
