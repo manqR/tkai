@@ -139,6 +139,7 @@ $this->registerJs("
                                 swal('Nilai kembalian ' + kembalian, 'Pembayaran berhasil', 'success');
                                 listTagihan(data.siswa);
                                 listCart(data.siswa);
+                                $('#no_kuitansi').val(data.no_kuitansi);
                                 $(\"button[name='print']\").removeAttr(\"disabled\");
                                 $(\"button[name='checkout']\").attr(\"disabled\", \"disabled\");
                             }else{                    									
@@ -153,19 +154,11 @@ $this->registerJs("
             });
           });
 
-          $(document).on(\"click\", \".print\", function () {		
-           
-           var nis = $(\"#nis\").val(data.data.nis);	                                                                         
-           var nama = $(\"#nama\").val(data.data.nama);	
-           
-           $.post('kasir/print',{
-                nis: urutan[i],
-                nama: bayar[i],
-            },
-            function(data, status){ 
-
-            });
-                                                           
+          $(document).on(\"click\", \".print\", function () {	
+            
+            var no_kuitansi = $(\"#no_kuitansi\").val();	     	
+            window.open(\"kasir-print-\"+no_kuitansi);                                                                 
+            
         })    
 
         $(document).ready(function() {
@@ -242,6 +235,7 @@ View::POS_HEAD);
             <div class="form-group">
                 <label>NIS Siswa</label>
                 <input type="text" class="form-control" name="nis" id="nis" readonly>
+                <input type="hidden" name="no_kuitansi" id="no_kuitansi" readonly>
             </div>
         </div>
         <div class="col-md-6">

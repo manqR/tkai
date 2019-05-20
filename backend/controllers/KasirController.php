@@ -104,7 +104,8 @@ class KasirController extends \yii\web\Controller
 
             $data = [
                 'msg'=>'success',
-                'siswa'=>$model->kode_siswa
+                'siswa'=>$model->kode_siswa,
+                'no_kuitansi'=>$model->no_kuitansi
             ];
         }else{
             $data = [
@@ -114,6 +115,17 @@ class KasirController extends \yii\web\Controller
         }
         Yii::$app->response->format = Response::FORMAT_JSON;
         return $data;
+    }
+
+    public function actionPrint($no_kuitansi){
+        include 'inc/pdf.php';
+     
+
+        // var_dump($_POST);
+        // die;
+        
+        PrintKasir($no_kuitansi);
+
     }
 
   

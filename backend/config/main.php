@@ -53,6 +53,7 @@ return [
                 //---------------------------------- Print -----------------------------//
 
                 'registrasi-print-<id>'=>'registrasi/print',		
+                'kasir-print-<no_kuitansi>'=>'kasir/print',		
                 'admin-keuangan_print'=>'keuangan/print',		
 
                 //---------------------------------- Kasir -----------------------------//
@@ -85,7 +86,7 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => false,
-            'authTimeout' => 300,
+            'authTimeout' => 30000,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [

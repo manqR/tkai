@@ -96,6 +96,107 @@ include 'inc/money.php';
         
    }
 
+
+   function PrintKasir($no_kuitansi){
+    $head = '<style>
+                img{
+                    float: left;
+                    width: 150px;                                
+                    position: absolute;
+                }
+                .text{
+                    left: 155px;
+                    top: 45px;
+                    right:25px;
+                    position: absolute;
+                    text-align: center;
+                }
+                hr{
+                    top: 511px;
+                    position: absolute;
+                }                                
+            </style>';
+
+
+      
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', [190, 236]]);	    
+
+       
+
+        // $model = Siswa::find()
+        //         ->joinWith('kuitansi')
+        //         ->where(['no_kuitansi'=>$no_kuitansi])
+        //         ->One();
+
+        $connection = \Yii::$app->db;
+        $sql = $connection->createCommand("SELECT * FROM siswa a JOIN kuitansi b ON a.kode_siswa = b.kode_siswa 
+                                            WHERE b.no_kuitansi = '".$no_kuitansi."'");
+        $model = $sql->queryOne();
+
+        $kuitansi = Kuitansi::findAll($no_kuitansi);
+       
+        $data = '';
+        foreach($kuitansi as $kuitansis):
+        
+        $keterangan = ($kuitansis->keterangan == 'spp' ? 'SPP '.$kuitansis->remarks : $kuitansis->remarks);
+   
+            $data .= '<tr>';
+                $data .= '<td>'.$keterangan.'</td>';
+                $data .= '<td> : Rp'.FormatRupiah($kuitansis->jumlah_bayar).'</td>';
+            $data .= '<tr>';
+           
+        endforeach;
+       
+      
+        $mpdf->writeHTML($head.' 
+                        
+                            <div style="text-align:center;line-height:80px">
+                                <b>K   W   I   T   A   N   S   I </b>
+                            </div>
+            
+                            <table class="invoice" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; text-align: left; width: 100%; margin: 20px auto;">                                   
+                            <tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                <td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">No Kwitansi </td>                                                                                    
+                                <td colspan="3" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: <i>'.$model['no_kuitansi'].'</i></td>
+                            </tr>
+                            <tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                <td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> No. Induk Siswa </td>                                                                                    
+                                <td colspan="3" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model['nis'].'</td>
+                            </tr>                                                                               
+                            <tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                <td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Nama Siswa </td>                                                                                    
+                                <td colspan="3" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model['nama_lengkap'].'</td>
+                            </tr>                                                                               
+                            <tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                <td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Pembayaran : </td>                                                                                    
+                                <td colspan="3" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">
+                                    <table>
+                                       '.$data.'
+                                       
+                                    </table>
+                                </td>
+                            </tr> 
+                            <br/>
+                            <br/>
+                           
+                            <tr style="tex-align:center;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                                <td ></td>                                                                                   
+                                <td></td>                                                                                   
+                                <td> </td>                                                                                   
+                                                                                                                  
+                                <td style="text-align:center;">Jakarta, '.date('d M  Y').'<br/>Bag Adm TKAI<br/><br/><br/>('.Yii::$app->user->identity->username.')</td>                                                                                   
+                            </tr>
+                           
+                        
+                        </table>
+        ');
+
+       
+        $mpdf->Output();
+        exit;
+        
+   }
+
    function PrintLapKeuangan($periode){
         $path = Yii::getAlias("@vendor/fpdf/fpdf.php");
         require $path;
