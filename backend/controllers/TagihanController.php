@@ -17,9 +17,6 @@ use yii\filters\VerbFilter;
  */
 
 
-include './inc/table.php';
-include './inc/models.php';
-include './inc/money.php';
 
 class TagihanController extends Controller
 {
@@ -55,6 +52,10 @@ class TagihanController extends Controller
      */
     public function actionIndex()
     {
+        
+        include './inc/table.php';
+        include './inc/models.php';
+        include './inc/money.php';
         return $this->render('index', [
             'arrFields' => AttributeTagihan(),                   
         ]);
@@ -80,6 +81,9 @@ class TagihanController extends Controller
      * @return mixed
      */
     public function actionCreate(){
+        include './inc/table.php';
+        include './inc/models.php';
+        include './inc/money.php';
         $model = new Tagihan();
         $spp = new TagihanSpp();
 
@@ -155,16 +159,66 @@ class TagihanController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($idtagihan, $urutan)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($idtagihan, $urutan);
+        include './inc/table.php';
+        include './inc/models.php';
+        include './inc/money.php';
+        
+        $model = $this->findModel($id);
+        $spp = TagihanSpp::findOne(['idtagihan'=>$id]);
+        
+        $connection = \Yii::$app->db;
+        $sql = $connection->createCommand("SELECT * FROM cabang WHERE idcabang = '".$model->idcabang."'");
+        $cabang = $sql->queryAll();  
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'idtagihan' => $model->idtagihan, 'urutan' => $model->urutan]);
+        $grade = Kategori::find()
+                         ->Where(['idkategori'=>$model->idkategori])
+                         ->All();
+
+        if ($model->load(Yii::$app->request->post()) && 
+            $spp->load(Yii::$app->request->post())){    
+            
+                $model->idcabang = $_POST['branchSelect'];     
+                $model->idkategori = $_POST['GradeSelect'];     
+                $model->seragam = SaveRupiah($model->seragam);
+                $model->peralatan = SaveRupiah($model->peralatan);
+                $model->uang_pangkal = SaveRupiah($model->uang_pangkal);
+                $model->uang_bangunan = SaveRupiah($model->uang_bangunan);
+                $model->material_penunjang = SaveRupiah($model->material_penunjang);
+                $model->material_tahunan = SaveRupiah($model->material_tahunan);
+                $model->daftar_ulang = SaveRupiah($model->daftar_ulang);
+                $model->save();
+
+
+                $ListSpp = TagihanSpp::findAll(['idtagihan'=>$id]);
+
+                foreach($ListSpp as $ListSpps):
+                    $ListSpps->delete();
+                endforeach;
+                
+
+                $listSpp = BulanSpp::find()
+                        ->all();
+    
+                foreach ($listSpp as $listSpps):
+                    $spps = new TagihanSpp();
+
+                    $spps->idtagihan = $model->idtagihan;
+                    $spps->bulan = $listSpps->bulan;                    
+                    $spps->nominal = SaveRupiah($spp->nominal);                    
+                    $spps->save(false);
+                endforeach;
+            
+            $model->save();
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'spp' => $spp,
+            'cabang' => $cabang,
+            'grade' => $grade,
         ]);
     }
 
@@ -191,9 +245,9 @@ class TagihanController extends Controller
      * @return Tagihan the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($idtagihan, $urutan)
+    protected function findModel($idtagihan)
     {
-        if (($model = Tagihan::findOne(['idtagihan' => $idtagihan, 'urutan' => $urutan])) !== null) {
+        if (($model = Tagihan::findOne(['idtagihan' => $idtagihan])) !== null) {
             return $model;
         }
 

@@ -513,9 +513,9 @@ class ApiController extends Controller
                                          
         $model = $sql->queryAll();      
         $output = array();        
-        $aksi = "<i class=\"material-icons view\" aria-hidden=\"true\" data-id=\"\">delete</i> | <i class=\"material-icons edit\" aria-hidden=\"true\" data-id=\"\">edit</i>";
+        
         foreach($model as $i => $models):          
-
+            $aksi = "<i class=\"material-icons view\" aria-hidden=\"true\" data-id=\"\">delete</i> | <a href=\"tagihan-update-".$models['idtagihan']."\" class=\"material-icons edit\" aria-hidden=\"true\" data-id=\"\">edit</i>";
             
             $output[$i] = array(
                 

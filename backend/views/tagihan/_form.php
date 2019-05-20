@@ -39,7 +39,7 @@ $this->registerJsFile($root."/scripts/forms/masks.js",
 
 
         
-        <?= $form->field($model, 'idtagihan')->textInput(['maxlength' => true,'value'=>$kode,'readonly'=>true])->label('No Tagihan') ?>
+        <?= $form->field($model, 'idtagihan')->textInput(['maxlength' => true,'value'=>($model->isNewRecord ? $kode : $model->idtagihan),'readonly'=>true])->label('No Tagihan') ?>
             
         <!-- BRANCH -->
         <label>Cabang</label>
@@ -64,8 +64,10 @@ $this->registerJsFile($root."/scripts/forms/masks.js",
         <select data-placeholder="Grade .." class="select2 m-b-1" id="GradeSelect" name="GradeSelect" style="width: 100%;">
             
             <?php
-            
+               if($model->isNewRecord){
                 echo '<option value="0" selected="selected">-- Pilih --</option>';
+               }
+                
                 foreach($grade as $grades):							
                     echo "<option value=\"$grades->idkategori\">$grades->keterangan</option>";
                 endforeach;

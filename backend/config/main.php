@@ -41,6 +41,7 @@ return [
                 'siswa-update-<id>'=>'siswa/update',	
                 'kelas-update-<urutan>'=>'kelas/update',	
                 'tahun-ajaran-update-<id>'=>'tahun-ajaran/update',	
+                'tagihan-update-<id>'=>'tagihan/update',	
                 
                 
                 //---------------------------------- View -----------------------------//
