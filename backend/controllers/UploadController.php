@@ -41,26 +41,30 @@ class UploadController extends \yii\web\Controller
                 $model->filename = 'import/' .$model->filename. '.' . $model->filename->extension;  
                 
                 if ( $xlsx = \SimpleXLSX::parse($model->filename) ) {
-                    $i = 1;
+                    $i = 2;
                     foreach($xlsx->rows() as $r):
-                        $i++;
+
                         
-                        $kode = $xlsx->getCell(0,'D'.$i);
-                        $tagihan = TagihanLain::findOne(['idtagihan'=>$kode]);
-                        $upload = new TagihanSiswaLain();
-                        $upload->kode_siswa = $xlsx->getCell(0,'A'.$i);
-                        $upload->kode_kelas = $xlsx->getCell(0,'E'.$i);
-                        $upload->idtagihan = $xlsx->getCell(0,'D'.$i);
-                        $upload->nominal = (isset($tagihan->nominal) ? $tagihan->nominal : '');
-                        $upload->tahun_ajaran = $xlsx->getCell(0,'G'.$i);
-                        $upload->key_ = $xlsx->getCell(0,'F'.$i);
-                        $upload->assign_by = Yii::$app->user->identity->username;
-                        $upload->assign_date = date('Y-m-d H:i:s');
-                        $upload->save();
-                        
+                        if($xlsx->getCell(0,'A'.$i)){;
+                            
+                            $kode = $xlsx->getCell(0,'D'.$i);
+                            $tagihan = TagihanLain::findOne(['idtagihan'=>$kode]);
+                            $upload = new TagihanSiswaLain();
+
+                            $upload->kode_siswa = $xlsx->getCell(0,'A'.$i);
+                            $upload->kode_kelas = $xlsx->getCell(0,'E'.$i);
+                            $upload->idtagihan = $xlsx->getCell(0,'D'.$i);
+                            $upload->nominal = (isset($tagihan->nominal) ? $tagihan->nominal : '');
+                            $upload->tahun_ajaran = $xlsx->getCell(0,'G'.$i);
+                            $upload->key_ = $xlsx->getCell(0,'F'.$i);
+                            $upload->assign_by = Yii::$app->user->identity->username;
+                            $upload->assign_date = date('Y-m-d H:i:s');
+                            $i++;
+                            $upload->save(false);
+                        }
+                    
                     endforeach;
 
-                    
                     Yii::$app->session->setFlash('success');
                     return $this->redirect(['index']);
 
@@ -79,40 +83,44 @@ class UploadController extends \yii\web\Controller
 
    
 
-    public function actionUpload(){
-        $_POST;
-        $model = $_POST['model'];
-        UploadedFile::getInstance($_POST['file'], 'file');
-        var_dump($_POST);
-        // $_POST['file'] = UploadedFile::getInstance($_POST, $_POST['file']);
+    // public function actionUpload(){
 
-        // if($_POST['file']){
-        //     if($model == 'tagihan'){
-        //         $time = time();
-        //         $_POST['file']->saveAs('import/' .$time. '.' . $_POST['file']->extension);
-        //         $_POST['file'] = 'import/' .$time. '.' . $_POST['file']->extension;
+    //     if ($model->load(Yii::$app->request->post())){
+    //         var_dump($model);
+    //     }
+    //     // $_POST;
+    //     // $model = $_POST['model'];
+    //     // UploadedFile::getInstance($_POST['file'], 'file');
+    //     // var_dump($_POST);
+    //     // $_POST['file'] = UploadedFile::getInstance($_POST, $_POST['file']);
 
-        //          $handle = fopen($_POST['file'], "r");
-        //          while (($fileop = fgetcsv($handle, 1000, ",")) !== false) 
-        //          {
-        //              var_dump($fileop);
-        //             // $name = $fileop[0];
-        //             // $age = $fileop[1];
-        //             // $location = $fileop[2];
-        //             // // print_r($fileop);exit();
-        //             // $sql = "INSERT INTO details(name, age, location) VALUES ('$name', '$age', '$location')";
-        //             // $query = Yii::$app->db->createCommand($sql)->execute();
-        //          }
+    //     // if($_POST['file']){
+    //     //     if($model == 'tagihan'){
+    //     //         $time = time();
+    //     //         $_POST['file']->saveAs('import/' .$time. '.' . $_POST['file']->extension);
+    //     //         $_POST['file'] = 'import/' .$time. '.' . $_POST['file']->extension;
 
-        //         //  if ($query) 
-        //         //  {
-        //         //     echo "data upload successfully";
-        //         //  }
+    //     //          $handle = fopen($_POST['file'], "r");
+    //     //          while (($fileop = fgetcsv($handle, 1000, ",")) !== false) 
+    //     //          {
+    //     //              var_dump($fileop);
+    //     //             // $name = $fileop[0];
+    //     //             // $age = $fileop[1];
+    //     //             // $location = $fileop[2];
+    //     //             // // print_r($fileop);exit();
+    //     //             // $sql = "INSERT INTO details(name, age, location) VALUES ('$name', '$age', '$location')";
+    //     //             // $query = Yii::$app->db->createCommand($sql)->execute();
+    //     //          }
 
-        //     }else{
-        //         echo"bbb";
-        //     }
+    //     //         //  if ($query) 
+    //     //         //  {
+    //     //         //     echo "data upload successfully";
+    //     //         //  }
+
+    //     //     }else{
+    //     //         echo"bbb";
+    //     //     }
         
-    }
+    // }
 
 }

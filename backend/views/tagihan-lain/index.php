@@ -10,7 +10,7 @@ use yii\grid\GridView;
 $this->title = 'Tagihan Lains';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="tagihan-lain-index">
+<div class="tagihan-lain-index card card-block">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
