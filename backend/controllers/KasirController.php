@@ -66,6 +66,7 @@ class KasirController extends \yii\web\Controller
             
             $cart = Cart::findOne($_POST['urutan']);
             $cart->jumlah_bayar = $_POST['bayar'];
+            $cart->diskon = $_POST['diskon'];
             $cart->flag= 2;
             $cart->save();
 
@@ -76,6 +77,7 @@ class KasirController extends \yii\web\Controller
             $model->kode_siswa = $cart->kode_siswa;
             $model->idtagihan = $cart->idtagihan;
             $model->remarks = $cart->remarks;
+            $model->diskon = $_POST['diskon'];
             $model->keterangan = $cart->keterangan;
             $model->nominal = $cart->nominal;
             $model->jumlah_bayar = $_POST['bayar'];

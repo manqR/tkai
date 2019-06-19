@@ -38,7 +38,7 @@ class Kuitansi extends \yii\db\ActiveRecord
     {
         return [
             [['no_kuitansi', 'idcart', 'kode_siswa', 'idtagihan', 'remarks', 'keterangan', 'nominal', 'jumlah_bayar', 'tahun_ajaran', 'flag', 'payment_method', 'date'], 'required'],
-            [['idcart', 'flag'], 'integer'],
+            [['idcart', 'flag', 'diskon'], 'integer'],
             [['nominal', 'jumlah_bayar'], 'number'],
             [['date'], 'safe'],
             [['no_kuitansi', 'bank_name','kode_siswa', 'idtagihan', 'remarks', 'keterangan', 'tahun_ajaran', 'payment_method'], 'string', 'max' => 50],
@@ -58,6 +58,7 @@ class Kuitansi extends \yii\db\ActiveRecord
             'remarks' => 'Remarks',
             'keterangan' => 'Keterangan',
             'nominal' => 'Nominal',
+            'diskon' => 'Diskon',
             'jumlah_bayar' => 'Jumlah Bayar',
             'tahun_ajaran' => 'Tahun Ajaran',
             'flag' => 'Flag',

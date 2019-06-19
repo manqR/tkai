@@ -649,6 +649,7 @@ class ApiController extends Controller
             $model->nominal = $data[5];
             $model->jumlah_bayar = $data[5];
             $model->tahun_ajaran = $data[4];
+            $model->diskon = 0;
             $model->flag = 1;
             $model->date = date('Y-m-d H:i:s');
 
@@ -712,9 +713,11 @@ class ApiController extends Controller
                             <td>".$models->remarks."</td>
                             <td>".$models->tahun_ajaran."</td>
                             <td>".number_format($models->nominal,0,".",".")."</td>
+                            <td width='10%'><input type=\"number\" class=\"form-control\" onKeyup =  \"Discount()\" name=\"diskon[]\" id=\"diskon\" value=0 /></td>
                             <td><input type=\"text\" class=\"form-control\" onKeyup =  \"findTotal()\" 	 name=\"nominal_bayar[]\" id=\"nominal_bayar\" value='$models->jumlah_bayar'/></td>
                            
                                
+                                <input type='hidden' name=\"nominalTagihan[]\" value='".$models->nominal."' />
                                 <input type='hidden' name=\"urutan[]\" value='".$models->urutan."' />
                                 <input type='hidden' name=\"kode[]\" value='".$kode."' />
                            

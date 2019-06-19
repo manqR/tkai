@@ -121,6 +121,7 @@ $this->registerJs("
                     console.log('Send');
                     var urutan = $(\"input[name='urutan[]']\").map(function(){return $(this).val();}).get();
                     var bayar = $(\"input[name='nominal_bayar[]']\").map(function(){return $(this).val();}).get();
+                    var diskon = $(\"input[name='diskon[]']\").map(function(){return $(this).val();}).get();
                     var kode = $(\"input[name='kode[]']\").map(function(){return $(this).val();}).get();
 
                     for(var i = 0 ; i < urutan.length ; i++){
@@ -129,6 +130,7 @@ $this->registerJs("
                             urutan: urutan[i],
                             bayar: bayar[i],
                             kode: kode[i],
+                            diskon: diskon[i],
                             payment : $('#payment').val(),
                             bank : $('#bank_name').val(),
                             tgl : $('#tgl_bayar').val(),
@@ -179,6 +181,24 @@ $this->registerCss("
 $root = '@web';
 $this->registerJs("
                 
+    function Discount(){
+        
+
+        var nominal = document.getElementsByName('nominal_bayar[]');
+        var nominalTagihan = document.getElementsByName('nominalTagihan[]');
+        var disc = document.getElementsByName('diskon[]');
+
+        var Totaldiscount = 0;
+        for(var i=0;i<nominal.length;i++){
+            if(parseInt(nominal[i].value))
+            Totaldiscount = (parseInt(nominalTagihan[i].value) * parseInt(disc[i].value)) / 100
+            nominal[i].value = parseInt(nominalTagihan[i].value - Totaldiscount);
+            console.log(nominal[i].value,' diskon')
+        }
+
+        findTotal();
+
+    }
     function findTotal(){
         var arr = document.getElementsByName('nominal_bayar[]');
         var tot=0;
@@ -269,6 +289,9 @@ View::POS_HEAD);
                         </th>
                         <th>
                             Nominal
+                        </th>
+                        <th>
+                            Diskon
                         </th>
                         <th>
                             Jumlah Bayar
