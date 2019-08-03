@@ -59,14 +59,10 @@ class Alert extends \yii\bootstrap\Widget
             }
 
             foreach ((array) $flash as $i => $message) {
-                echo \yii\bootstrap\Alert::widget([
-                    'body' => $message,
-                    'closeButton' => $this->closeButton,
-                    'options' => array_merge($this->options, [
-                        'id' => $this->getId() . '-' . $type . '-' . $i,
-                        'class' => $this->alertTypes[$type] . $appendClass,
-                    ]),
-                ]);
+
+                echo "<div>
+                        <div class = \"alert ".$this->alertTypes[$type] . $appendClass." \">".$message."</div>                        
+                    </div>";
             }
 
             $session->removeFlash($type);

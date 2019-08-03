@@ -82,6 +82,7 @@
 						
 
 						<div class="content-view">
+							<?= Alert::widget() ?>
 							<?= $content ?> <!-- Content Area -->						
 						</div>
 						

@@ -30,13 +30,15 @@ return [
 				'tagihan'=>'tagihan/index',				
                 'tagihan-lain'=>'tagihan-lain/index',		
                 'upload'=>'upload/index',		
-				
+                'karyawan' => 'user/index',
+                
                 //---------------------------------- Create -----------------------------//
                 'kelas-create'=>'kelas/create',			
                 'tahun-ajaran-create'=>'tahun-ajaran/create',			
                 'tagihan-create'=>'tagihan/create',			
                 'tagihan-lain-create'=>'tagihan-lain/create',			
                 'registrasi-create'=>'registrasi/create',			
+                'karyawan-create' => 'user/create',
 
 
                 //---------------------------------- Update -----------------------------//
@@ -46,6 +48,7 @@ return [
                 'tahun-ajaran-update-<id>'=>'tahun-ajaran/update',	
                 'tagihan-update-<id>'=>'tagihan/update',	
                 'tagihan-lain-<id>'=>'tagihan/lain',	
+                'karyawan-update-<id>' => 'user/update',
                 
                 
                 //---------------------------------- View -----------------------------//
@@ -59,6 +62,7 @@ return [
 
                 //---------------------------------- Delete -----------------------------//
                 'kelas-delete-<urutan>'=>'kelas/delete',				
+                'karyawan-delete-<id>'=>'user/delete',				
 
                 //---------------------------------- Print -----------------------------//
 
