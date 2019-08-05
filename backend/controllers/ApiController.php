@@ -516,7 +516,7 @@ class ApiController extends Controller
         
         foreach($model as $i => $models):          
             $aksi = "<i class=\"material-icons view\" aria-hidden=\"true\" data-id=\"\">delete</i> | <a href=\"tagihan-update-".$models['idtagihan']."\" class=\"material-icons edit\" aria-hidden=\"true\" data-id=\"\">edit</i>";
-            
+         
             $output[$i] = array(
                 
                              $models['cabang']                                                   
@@ -528,7 +528,7 @@ class ApiController extends Controller
                             ,FormatRupiah($models['peralatan'])                                                                                          
                             ,FormatRupiah($models['material_penunjang'])
                             ,FormatRupiah($models['material_tahunan'])
-                            ,FormatRupiah($models['daftar_ulang'])
+                            ,($models['daftar_ulang'] == 0 ? $models['daftar_ulang'] : FormatRupiah($models['daftar_ulang']))
                             ,$aksi                                                                                                                                                                                          
                         );
 		endforeach;
