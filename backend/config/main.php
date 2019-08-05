@@ -31,6 +31,7 @@ return [
                 'tagihan-lain'=>'tagihan-lain/index',		
                 'upload'=>'upload/index',		
                 'karyawan' => 'user/index',
+                'role' => 'role/index',
                 
                 //---------------------------------- Create -----------------------------//
                 'kelas-create'=>'kelas/create',			
@@ -39,6 +40,7 @@ return [
                 'tagihan-lain-create'=>'tagihan-lain/create',			
                 'registrasi-create'=>'registrasi/create',			
                 'karyawan-create' => 'user/create',
+                'role-create' => 'role/create',
 
 
                 //---------------------------------- Update -----------------------------//
@@ -49,6 +51,7 @@ return [
                 'tagihan-update-<id>'=>'tagihan/update',	
                 'tagihan-lain-<id>'=>'tagihan/lain',	
                 'karyawan-update-<id>' => 'user/update',
+                'role-update' => 'role/update',
                 
                 
                 //---------------------------------- View -----------------------------//
