@@ -14,7 +14,7 @@ $this->title = 'TKAI - Jakarta';
                 $tahun = explode("/",$models['tahun_ajaran']);
                 // $sum += $models['nominal'];
         ?>
-        <a href="tunggakan-list-<?= $tahun[0].'-'.$tahun[1] ?>?>">
+        <a href="tunggakan-list-<?= $tahun[0].'-'.$tahun[1] .'-'. $models['keterangan'] ?>?>">
             <div class="col-md-3">
                 <div class="card card-block">
                     <h5 class="m-b-0 v-align-middle text-overflow">
@@ -27,7 +27,7 @@ $this->title = 'TKAI - Jakarta';
                     <?= $models['tahun_ajaran'] ?>
                     </div>
                     <div class="small text-overflow">
-                        <?= $models['kode_kelas'] ?>
+                        <?= $models['keterangan'] ?>
                     </div>
                 </div>
             </div>
