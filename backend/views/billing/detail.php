@@ -103,8 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
                    
                         <?php 
                             $sum = 0;
-                            var_dump($tagihan);
-                            die;
+                
                             foreach ($tagihan as $tagihans): 
 
                                
