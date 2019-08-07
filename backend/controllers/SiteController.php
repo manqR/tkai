@@ -65,11 +65,9 @@ class SiteController extends Controller
     public function actionIndex(){
         
         $connection = \Yii::$app->db;
-        $sql = $connection->createCommand("SELECT c.keterangan, a.tahun_ajaran, (a.nominal) nominal 
-                                            FROM v_tagihan_siswa_all a 
-                                            JOIN siswa b ON a.kode_siswa = b.kode_siswa
-                                            JOIN kategori c ON b.idkategori = c.idkategori
-                                            GROUP BY c.keterangan, a.tahun_ajaran");
+        $sql = $connection->createCommand("SELECT kode_kelas, SUM(nominal) nominal, b.tahun_ajaran FROM v_tagihan_siswa_all a JOIN tahun_ajaran b oN a.tahun_ajaran = b.tahun_ajaran
+        WHERE b.flag = 1
+        GROUP BY kode_kelas");
         $model = $sql->queryAll();
 
         return $this->render('index',[
