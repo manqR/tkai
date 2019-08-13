@@ -251,13 +251,14 @@ class ApiController extends Controller
 		return $data;
     }
     public function actionSiswaListAdd($key_){
-        $key = explode("-",$key_);
-
+      
+        $rest = substr($key_, -8);   
+        $key = explode("-",$rest);
         $connection = \Yii::$app->db;
         $sql = $connection->createCommand("SELECT a.*, b.key_ 
                                             FROM v_siswa a 
                                             LEFT JOIN detil_kelas b ON a.kode_siswa = b.kode_siswa
-                                         WHERE a.idcabang = '".$key[1]."' AND a.idkategori = '".$key[2]."'
+                                         WHERE a.idcabang = '".$key[0]."' AND a.idkategori = '".$key[1]."'
                                          ");
                                          
         $model = $sql->queryAll();
