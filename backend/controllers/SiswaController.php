@@ -26,9 +26,7 @@ class SiswaController extends Controller
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
+               
             ],
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
@@ -125,9 +123,11 @@ class SiswaController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($nis, $kode_siswa, $urutan)
+    public function actionDelete($kode_siswa)
     {
-        $this->findModel($nis, $kode_siswa, $urutan)->delete();
+        $model = $this->findModel($kode_siswa);
+        $model->status = 0;
+        $model->save();
 
         return $this->redirect(['index']);
     }

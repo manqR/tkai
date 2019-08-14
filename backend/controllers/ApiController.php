@@ -128,7 +128,8 @@ class ApiController extends Controller
                                     ,$models['tempat_lahir']
                                     ,$models['tanggal_lahir']                                    
                                     ,'<a href="siswa-view-'.$models['kode_siswa'].'"><i class="material-icons view" aria-hidden="true" data-id="">open_in_new</i></a> | 
-                                    <a href="siswa-update-'.$models['kode_siswa'].'"><i class="material-icons edit" aria-hidden="true" data-id="">edit</i></a>'
+                                    <a href="siswa-update-'.$models['kode_siswa'].'"><i class="material-icons edit" aria-hidden="true" data-id="">edit</i></a>  | 
+                                    <a href="siswa-delete-'.$models['kode_siswa'].'"><i class="material-icons delete" aria-hidden="true" data-id="">delete</i></a>'
                                 );
             
             endforeach;

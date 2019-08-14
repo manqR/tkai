@@ -66,6 +66,7 @@ return [
                 //---------------------------------- Delete -----------------------------//
                 'kelas-delete-<urutan>'=>'kelas/delete',				
                 'karyawan-delete-<id>'=>'user/delete',				
+                'siswa-delete-<kode_siswa>'=>'siswa/delete',				
 
                 //---------------------------------- Print -----------------------------//
 
