@@ -368,7 +368,7 @@ class ApiController extends Controller
             $spp_siswa->date_create = date('Y-m-d');
             $spp_siswa->user_create = Yii::$app->user->identity->username;
             $spp_siswa->urutan = $spps->urutan;
-            $spp_siswa->save();        
+            $spp_siswa->save(false);        
         endforeach;
         
         
@@ -386,7 +386,7 @@ class ApiController extends Controller
     }
     public function actionDeleteSiswa(){
         $return = explode(";",$_POST['data']);
-
+       
         $query =DetilKelas::find()
                 ->where(['key_'=>$return[1]])
                 ->AndWhere(['kode_siswa'=>$return[0]])
@@ -403,7 +403,7 @@ class ApiController extends Controller
 
         $view = Tagihan::find()
                 ->where(['idkategori' => $detail[1]])
-                ->where(['idcabang' => $detail[0]])
+                ->Andwhere(['idcabang' => $detail[0]])
                 ->Andwhere(['tahun_ajaran'=>$find->tahun_ajaran])
                 ->One();
        
@@ -413,6 +413,7 @@ class ApiController extends Controller
                     ->where(['idtagihan'=>$view->idtagihan])
                     ->AndWhere(['kode_siswa'=>$return[0]])
                     ->All();       
+                    
         foreach ($delete_spp as $delete_spps) {
             $delete_spps->delete();  
         }
@@ -422,6 +423,7 @@ class ApiController extends Controller
                     ->AndWhere(['kode_siswa'=>$return[0]])
                     ->AndWhere(['kode_kelas'=>$detail_kelas[0]])
                     ->One();
+        
         
         $tagihanSiswa->delete();
                 

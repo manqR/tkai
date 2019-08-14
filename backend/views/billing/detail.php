@@ -49,14 +49,14 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php 
                             $sum = 0;
                             foreach ($spp as $spps): 
-                                $sum += $spps->nominal;
+                                $sum += $spps['nominal'];
                         ?>
                             <tr>
-                                <td><?= $spps->tahun_ajaran ?></td>
-                                <td><?= $spps->bulan ?></td>
-                                <td><?= FormatRupiah($spps->nominal) ?></td>
-                                <td><?= $spps->flag == 1 ? ' <span class="tag tag-danger">Belum Bayar</span>' : '<span class="tag tag-success">Sudah Bayar</span>' ?></td>
-                                <td><?= $spps->date_update == '' ? '-': $spps->date_update ?></td>
+                                <td><?= $spps['tahun_ajaran'] ?></td>
+                                <td><?= $spps['bulan'] ?></td>
+                                <td><?= FormatRupiah($spps['nominal']) ?></td>
+                                <td><?= $spps['flag'] == 1 ? ' <span class="tag tag-danger">Belum Bayar</span>' : '<span class="tag tag-success">Sudah Bayar</span>' ?></td>
+                                <td><?= $spps['date_update'] == '' ? '-': $spps['date_update'] ?></td>
                            </tr>
                         <?php endforeach; ?>
                     </tbody>

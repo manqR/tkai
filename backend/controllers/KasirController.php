@@ -91,7 +91,8 @@ class KasirController extends \yii\web\Controller
                 \Yii::$app->db->createCommand("UPDATE tagihan_siswa_spp
                                                 SET nominal = (nominal - ".$_POST['bayar']."),
                                                     date_update = '".date('Y-m-d H:i:s')."',
-                                                    user_update = '".Yii::$app->user->identity->username ."'
+                                                    user_update = '".Yii::$app->user->identity->username ."',
+                                                    flag = 2
                                                 WHERE idtagihan = '".$model->idtagihan."'
                                                 AND kode_siswa = '".$model->kode_siswa."'
                                                 AND bulan = '".$cart->remarks."'")->execute();     

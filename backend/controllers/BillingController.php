@@ -53,13 +53,16 @@ class BillingController extends \yii\web\Controller
     }
 
     public function actionDetail($id){
-        $spp = TagihanSiswaSpp::find()
-                ->where(['kode_siswa'=>$id])
-                ->OrderBy(['urutan'=>SORT_ASC])
-                ->All();
-
-
+        // $spp = TagihanSiswaSpp::find()
+        //         ->where(['kode_siswa'=>$id])
+        //         ->OrderBy(['urutan'=>SORT_ASC])
+        //         ->All();
         $connection = \Yii::$app->db;
+        $query = $connection->createCommand("SELECT * FROM tagihan_siswa_spp a JOIN bulan_spp b ON a.bulan = b.bulan WHERE kode_siswa =  '".$id."'
+                                             ORDER BY b.urutan");
+        $spp = $query->queryAll();
+
+       
         $sql = $connection->createCommand("SELECT * FROM v_tagihan_siswa WHERE kode_siswa = '".$id."'");
         $tagihan = $sql->queryAll();
 
