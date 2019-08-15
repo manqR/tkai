@@ -425,7 +425,7 @@ class ApiController extends Controller
                     ->AndWhere(['kode_kelas'=>$detail_kelas])
                     ->One();
         
-        $sql = "SELECT * FROM tagihan_siswa WHERE idtagihan = '".str_replace($view->idtagihan,' ','')."' AND kode_siswa = '".$return[0]."' AND kode_kelas = '".$detail_kelas."' ";
+        $sql = "SELECT * FROM tagihan_siswa WHERE idtagihan = '".str_replace(' ','',$view->idtagihan)."' AND kode_siswa = '".$return[0]."' AND kode_kelas = '".$detail_kelas."' ";
         echo $sql;        
         die;
         $tagihanSiswa->delete();
