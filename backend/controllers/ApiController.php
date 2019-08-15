@@ -425,8 +425,8 @@ class ApiController extends Controller
                     ->AndWhere(['kode_kelas'=>$detail_kelas])
                     ->One();
         
-        // var_dump($$return[0]);
-        // die;
+        var_dump($$return[0]);
+        die;
         $tagihanSiswa->delete();
                 
         $data = array();
