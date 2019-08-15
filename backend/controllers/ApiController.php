@@ -420,14 +420,13 @@ class ApiController extends Controller
         }
          
         $tagihanSiswa = TagihanSiswa::find()
-                    ->where(['idtagihan'=>str_replace($view->idtagihan,' ','')])
+                    ->where(['idtagihan'=>$view->idtagihan])
                     ->AndWhere(['kode_siswa'=>$return[0]])
                     ->AndWhere(['kode_kelas'=>$detail_kelas])
                     ->One();
         
-        $sql = "SELECT * FROM tagihan_siswa WHERE idtagihan = '".str_replace(' ','',$view->idtagihan)."' AND kode_siswa = '".$return[0]."' AND kode_kelas = '".$detail_kelas."' ";
-        echo $sql;        
-        die;
+     var_dump($tagihanSiswa);
+     die;
         $tagihanSiswa->delete();
                 
         $data = array();
