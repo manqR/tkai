@@ -309,7 +309,7 @@ class ApiController extends Controller
 
         
         $detail = explode("-",$return[0]);
-        $detail_kelas = explode("-",$return[1]);
+        $detail_kelas = $return[1];
 
         \Yii::$app->db->createCommand("INSERT INTO tagihan_siswa (
             kode_siswa
@@ -328,7 +328,7 @@ class ApiController extends Controller
             ,user_assign
         )
         SELECT  '".$return[0]."'
-                ,'".$detail_kelas[0]."'
+                ,'".$detail_kelas."'
                 ,idtagihan
                 ,idcabang
                 ,idkategori
@@ -395,7 +395,7 @@ class ApiController extends Controller
         
                 
         $detail = explode("-",$return[0]);
-        $detail_kelas = explode("-",$return[1]);
+        $detail_kelas = $return[1];
 
 
         $find = Kelas::find()
@@ -422,10 +422,11 @@ class ApiController extends Controller
         $tagihanSiswa = TagihanSiswa::find()
                     ->where(['idtagihan'=>$view->idtagihan])
                     ->AndWhere(['kode_siswa'=>$return[0]])
-                    ->AndWhere(['kode_kelas'=>$detail_kelas[0]])
+                    ->AndWhere(['kode_kelas'=>$detail_kelas])
                     ->One();
         
-        
+        // var_dump($$return[0]);
+        // die;
         $tagihanSiswa->delete();
                 
         $data = array();
