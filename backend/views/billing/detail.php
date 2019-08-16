@@ -33,7 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 Bulan
                             </th>
                             <th>
-                                Nominal
+                                Nominal TAgihan
+                            </th>
+							 <th>
+                                Sisa Tagihan
                             </th>
                             <th>
                                Status
@@ -49,12 +52,13 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?php 
                             $sum = 0;
                             foreach ($spp as $spps): 
-                                $sum += $spps['nominal'];
+                                $sum += $spps['sisa_bayar'];
                         ?>
                             <tr>
                                 <td><?= $spps['tahun_ajaran'] ?></td>
                                 <td><?= $spps['bulan'] ?></td>
-                                <td><?= FormatRupiah($spps['nominal']) ?></td>
+                                <td><?= FormatRupiah($spps['nominal_tagihan']) ?></td>
+                                <td><?= FormatRupiah($spps['sisa_bayar']) ?></td>
                                 <td><?= $spps['flag'] == 1 ? ' <span class="tag tag-danger">Belum Bayar</span>' : '<span class="tag tag-success">Sudah Bayar</span>' ?></td>
                                 <td><?= $spps['date_update'] == '' ? '-': $spps['date_update'] ?></td>
                            </tr>
@@ -62,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </tbody>
                     <tfoot>
                         <tr>                            
-                            <th colspan="2">
+                            <th colspan="3">
                                 Total
                             </th>
                             <th colspan="3">
@@ -88,10 +92,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 Keterangan
                             </th>
                             <th>
-                               Nominal
+                               Nominal Tagihan
                             </th>
+							
                             <th>
                                Sudah dibayarkan
+                            </th>
+							 <th>
+                               Nominal Sisa
                             </th>
                             <th>
                                Tanggal Bayar
@@ -110,29 +118,32 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ->where(['idtagihan'=>$tagihans['idtagihan']])
                                     ->AndWhere(['kode_siswa'=>$model->kode_siswa])
                                     ->AndWhere(['keterangan'=>'tagihan'])
-                                    ->AndWhere(['remarks'=> $tagihans['remarks']])
+                                    ->AndWhere(['remarks'=> $tagihans['key_']])
                                     ->AndWhere(['tahun_ajaran'=> $tagihans['tahun_ajaran']])
+									->AndWhere(['flag'=>2])
                                     ->One();
 
-                               
-                                $sum += $tagihans['nominal'];;
+                             
+                                $sum += (isset($pay->nominal) ? $pay->nominal : 0);
                         ?>
                             <tr>
                                 <td><?= $tagihans['tahun_ajaran']; ?></td>
                                 <td><?= $tagihans['idtagihan']; ?></td>
                                 <td><?= $tagihans['remarks']; ?></td>
-                                <td><?= FormatRupiah($tagihans['nominal']) ?></td>                             
+                                                     
+                                <td><?= FormatRupiah($tagihans['nominal2']) ?></td>                             
                                 <td> <?= FormatRupiah(isset($pay->nominal) ? $pay->nominal : '0') ?> </td>
+								<td><?= FormatRupiah($tagihans['nominal']) ?></td>         
                                 <td><?= isset($pay->date) ? $pay->date : '-' ?></td>
                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                     <tfoot>
                         <tr>                            
-                            <th colspan="3">
+                            <th colspan="4">
                                 Total
                             </th>
-                            <th colspan="3">
+                            <th colspan="2">
                                 <?= FormatRupiah($sum) ?>
                             </th>
                         </tr>

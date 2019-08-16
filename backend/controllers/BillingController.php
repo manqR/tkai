@@ -59,7 +59,7 @@ class BillingController extends \yii\web\Controller
         //         ->OrderBy(['urutan'=>SORT_ASC])
         //         ->All();
         $connection = \Yii::$app->db;
-        $query = $connection->createCommand("SELECT * FROM tagihan_siswa_spp a JOIN bulan_spp b ON a.bulan = b.bulan WHERE kode_siswa =  '".$id."'
+        $query = $connection->createCommand("SELECT a.tahun_ajaran,a.bulan , a.nominal sisa_bayar, a.flag, a.date_update, c.nominal nominal_tagihan FROM tagihan_siswa_spp a JOIN bulan_spp b ON a.bulan = b.bulan JOIN tagihan_spp c ON a.idtagihan = c.idtagihan AND a.bulan = c.bulan WHERE kode_siswa =  '".$id."'
                                              ORDER BY b.urutan");
         $spp = $query->queryAll();
 

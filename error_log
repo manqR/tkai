@@ -765,3 +765,33 @@ Stack trace:
 [15-Aug-2019 10:52:29 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
 [15-Aug-2019 10:52:29 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
 [15-Aug-2019 11:04:34 UTC] PHP Notice:  unserialize(): Error at offset 4086 of 4096 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[16-Aug-2019 01:12:58 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 01:30:42 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 01:30:42 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 01:30:43 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 01:44:29 UTC] PHP Notice:  unserialize(): Error at offset 16381 of 16384 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[16-Aug-2019 02:02:24 UTC] PHP Notice:  unserialize(): Error at offset 8192 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[16-Aug-2019 02:14:02 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 02:14:02 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 02:14:02 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 02:15:10 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 02:15:10 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 02:19:53 UTC] PHP Notice:  unserialize(): Error at offset 8192 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[16-Aug-2019 03:29:33 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 03:29:33 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 03:29:35 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 03:29:45 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 03:29:45 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 04:04:24 UTC] PHP Notice:  unserialize(): Error at offset 8188 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[16-Aug-2019 04:06:04 UTC] PHP Notice:  unserialize(): Error at offset 8167 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[16-Aug-2019 04:34:56 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 04:34:57 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 04:56:20 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 04:56:20 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 06:33:18 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 06:33:18 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 07:17:29 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 07:17:29 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 10:10:12 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 10:10:12 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[16-Aug-2019 10:10:12 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
