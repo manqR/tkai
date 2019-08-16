@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-
+use backend\models\Cart;
 $this->title = 'Tagihan Detail / '.$model->nis.' / '.$model->nama_lengkap;
 $this->params['breadcrumbs'][] = ['label' => 'Tagihan Siswa', 'url' => ['./billing']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <div class="tab-pane" id="two" role="tabpanel">
-        <div class="table-responsive">
+            <div class="table-responsive">
                 <table class="table table-bordered table-striped m-b-0">
                     <thead>
                         <tr>
@@ -106,6 +106,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                             foreach ($tagihan as $tagihans): 
 
+                                $pay = Cart::find()
+                                    ->where(['idtagihan'=>$tagihans['idtagihan']])
+                                    ->AndWhere(['kode_siswa'=>$model->kode_siswa])
+                                    ->AndWhere(['keterangan'=>'tagihan'])
+                                    ->AndWhere(['remarks'=> $tagihans['remarks']])
+                                    ->AndWhere(['tahun_ajaran'=> $tagihans['tahun_ajaran']])
+                                    ->One();
+
                                
                                 $sum += $tagihans['nominal'];;
                         ?>
@@ -113,9 +121,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <td><?= $tagihans['tahun_ajaran']; ?></td>
                                 <td><?= $tagihans['idtagihan']; ?></td>
                                 <td><?= $tagihans['remarks']; ?></td>
-                                <td><?= FormatRupiah($tagihans['nominal']) ?></td>
-                                <td></td>
-                                <td></td>
+                                <td><?= FormatRupiah($tagihans['nominal']) ?></td>                             
+                                <td> <?= FormatRupiah(isset($pay->nominal) ? $pay->nominal : '0') ?> </td>
+                                <td><?= isset($pay->date) ? $pay->date : '-' ?></td>
                            </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -134,7 +142,63 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="tab-pane" id="three" role="tabpanel">
             
-         
+        <div class="table-responsive">
+                <table class="table table-bordered table-striped m-b-0">
+                    <thead>
+                        <tr>
+                            <th>
+                               Tahun Ajaran
+                            </th>
+                            <th>
+                                No Tagihan
+                            </th>
+                            <th>
+                                Keterangan
+                            </th>
+                            <th>
+                               Nominal
+                            </th>
+                            <th>
+                               Sudah dibayarkan
+                            </th>
+                            <th>
+                               Tanggal Bayar
+                            </th>
+                        </tr>
+                    </thead>
+                   
+                    <tbody>
+                   
+                        <?php 
+                            $sum = 0;
+                
+                            foreach ($lain as $lains): 
+
+                               
+                                $sum += $lains['nominal'];;
+                        ?>
+                            <tr>
+                                <td><?= $lains['tahun_ajaran']; ?></td>
+                                <td><?= $lains['idtagihan']; ?></td>
+                                <td><?= $lains->tagihanLain->nama_tagihan; ?></td>
+                                <td><?= FormatRupiah($lains['nominal']) ?></td>
+                                <td></td>
+                                <td></td>
+                           </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                    <tfoot>
+                        <tr>                            
+                            <th colspan="3">
+                                Total
+                            </th>
+                            <th colspan="3">
+                                <?= FormatRupiah($sum) ?>
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
 </div>

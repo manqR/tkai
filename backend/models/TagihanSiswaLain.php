@@ -59,4 +59,8 @@ class TagihanSiswaLain extends \yii\db\ActiveRecord
             'urutan' => 'Urutan',
         ];
     }
+    public function getTagihanLain()
+    {
+        return $this->hasOne(TagihanLain::className(), ['idtagihan' => 'idtagihan']);
+    }
 }

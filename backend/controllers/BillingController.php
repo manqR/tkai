@@ -7,6 +7,7 @@ use yii\web\Response;
 use backend\models\Siswa;
 use backend\models\TagihanSiswa;
 use backend\models\TagihanSiswaSpp;
+use backend\models\TagihanSiswaLain;
 use backend\models\SiswaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -66,10 +67,17 @@ class BillingController extends \yii\web\Controller
         $sql = $connection->createCommand("SELECT * FROM v_tagihan_siswa WHERE kode_siswa = '".$id."'");
         $tagihan = $sql->queryAll();
 
+        $lain = TagihanSiswaLain::find()
+                ->joinWith('tagihanLain')
+                ->Where(['kode_siswa'=>$id])
+                ->All();
+        // var_dump($lain->tagihanLain->nama_tagihan);
+        // die;
         return $this->render('detail',[
             'model'=>$this->findModel($id),
             'spp'=>$spp,
-            'tagihan'=>$tagihan
+            'tagihan'=>$tagihan,
+            'lain' => $lain,
         ]);
     }
 
