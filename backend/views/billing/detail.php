@@ -167,10 +167,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 Keterangan
                             </th>
                             <th>
-                               Nominal
+                               Nominal Tagihan
                             </th>
                             <th>
                                Sudah dibayarkan
+                            </th>
+							 <th>
+                               Nominal Sisa
                             </th>
                             <th>
                                Tanggal Bayar
@@ -184,23 +187,29 @@ $this->params['breadcrumbs'][] = $this->title;
                             $sum = 0;
                 
                             foreach ($lain as $lains): 
-
+                                $payLain = Cart::find()
+                                        ->where(['flag'=>2])
+                                        ->AndWhere(['kode_siswa'=>$model->kode_siswa])
+                                        ->Andwhere(['idtagihan'=>$lains['idtagihan']])
+                                        ->AndWhere(['tahun_ajaran'=> $lains['tahun_ajaran']])
+                                        ->One();
                                
-                                $sum += $lains['nominal'];;
+                                $sum += (isset($pay->nominal) ? $pay->nominal : 0);
                         ?>
                             <tr>
                                 <td><?= $lains['tahun_ajaran']; ?></td>
                                 <td><?= $lains['idtagihan']; ?></td>
                                 <td><?= $lains->tagihanLain->nama_tagihan; ?></td>
-                                <td><?= FormatRupiah($lains['nominal']) ?></td>
-                                <td></td>
-                                <td></td>
+                                <td><?= $lains->tagihanLain->nominal; ?></td>
+                                <td> <?= FormatRupiah(isset($payLain->nominal) ? $payLain->nominal : '0') ?> </td>
+								<td><?= FormatRupiah($lains['nominal']) ?></td>         
+                                <td><?= isset($payLain->date) ? $payLain->date : '-' ?></td>
                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                     <tfoot>
                         <tr>                            
-                            <th colspan="3">
+                            <th colspan="4">
                                 Total
                             </th>
                             <th colspan="3">

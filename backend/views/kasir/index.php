@@ -17,6 +17,10 @@ $this->registerJs("
             tableShow('.datatagihan','./api/listtagihanall?kode='+kode);
         }
 
+        function listPembelian(kode){
+            tableShow('.datapembelian','./api/pembelian?kode='+kode);
+        }
+
         
 
         function listCart(kode) {
@@ -56,6 +60,7 @@ $this->registerJs("
                 $('.daftarsiswa').modal('hide');      
                 
                 listTagihan(data.data.kode_siswa);
+                listPembelian(data.data.kode_siswa);
                 listCart(data.data.kode_siswa);
 
                 
@@ -64,13 +69,15 @@ $this->registerJs("
         })    
         $(document).on(\"click\", \".addCart\", function () {		
             var datas = $(this).data('id');
-
+            console.log(datas);
+            
             $.post('api/add-cart',{
                 data:datas
             },
             function(data, status){   
                 if(data.error == 'success'){
                     listTagihan(data.siswa);
+                    listPembelian(data.siswa);
                     listCart(data.siswa);
                 }
                
@@ -86,6 +93,7 @@ $this->registerJs("
             function(data, status){   
                 if(data.error == 'success'){
                     listTagihan(data.siswa);
+                    listPembelian(data.siswa);
                     listCart(data.siswa);
                 }
                
@@ -140,6 +148,7 @@ $this->registerJs("
                                 var kembalian = inputValue - nominal;
                                 swal('Nilai kembalian ' + kembalian, 'Pembayaran berhasil', 'success');
                                 listTagihan(data.siswa);
+                                listPembelian(data.siswa);
                                 listCart(data.siswa);
                                 $('#no_kuitansi').val(data.no_kuitansi);
                                 $(\"button[name='print']\").removeAttr(\"disabled\");
@@ -272,7 +281,8 @@ View::POS_HEAD);
 <div class="card">
     <div class="card-block">
         <div class="text-xs-right">
-            <button type="button" class="btn btn-info btn-icon btn-sm cariTagihan" data-toggle="modal" data-target=".bd-example-modal"><i class="material-icons">add</i>Cari Tagihan</button>        
+            <button type="button" class="btn btn-success btn-icon btn-sm addPembelian" data-toggle="modal" data-target=".pembelian"><i class="material-icons">add</i>Pembelian</button>        
+            <button type="button" class="btn btn-info btn-icon btn-sm cariTagihan" data-toggle="modal" data-target=".bd-example-modal"><i class="material-icons">add</i>Cari Tagihan</button>                    
         </div>
         <div class="table-responsive p-t-2 p-b-2">
             <table class="table table-bordered m-b-0">
@@ -454,6 +464,52 @@ View::POS_HEAD);
 								<th>
 									Tahun Ajaran
 								</th>	
+								<th>
+									Aksi
+								</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>						
+			</div>
+            <?php ActiveForm::end(); ?>
+		</div>
+	</div>
+</div>
+<!-- ------------ /MODAL LIST TAGIHAN ------------------>
+
+<!-- ------------ MODAL LIST PEMBELIAN ------------------>
+<div class="modal fade pembelian" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="max-width: 800px" >
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">List Pembelian</h4>
+			</div>
+			<div class="modal-body">
+            <?php $form = ActiveForm::begin([
+                    'action' => 'cart'
+                ]);
+                ?>
+				<div class="table-responsive">
+					 <table class="table table-bordered datapembelian" style="width:100%">
+						<thead>
+                        <tr>
+								<th>
+									Kode Item
+								</th>
+								<th>
+									Nama Item
+								</th>
+								<th>
+									Nominal
+								</th>																
 								<th>
 									Aksi
 								</th>

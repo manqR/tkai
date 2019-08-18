@@ -17,6 +17,7 @@ use backend\models\TagihanSpp;
 use backend\models\Tagihan;
 use backend\models\TagihanSiswa;
 use backend\models\Cart;
+use backend\models\TagihanLain;
 
 
 include './inc/money.php';
@@ -788,8 +789,34 @@ class ApiController extends Controller
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		return $data;
     }
+    public function actionPembelian($kode){
 
-    
+        $model = TagihanLain::find()
+                ->all();
+        $tahun_ajaran = TahunAjaran::Find()
+                    ->where(['flag'=>1])
+                    ->One();
+                            
+        $output = array ();
+        foreach($model as $i => $models):
+            $aksi = "<i class=\"material-icons addCart\" aria-hidden=\"true\" data-id=\"".$models['nama_tagihan'].';'.$kode.';'.$models['nama_tagihan'].';'.$models['idtagihan'].';'.$tahun_ajaran->tahun_ajaran.';'.$models['nominal']."\">add_box</i>";   
+            $output[$i] = array(
+                $models->idtagihan,
+                $models->nama_tagihan,
+                formatRupiah($models->nominal),
+                $aksi
+            );
+        endforeach;
+        $data = [
+            'data'=>$output
+        ];
+        
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $data;
+        
+    }
+
+ 
 }
 
 ?>
