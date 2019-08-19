@@ -795,3 +795,26 @@ Stack trace:
 [16-Aug-2019 10:10:12 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
 [16-Aug-2019 10:10:12 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
 [16-Aug-2019 10:10:12 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[18-Aug-2019 06:04:21 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[18-Aug-2019 08:19:02 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[18-Aug-2019 09:26:33 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[18-Aug-2019 09:26:33 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[18-Aug-2019 09:26:33 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[18-Aug-2019 11:11:24 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[18-Aug-2019 11:11:25 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 02:37:24 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 02:37:24 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 02:41:17 UTC] PHP Notice:  unserialize(): Error at offset 8122 of 8192 bytes in /home/tamankre/public_html/keuangan/vendor/yiisoft/yii2-debug/src/LogTarget.php on line 98
+[19-Aug-2019 03:12:47 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 03:12:47 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 03:12:48 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 03:33:12 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 03:33:12 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 03:34:21 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 03:34:21 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 04:10:33 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 04:10:33 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 04:17:08 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 04:17:08 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 04:21:12 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59
+[19-Aug-2019 04:21:12 UTC] PHP Notice:  Trying to get property of non-object in /home/tamankre/public_html/keuangan/backend/views/layouts/left.php on line 59

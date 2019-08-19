@@ -260,7 +260,7 @@ class ApiController extends Controller
         $sql = $connection->createCommand("SELECT a.*, b.key_ 
                                             FROM v_siswa a 
                                             LEFT JOIN detil_kelas b ON a.kode_siswa = b.kode_siswa
-                                         WHERE a.idcabang = '".$key[0]."' AND a.idkategori = '".$key[1]."'
+                                         WHERE a.idcabang = '".$key[0]."' AND a.status = 1 AND a.idkategori = '".$key[1]."'
                                          ");
                                          
         $model = $sql->queryAll();
