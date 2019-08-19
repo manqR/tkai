@@ -224,7 +224,7 @@ class ApiController extends Controller
 
     public function actionSiswaList($key_){
         $connection = \Yii::$app->db;
-        $sql = $connection->createCommand("SELECT * FROM v_kelas_siswa WHERE key_ = '".$key_."'");
+        $sql = $connection->createCommand("SELECT * FROM v_kelas_siswa WHERE key_ = '".$key_."' AND status = 1");
         $model = $sql->queryAll();
 
         $output = array();
