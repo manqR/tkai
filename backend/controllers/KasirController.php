@@ -97,7 +97,7 @@ class KasirController extends \yii\web\Controller
                                                 AND kode_siswa = '".$model->kode_siswa."'
                                                 AND bulan = '".$cart->remarks."'")->execute();     
 
-            }else{
+            }else if(strtolower($cart->keterangan) == 'tagihan') {
                  \Yii::$app->db->createCommand("UPDATE tagihan_siswa
                                                 SET ".str_replace(' ','_',strtolower($cart->remarks))." = (".str_replace(' ','_',strtolower($cart->remarks))." - ".$_POST['bayar'].")
                                                 WHERE idtagihan = '".$model->idtagihan."'
