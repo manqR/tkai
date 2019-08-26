@@ -725,13 +725,14 @@ class ApiController extends Controller
                                 <input type='hidden' name=\"nominalTagihan[]\" value='".$models->nominal."' />
                                 <input type='hidden' name=\"urutan[]\" value='".$models->urutan."' />
                                 <input type='hidden' name=\"kode[]\" value='".$kode."' />
-                           
+                            
+                            <td><input type=\"text\" class=\"form-control\"  name=\"keterangan[]\" id=\"keterangan\" value='' /></td>
                             <td><i class=\"material-icons delete\" aria-hidden=\"true\"  data-id=".$models->urutan.">delete</i></td>
                         </tr>";                                               
             endforeach;
         }else{
             $data = " <tr>
-                    <td colspan=\"6\" class=\"text-xs-center\">No data available in table</td>
+                    <td colspan=\"8\" class=\"text-xs-center\">No data available in table</td>
                 </tr>";
         }
         return $data;

@@ -11,7 +11,9 @@ use Yii;
  * @property string $idtagihan
  * @property string $remarks
  * @property string $keterangan
+ * @property string $keterangan2
  * @property double $nominal
+ * @property int $diskon
  * @property double $jumlah_bayar
  * @property string $tahun_ajaran
  * @property int $flag
@@ -34,12 +36,13 @@ class Cart extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['kode_siswa', 'idtagihan', 'remarks', 'keterangan', 'nominal', 'jumlah_bayar', 'tahun_ajaran', 'flag', 'date'], 'required'],
+            [['kode_siswa', 'idtagihan', 'remarks', 'keterangan', 'keterangan2', 'nominal', 'diskon', 'jumlah_bayar', 'tahun_ajaran', 'flag', 'date'], 'required'],
             [['nominal', 'jumlah_bayar'], 'number'],
-            [['flag','diskon'], 'integer'],
+            [['diskon', 'flag'], 'integer'],
             [['date'], 'safe'],
             [['kode_siswa', 'idtagihan', 'tahun_ajaran'], 'string', 'max' => 20],
             [['remarks', 'keterangan'], 'string', 'max' => 50],
+            [['keterangan2'], 'string', 'max' => 255],
         ];
     }
 
@@ -53,6 +56,7 @@ class Cart extends \yii\db\ActiveRecord
             'idtagihan' => 'Idtagihan',
             'remarks' => 'Remarks',
             'keterangan' => 'Keterangan',
+            'keterangan2' => 'Keterangan2',
             'nominal' => 'Nominal',
             'diskon' => 'Diskon',
             'jumlah_bayar' => 'Jumlah Bayar',

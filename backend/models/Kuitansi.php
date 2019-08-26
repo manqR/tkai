@@ -13,11 +13,14 @@ use Yii;
  * @property string $idtagihan
  * @property string $remarks
  * @property string $keterangan
+ * @property string $keterangan2
  * @property double $nominal
+ * @property int $diskon
  * @property double $jumlah_bayar
  * @property string $tahun_ajaran
  * @property int $flag
  * @property string $payment_method
+ * @property string $bank_name
  * @property string $date
  * @property int $urutan
  */
@@ -37,11 +40,12 @@ class Kuitansi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['no_kuitansi', 'idcart', 'kode_siswa', 'idtagihan', 'remarks', 'keterangan', 'nominal', 'jumlah_bayar', 'tahun_ajaran', 'flag', 'payment_method', 'date'], 'required'],
-            [['idcart', 'flag', 'diskon'], 'integer'],
+            [['no_kuitansi', 'idcart', 'kode_siswa', 'idtagihan', 'remarks', 'keterangan', 'keterangan2', 'nominal', 'diskon', 'jumlah_bayar', 'tahun_ajaran', 'flag', 'payment_method', 'date'], 'required'],
+            [['idcart', 'diskon', 'flag'], 'integer'],
             [['nominal', 'jumlah_bayar'], 'number'],
             [['date'], 'safe'],
-            [['no_kuitansi', 'bank_name','kode_siswa', 'idtagihan', 'remarks', 'keterangan', 'tahun_ajaran', 'payment_method'], 'string', 'max' => 50],
+            [['no_kuitansi', 'kode_siswa', 'idtagihan', 'remarks', 'keterangan', 'tahun_ajaran', 'payment_method', 'bank_name'], 'string', 'max' => 50],
+            [['keterangan2'], 'string', 'max' => 255],
         ];
     }
 
@@ -57,6 +61,7 @@ class Kuitansi extends \yii\db\ActiveRecord
             'idtagihan' => 'Idtagihan',
             'remarks' => 'Remarks',
             'keterangan' => 'Keterangan',
+            'keterangan2' => 'Keterangan2',
             'nominal' => 'Nominal',
             'diskon' => 'Diskon',
             'jumlah_bayar' => 'Jumlah Bayar',

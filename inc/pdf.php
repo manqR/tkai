@@ -57,27 +57,27 @@ include 'inc/money.php';
                                 <b>K   W   I   T   A   N   S   I </b>
                             </div>
             
-                            <table class="invoice" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; text-align: left; width: 100%; margin: 20px auto;">                                   
-                            <tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">No Kwitansi </td>                                                                                    
-                                <td colspan="3" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: <i>'.$model->kuitansi->no_kuitansi.'</i></td>
+                            <table class="invoice" style="font-family:Arial; box-sizing: border-box; font-size: 12px; text-align: left; width: 100%; margin: 20px auto;">                                   
+                            <tr style="font-family:Arial; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">No Kwitansi </td>                                                                                    
+                                <td colspan="3" style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: <i>'.$model->kuitansi->no_kuitansi.'</i></td>
                             </tr>
-                            <tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> No. Induk Siswa </td>                                                                                    
-                                <td colspan="3" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model->nis.'</td>
+                            <tr style="font-family:Arial; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> No. Induk Siswa </td>                                                                                    
+                                <td colspan="3" style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model->nis.'</td>
                             </tr>                                                                               
-                            <tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Nama Siswa </td>                                                                                    
-                                <td colspan="3" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model->nama_lengkap.'</td>
+                            <tr style="font-family:Arial; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Nama Siswa </td>                                                                                    
+                                <td colspan="3" style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model->nama_lengkap.'</td>
                             </tr>                                                                               
-                            <tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Pembayaran Registrasi Siswa Baru</td>                                                                                    
-                                <td colspan="3" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: <b>Rp '.number_format($model->biaya_registrasi,0,".",".").'</b></td>
+                            <tr style="font-family:Arial; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Pembayaran Registrasi Siswa Baru</td>                                                                                    
+                                <td colspan="3" style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: <b>Rp '.number_format($model->biaya_registrasi,0,".",".").'</b></td>
                             </tr> 
                             <br/>
                             <br/>
                            
-                            <tr style="tex-align:center;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                            <tr style="tex-align:center;font-family:Arial; box-sizing: border-box; font-size: 12px; margin: 0;">
                                 <td ></td>                                                                                   
                                 <td></td>                                                                                   
                                 <td> </td>                                                                                   
@@ -118,7 +118,9 @@ include 'inc/money.php';
 
 
       
-        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', [190, 236]]);	    
+        // $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', [190, 236]]);	    
+        // $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'utf-8', [190, 236]]);
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'format' => 'A4-P']);
 
        
 
@@ -153,37 +155,35 @@ include 'inc/money.php';
                                 <b>K   W   I   T   A   N   S   I </b>
                             </div>
             
-                            <table class="invoice" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; text-align: left; width: 100%; margin: 20px auto;">                                   
-                            <tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">No Kwitansi </td>                                                                                    
-                                <td colspan="3" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: <i>'.$model['no_kuitansi'].'</i></td>
+                            <table class="invoice" style="font-family: Arial; box-sizing: border-box; font-size: 12px; text-align: left; width: 100%;">                                   
+                            <tr style="font-family:Arial; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top">No Kwitansi </td>                                                                                    
+                                <td colspan="3" style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: <i>'.$model['no_kuitansi'].'</i></td>
                             </tr>
-                            <tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> No. Induk Siswa </td>                                                                                    
-                                <td colspan="3" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model['nis'].'</td>
+                            <tr style="font-family:Arial; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> No. Induk Siswa </td>                                                                                    
+                                <td colspan="3" style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model['nis'].'</td>
                             </tr>                                                                               
-                            <tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Nama Siswa </td>                                                                                    
-                                <td colspan="3" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model['nama_lengkap'].'</td>
+                            <tr style="font-family:Arial; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Nama Siswa </td>                                                                                    
+                                <td colspan="3" style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model['nama_lengkap'].'</td>
                             </tr>                                                                               
-                            <tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Pembayaran : </td>                                                                                    
-                                <td colspan="3" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">
+                            <tr style="font-family:Arial; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Pembayaran : </td>                                                                                    
+                                <td colspan="3" style="font-family:Arial; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">
                                     <table>
                                        '.$data.'
                                        
                                     </table>
                                 </td>
                             </tr> 
-                            <br/>
-                            <br/>
                            
-                            <tr style="tex-align:center;font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
+                            <tr style="tex-align:center;font-family:Arial; box-sizing: border-box; font-size: 12px; margin: 0;">
                                 <td ></td>                                                                                   
                                 <td></td>                                                                                   
                                 <td> </td>                                                                                   
                                                                                                                   
-                                <td style="text-align:center;">Jakarta, '.date('d M  Y').'<br/>Bag Adm TKAI<br/><br/><br/>('.Yii::$app->user->identity->username.')</td>                                                                                   
+                                <td style="text-align:center;">Jakarta, '.date('d M  Y').'<br/>Bag Adm TKAI<br/><br/>('.Yii::$app->user->identity->username.')</td>                                                                                   
                             </tr>
                            
                         

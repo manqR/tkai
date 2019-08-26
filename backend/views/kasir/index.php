@@ -128,6 +128,7 @@ $this->registerJs("
                 }else{
                     console.log('Send');
                     var urutan = $(\"input[name='urutan[]']\").map(function(){return $(this).val();}).get();
+                    var keterangan2 = $(\"input[name='keterangan[]']\").map(function(){return $(this).val();}).get();
                     var bayar = $(\"input[name='nominal_bayar[]']\").map(function(){return $(this).val();}).get();
                     var diskon = $(\"input[name='diskon[]']\").map(function(){return $(this).val();}).get();
                     var kode = $(\"input[name='kode[]']\").map(function(){return $(this).val();}).get();
@@ -139,6 +140,7 @@ $this->registerJs("
                             bayar: bayar[i],
                             kode: kode[i],
                             diskon: diskon[i],
+                            keterangan: keterangan2[i],
                             payment : $('#payment').val(),
                             bank : $('#bank_name').val(),
                             tgl : $('#tgl_bayar').val(),
@@ -307,13 +309,16 @@ View::POS_HEAD);
                             Jumlah Bayar
                         </th>                        
                         <th>
+                            Keterangan
+                        </th>                        
+                        <th>
                             Aksi
                         </th>
                     </tr>
                 </thead>
                 <tbody id="show">
                     <tr>
-                        <td colspan="6" class="text-xs-center">No data available in table</td>
+                        <td colspan="8" class="text-xs-center">No data available in table</td>
                     </tr>            
                 </tbody>
             </table>
