@@ -179,7 +179,7 @@
 
             <!-- kuitansi -->
             <li>
-                <a href="kwitansi">
+                <a href="kuitansi">
                     <i class="material-icons text-warning">print</i>
                     <span>Kwitansi</span>
                 </a>

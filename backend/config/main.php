@@ -78,7 +78,7 @@ return [
                 'kasir'=>'kasir/index',		
 
                 //---------------------------------- Kwitansi -----------------------------//
-                'kwitansi'=>'kwitansi/index',		
+                'kuitansi'=>'kuitansi/index',		
 
 
                 //---------------------------------- Report -----------------------------//
