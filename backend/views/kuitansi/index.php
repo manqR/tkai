@@ -32,10 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     return '<center><b>' .$model->kode_siswa. '<br>' . $siswa->nama_lengkap . '</b></center>';
                 },
             ],             
-            'idtagihan',
             [
-                'label'=>'Claim Number',
-                'attribute'=>'claim_number',
+                'label'=>'Total Tagihan',
+                'attribute'=>'nominal',
                 'format' => 'html',
                 'value'=> function ($model) {                    
                     return formatRupiah($model->nominal);

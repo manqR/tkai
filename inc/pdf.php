@@ -79,7 +79,7 @@ include 'inc/money.php';
                                 <td></td>                                                                                   
                                 <td> </td>                                                                                   
                                                                                                                   
-                                <td style="text-align:center;">Jakarta, '.date('d M  Y').'<br/>Bag Adm TKAI<br/><br/>('.Yii::$app->user->identity->username.')</td>                                                                                   
+                                <td style="text-align:center;">Jakarta, '.date('d M  Y',strtotime($model->date)).'<br/>Bag Adm TKAI<br/><br/>('.Yii::$app->user->identity->username.')</td>                                                                                   
                             </tr>
                            
                         
@@ -180,7 +180,7 @@ include 'inc/money.php';
                                 <td></td>                                                                                   
                                 <td> </td>                                                                                   
                                                                                                                   
-                                <td style="text-align:center;">Jakarta, '.date('d M  Y').'<br/>Bag Adm TKAI<br/><br/>('.Yii::$app->user->identity->username.')</td>                                                                                   
+                                <td style="text-align:center;">Jakarta, '.date('d M  Y',strtotime($model['date'])).'<br/>Bag Adm TKAI<br/><br/>('.Yii::$app->user->identity->username.')</td>                                                                                   
                             </tr>
                            
                         
