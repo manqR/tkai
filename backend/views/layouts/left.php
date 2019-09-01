@@ -100,44 +100,45 @@
                     ->AndWhere(['idrole'=>Yii::$app->user->identity->role])
                     ->One();
                 
-             
-                if($privileges->flag == 1){
-                    $checks = 1;
-                }else{
-                    $checks = 0;
-                }
-                
-                $detail = MenuDetail::find()
-                    ->where(['parent_id'=>$models->idmenu])
-                    ->andWhere(['flag'=>1])
-                    ->all();
+                if($privileges){
+                    if($privileges->flag == 1){
+                        $checks = 1;
+                    }else{
+                        $checks = 0;
+                    }
+                    
+                    $detail = MenuDetail::find()
+                        ->where(['parent_id'=>$models->idmenu])
+                        ->andWhere(['flag'=>1])
+                        ->all();
 
-                    $child = '';
-                  
-                    foreach($detail as $details):
-                        
-                        $privilege = RolePrivillage::find()
-                                    ->where(['like', 'menu_name', $details->name])
-                                    ->AndWhere(['description'=>'CHILD'])
-                                    ->AndWhere(['idrole'=>Yii::$app->user->identity->role])
-                                    ->One();
-                      
-                      
-                        if($privilege->flag == 1){
-                            $check = 1;
-                        }else{
-                            $check = 0;
-                        }
-                        
-                        $d += 1;
-                        if($check == 1){
-                            $child .= '  <li>
-                                            <a href="'.$details->link.'">
-                                            <span>'.$details->name.'</span>
-                                            </a>
-                                        </li>  ';
-                        }
-                      
+                        $child = '';
+                    
+                        foreach($detail as $details):
+                            
+                            $privilege = RolePrivillage::find()
+                                        ->where(['like', 'menu_name', $details->name])
+                                        ->AndWhere(['description'=>'CHILD'])
+                                        ->AndWhere(['idrole'=>Yii::$app->user->identity->role])
+                                        ->One();
+                            
+                            if($privilege){
+                            
+                                if($privilege->flag == 1){
+                                    $check = 1;
+                                }else{
+                                    $check = 0;
+                                }
+                                
+                                $d += 1;
+                                if($check == 1){
+                                    $child .= '  <li>
+                                                    <a href="'.$details->link.'">
+                                                    <span>'.$details->name.'</span>
+                                                    </a>
+                                                </li>  ';
+                                }
+                            }
 
                 endforeach;                
 
@@ -167,7 +168,7 @@
                             </li>';
                     }
                 }
-                    
+            }
             endforeach;
            
           
