@@ -7,7 +7,10 @@
 	use yii\bootstrap\Nav;
 	use yii\bootstrap\NavBar;
 	use yii\widgets\Breadcrumbs;
-	use common\widgets\Alert;
+    use common\widgets\Alert;
+    use backend\models\Menu;
+    use backend\models\RolePrivillage;    
+    use backend\models\MenuDetail;
 	
 
 	$this->registerJs('
@@ -77,170 +80,112 @@
     <!-- main navigation -->
     <nav>
         <p class="nav-title">NAVIGATION</p>
-        <ul class="nav">
-            <!-- dashboard -->
-            <li>
-                <a href="<?= Yii::$app->homeUrl; ?>">
-                <i class="material-icons text-primary">home</i>
-                <span>Home</span>
-                </a>
-            </li>
-            <!-- /dashboard -->
-         
-          <!-- setup -->
-             <li>
-                <a href="javascript:;">
-                <span class="menu-caret">
-                <i class="material-icons">arrow_drop_down</i>
-                </span>
-                <i class="material-icons text-danger">settings</i>
-                <span>Pengaturan</span>
-                </a>
-                <ul class="sub-menu">
+        
+        <?php
+            $model = Menu::find()
+                    ->where(['flag'=>1])
+                    ->all();
+            $html = '';
+           
+            $html .='<ul class="nav">';
+                       
+            $x = 0;
+            $d = 0;
+            foreach($model as $models):
+                $x += 1;
+                
+                $privileges = RolePrivillage::find()
+                    ->where(['like', 'menu_name', $models->nama_menu])
+                    ->AndWhere(['description'=>'HEAD'])
+                    ->AndWhere(['idrole'=>Yii::$app->user->identity->role])
+                    ->One();
+                
+             
+                if($privileges->flag == 1){
+                    $checks = 1;
+                }else{
+                    $checks = 0;
+                }
+                
+                $detail = MenuDetail::find()
+                    ->where(['parent_id'=>$models->idmenu])
+                    ->andWhere(['flag'=>1])
+                    ->all();
+
+                    $child = '';
+                  
+                    foreach($detail as $details):
+                        
+                        $privilege = RolePrivillage::find()
+                                    ->where(['like', 'menu_name', $details->name])
+                                    ->AndWhere(['description'=>'CHILD'])
+                                    ->AndWhere(['idrole'=>Yii::$app->user->identity->role])
+                                    ->One();
+                      
+                      
+                        if($privilege->flag == 1){
+                            $check = 1;
+                        }else{
+                            $check = 0;
+                        }
+                        
+                        $d += 1;
+                        if($check == 1){
+                            $child .= '  <li>
+                                            <a href="'.$details->link.'">
+                                            <span>'.$details->name.'</span>
+                                            </a>
+                                        </li>  ';
+                        }
+                      
+
+                endforeach;                
+
+                if($checks == 1){   
+                    if($models->link != '#'){
+                        $html .='
+                            <li>
+                                <a href="'.$models->link.'">
+                                <i class="material-icons '.$models->color.'">'.$models->icon.'</i>
+                                <span>'.$models->nama_menu.'</span>
+                                </a>
+                            </li>';
+                    }else{
+                        $html .= '
+                            <li>
+                                <a href="javascript:;">
+                                <span class="menu-caret">
+                                <i class="material-icons">arrow_drop_down</i>
+                                </span>
+                                <i class="material-icons '.$models->color.'">'.$models->icon.'</i>
+                                <span>'.$models->nama_menu.'</span>
+                                </a>
+                                <ul class="sub-menu">
+                                    
+                                   '.$child.'                               
+                                </ul>
+                            </li>';
+                    }
+                }
+                    
+            endforeach;
+           
+          
+
+            $html .= '<li>
+                        <hr/>
+                    </li>
                     
                     <li>
-                        <a href="tahun-ajaran">
-                        <span>Tahun Ajaran</span>
+                        <a href="http://milestone.nyasha.me/latest/documentation" target="_blank">
+                        <i class="material-icons">local_library</i>
+                        <span>Documentation</span>
                         </a>
-                    </li>    
-                    <li>
-                        <a href="kelas">
-                        <span>Kelas</span>
-                        </a>
-                    </li>    
-                    <li>
-                        <a href="tagihan">
-                        <span>Tagihan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="tagihan-lain">
-                        <span>Tagihan Lain</span>
-                        </a>
-                    </li>                                                 
-                    <li>
-                        <a href="karyawan">
-                        <span>Karyawan</span>
-                        </a>
-                    </li>                                  
-                    <li>
-                        <a href="role">
-                        <span>Role Karyawan</span>
-                        </a>
-                    </li>                                  
-                </ul>
-            </li>
-            <!-- /setup -->
-
-
-			<!-- student -->
-            <li>
-                <a href="javascript:;">
-                <span class="menu-caret">
-                <i class="material-icons">arrow_drop_down</i>
-                </span>
-                <i class="material-icons text-success">face</i>               
-                <span>Siswa</span>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="registrasi">
-                        <span>Registrasi</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="siswa">
-                        <span>Siswa</span>
-                        </a>
-                    </li>
-					<li>
-                        <a href="kelassiswa">
-                        <span>Kelas</span>
-                        </a>
-                    </li>      
-                    <li>
-                        <a href="billing">
-                        <span>Tagihan</span>
-                        </a>
-                    </li> 					            
-                </ul>
-            </li>
-            <!-- /student -->			
-			
-           
-            <!-- Kasir -->
-            <li>
-                <a href="kasir">
-                    <i class="material-icons text-danger">attach_money</i>
-                    <span>Kasir</span>
-                </a>
-            </li>
-            <!-- /kasir -->
-
-            <!-- kuitansi -->
-            <li>
-                <a href="kuitansi">
-                    <i class="material-icons text-warning">print</i>
-                    <span>Kwitansi</span>
-                </a>
-            </li>
-            <!-- /kuitansi -->
-            
-            <!-- Import -->
-             <li>
-                <a href="upload">
-                    <i class="material-icons text-success">cloud_upload</i>
-                    <span>Upload</span>
-                </a>
-            </li>
-            <!-- /Import -->
-
-
-              <!-- Import -->
-              <li>
-                <a href="kas">
-                    <i class="material-icons text-danger">account_balance_wallet</i>
-                    <span>Kas</span>
-                </a>
-            </li>
-            <!-- /Import -->
-
-
-            <!-- report -->
-            <li>
-                <a href="javascript:;">
-                <span class="menu-caret">
-                <i class="material-icons">arrow_drop_down</i>
-                </span>
-                <i class="material-icons text-warning">assessment</i>
-                <span>Laporan</span>
-                </a>
-                <ul class="sub-menu">                   
-                    <li>
-                        <a href="admin-keuangan">
-                        <span>Laporan Keuangan</span>
-                        </a>
-                    </li>                                 
-                </ul>
-            </li>
-            <!-- /report -->
-
-            
-            
-			
-            <li>
-                <hr/>
-            </li>
-			
-            <!-- documentation -->
-            <li>
-                <a href="http://milestone.nyasha.me/latest/documentation" target="_blank">
-                <i class="material-icons">local_library</i>
-                <span>Documentation</span>
-                </a>
-            </li>
-            <!-- /documentation -->
-        </ul>
+                    </li>';
+        
+             $html .=' </ul>';
+             echo $html;
+        ?>
     </nav>
     <!-- /main navigation -->
 </div>			

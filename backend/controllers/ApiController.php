@@ -18,6 +18,10 @@ use backend\models\Tagihan;
 use backend\models\TagihanSiswa;
 use backend\models\Cart;
 use backend\models\TagihanLain;
+use backend\models\Menu;
+use backend\models\RolePrivillage;
+use backend\models\Role;
+use backend\models\MenuDetail;
 
 
 include './inc/money.php';
@@ -816,6 +820,190 @@ class ApiController extends Controller
         return $data;
         
     }
+
+    public function actionListMenu(){
+        
+        $output = array();         
+
+        if($_POST){
+
+            $arrData = $_POST['data'];
+
+          
+            $model = Menu::find()
+                    ->where(['flag'=>1])
+                    ->all();
+            
+            $html = '';
+           
+            $html .='<div id="fontSizeWrapper">
+                        <label for="fontSize">Tree Menu</label>                
+                    </div>
+                    <ul class="tree list-inline">';
+            $x = 0;
+            $d = 0;
+            foreach($model as $models):
+                $x += 1;
+                
+                $privileges = RolePrivillage::find()
+                    ->where(['like', 'menu_name', $models->nama_menu])
+                    ->AndWhere(['description'=>'HEAD'])
+                    ->AndWhere(['idrole'=>$arrData[0]])
+                    ->One();
+                
+                if($privileges){
+                    $checks = $privileges->flag == 1 ? 'checked':'';
+                }else{
+                    $checks = '';
+                }
+              
+                $detail = MenuDetail::find()
+                    ->where(['parent_id'=>$models->idmenu])
+                    ->andWhere(['flag'=>1])
+                    ->all();
+
+                    $child = '';
+                  
+                    foreach($detail as $details):
+                        
+                        $privilege = RolePrivillage::find()
+                                    ->where(['like', 'menu_name', $details->name])
+                                    ->AndWhere(['description'=>'CHILD'])
+                                    ->AndWhere(['idrole'=>$arrData[0]])
+                                    ->One();
+                      
+                      
+                        if(isset($privilege->flag)){
+                            $check = $privilege->flag == 1 ? 'checked':'';
+                        }else{
+                            $check = '';
+                        }
+                        
+                        $d += 1;
+                        $child .=' <li class=" list-inline">
+                                        <input type="checkbox"  '.$check.' name="detail" id="d'.$d.'" />
+                                        <label for="d'.$d.'" class="tree_label">'.$details->name.'</label>                                 
+                                    </li>';
+
+                    endforeach;
+
+                   
+                $html .='
+                
+                        
+                            <li>
+                                <input type="checkbox" '.$checks.' name="check" id="c'.$x.'" />
+                                <label class="tree_label" for="c'.$x.'">'.$models->nama_menu.'</label>
+                                <ul>
+                                   '.$child.'
+                                   
+                                </ul>
+                            </li>
+                            
+                       ';
+            endforeach;
+            $html .=' </ul>';
+            return $html;
+        }else{
+
+            $data = json_encode($output);
+            $data = [
+                'data'=>'Method Not Allowed'
+            ];
+            Yii::$app->response->format = Response::FORMAT_JSON;
+		    return $data;
+        }
+        
+		
+		
+    }
+    public function actionDivision(){
+        $model = Role::find()
+                ->all();
+        
+        $output = array();        
+
+        foreach($model as $i => $models):
+            $output[$i] = array(
+                          $models->role,                                              
+                          '<i data-id='.$models->idrole.';'.$models->role.' class="material-icons add">add</i>'
+            );
+
+
+        endforeach;
+                
+        $data = json_encode($output);
+        $data = [
+            'data'=>$output
+        ];
+        
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $data;
+
+    }
+
+    public function actionPostPrivilege(){
+        if($_POST){
+            
+            $head = explode(',',$_POST['master']);
+            $childMenu = explode(',',$_POST['child']);
+
+            $model = Menu::find()
+                    ->where(['flag'=>1])
+                    ->OrderBy(['idmenu'=>SORT_ASC])
+                    ->all();
+
+            
+
+            $del= RolePrivillage::find()
+                ->where(['idrole'=>$_POST['role']])
+                ->all();
+                
+                
+            if(isset($del)){
+                foreach($del as $dels){
+                    $dels->delete();
+                }
+            }
+            $x = 0;
+            foreach($model as $i => $models):
+                         
+                $privilege = new RolePrivillage();
+                $privilege->idrole = $_POST['role'];
+                $privilege->description = 'HEAD';
+                $privilege->menu_name = $models->nama_menu;
+                $privilege->flag = $head[$i];
+                $privilege->save();
+                // echo $i;
+                $child = MenuDetail::find()
+                    ->where(['flag'=>1])
+                    ->AndWhere(['parent_id'=>$models->idmenu])
+                    ->OrderBy(['id'=>SORT_ASC])
+                    ->all();
+
+                foreach($child as $key => $childs):
+                    $x++;
+                    $privilege = new RolePrivillage();
+                    $privilege->idrole = $_POST['role'];
+                    $privilege->description = 'CHILD';
+                    $privilege->menu_name = $childs->name;
+                    $privilege->flag = $childMenu[$x-1];
+                    $privilege->save();
+                endforeach;
+                // var_dump($head[$i]);
+            endforeach;
+        }else{
+            $output = array();
+            $data = json_encode($output);
+            $data = [
+                'data'=>'Method Not Allowed'
+            ];
+            
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return $data;
+        }
+    }
+
 
  
 }
