@@ -134,17 +134,31 @@ include 'inc/money.php';
         $kuitansi = Kuitansi::findAll($no_kuitansi);
        
         $data = '';
+        $sum = 0;
         foreach($kuitansi as $kuitansis):
         
         $keterangan = ($kuitansis->keterangan == 'spp' ? 'SPP '.$kuitansis->remarks : $kuitansis->remarks);
    
             $data .= '<tr>';
                 $data .= '<td>'.$keterangan.'</td>';
-                $data .= '<td> : Rp'.FormatRupiah($kuitansis->jumlah_bayar).'</td>';
+                $data .= '<td> : Rp '.FormatRupiah($kuitansis->jumlah_bayar).'</td>';
             $data .= '<tr>';
-           
+            
+           $sum += $kuitansis->jumlah_bayar;
         endforeach;
-       
+            $data .= '<tr>';
+                $data .= '<td colspan="2">===========================</td>';                
+            $data .= '<tr>';
+            $data .= '<tr>';
+                $data .= '<td>Total</td>';                
+                $data .= '<td> : Rp '.FormatRupiah($sum).'<td>';                
+            $data .= '<tr>';
+            $data .= '<tr>';
+                $data .= '<td colspan="2">===========================</td>';                
+            $data .= '<tr>';
+          
+
+        
       
         $mpdf->writeHTML($head.' 
                         
