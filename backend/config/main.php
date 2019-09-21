@@ -33,6 +33,7 @@ return [
                 'karyawan' => 'user/index',
                 'role' => 'role/index',
                 'bank' => 'bank/index',
+                'kas' => 'kas/index',
                 
                 //---------------------------------- Create -----------------------------//
                 'kelas-create'=>'kelas/create',			
@@ -43,6 +44,7 @@ return [
                 'karyawan-create' => 'user/create',
                 'role-create' => 'role/create',
                 'bank-create' => 'bank/create',
+                'kas-create' => 'kas/create',
 
 
                 //---------------------------------- Update -----------------------------//
@@ -55,6 +57,7 @@ return [
                 'karyawan-update-<id>' => 'user/update',
                 'role-update' => 'role/update',
                 'bank-update' => 'bank/update',
+                'kas-update' => 'kas/update',
                 
                 
                 //---------------------------------- View -----------------------------//
