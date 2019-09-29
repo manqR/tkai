@@ -28,9 +28,10 @@ function PrintExcel($periode){
       $objPHPExcel->setActiveSheetIndex(0)->setCellValue('C1', 'Tanggal Transaksi');
       $objPHPExcel->setActiveSheetIndex(0)->setCellValue('D1', 'NIS');
       $objPHPExcel->setActiveSheetIndex(0)->setCellValue('E1', 'Nama');
-      $objPHPExcel->setActiveSheetIndex(0)->setCellValue('F1', 'Nama Biaya');       
-      $objPHPExcel->setActiveSheetIndex(0)->setCellValue('G1', 'Keterangan');
-      $objPHPExcel->setActiveSheetIndex(0)->setCellValue('H1', 'Nominal');
+      $objPHPExcel->setActiveSheetIndex(0)->setCellValue('F1', 'Grade');
+      $objPHPExcel->setActiveSheetIndex(0)->setCellValue('G1', 'Nama Biaya');       
+      $objPHPExcel->setActiveSheetIndex(0)->setCellValue('H1', 'Keterangan');
+      $objPHPExcel->setActiveSheetIndex(0)->setCellValue('I1', 'Nominal');
 
       
       $title = '';
@@ -55,7 +56,10 @@ function PrintExcel($periode){
       $i = 1;
       $sum = 0;
       foreach($model as $models):    
-        $siswa = Siswa::findOne(['kode_siswa'=>$models['kode_siswa']]);       
+        $siswa = Siswa::find()
+                ->joinWith('kategori')
+                ->where(['kode_siswa'=>$models['kode_siswa']])
+                ->One();
         $i++;  
 
         $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$i, $i-1);
@@ -63,9 +67,10 @@ function PrintExcel($periode){
         $objPHPExcel->setActiveSheetIndex(0)->setCellValue('C'.$i, $models['date']);
         $objPHPExcel->setActiveSheetIndex(0)->setCellValue('D'.$i, $siswa->nis);
         $objPHPExcel->setActiveSheetIndex(0)->setCellValue('E'.$i, $siswa->nama_lengkap);
-        $objPHPExcel->setActiveSheetIndex(0)->setCellValue('F'.$i, $models['remarks']);
-        $objPHPExcel->setActiveSheetIndex(0)->setCellValue('G'.$i, $models['payment_method']);
-        $objPHPExcel->setActiveSheetIndex(0)->setCellValue('H'.$i, $models['nominal']);
+        $objPHPExcel->setActiveSheetIndex(0)->setCellValue('F'.$i, $siswa->kategori->keterangan);
+        $objPHPExcel->setActiveSheetIndex(0)->setCellValue('G'.$i, $models['remarks']);
+        $objPHPExcel->setActiveSheetIndex(0)->setCellValue('H'.$i, $models['payment_method']);
+        $objPHPExcel->setActiveSheetIndex(0)->setCellValue('I'.$i, $models['nominal']);
 
         $sum += $models['nominal'];
           
