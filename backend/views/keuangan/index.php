@@ -11,6 +11,7 @@
             <option value="2"> Bulanan</option>
             <option value="3"> Tahunan </option>
         </select>
-        <input type="submit" value="Cetak" class="btn btn-success" />
+        <button class="btn" name ="type" type="submit" value="pdf"><i class="fa fa-file-pdf-o fa-2x"></i></button>        
+        <button class="btn" name ="type" type="submit" value="excel"><i class="fa fa-file-excel-o fa-2x"></i></button>        
     </form>
 </div>
