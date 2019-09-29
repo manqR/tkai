@@ -50,31 +50,31 @@ include 'inc/money.php';
 
         $mpdf->writeHTML($head.' 
                         
-                            <div style="text-align:center;line-height:80px;font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace">
+                            <div style="text-align:center;line-height:80px;font-weight: bold; font-family: OCR A Std, monospace">
                                 <b>K     W     I     T     A     N     S     I</b>
                             </div>
             
-                            <table class="invoice" style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; text-align: left; width: 100%; ">                                   
-                            <tr style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">No Kwitansi </td>                                                                                    
-                                <td colspan="3" style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: <i>'.$model->no_registrasi.'</i></td>
+                            <table class="invoice" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; text-align: left; width: 100%; ">                                   
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">No Kwitansi </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: <i>'.$model->no_registrasi.'</i></td>
                             </tr>
-                            <tr style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> No. Induk Siswa </td>                                                                                    
-                                <td colspan="3" style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model->nis.'</td>
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top"> No. Induk Siswa </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: '.$model->nis.'</td>
                             </tr>                                                                               
-                            <tr style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Nama Siswa </td>                                                                                    
-                                <td colspan="3" style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model->nama_lengkap.'</td>
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top"> Nama Siswa </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: '.$model->nama_lengkap.'</td>
                             </tr>                                                                               
-                            <tr style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Pembayaran Registrasi Siswa Baru</td>                                                                                    
-                                <td colspan="3" style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: <b>Rp '.number_format($model->biaya_registrasi,0,".",".").'</b></td>
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top"> Pembayaran Registrasi Siswa Baru</td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: <b>Rp '.number_format($model->biaya_registrasi,0,".",".").'</b></td>
                             </tr> 
                             <br/>
                             <br/>
                            
-                            <tr style="tex-align:center;font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; margin: 0;">
+                            <tr style="tex-align:center;font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
                                 <td ></td>                                                                                   
                                 <td></td>                                                                                   
                                 <td> </td>                                                                                   
@@ -162,26 +162,26 @@ include 'inc/money.php';
       
         $mpdf->writeHTML($head.' 
                         
-                            <div style="text-align:center;line-height:80px">
+                            <div style="text-align:center;line-height:40px">
                                 <b>K   W   I   T   A   N   S   I </b>
                             </div>
             
-                            <table class="invoice" style="font-family: Arial; box-sizing: border-box; font-size: 14px; text-align: left; width: 100%;">                                   
-                            <tr style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;" valign="top">No Kwitansi </td>                                                                                    
-                                <td colspan="3" style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: <i>'.$model['no_kuitansi'].'</i></td>
+                            <table class="invoice" style="font-weight: bold; font-family: Arial; box-sizing: border-box; font-size: 10px; text-align: left; width: 100%;">                                   
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">No Kwitansi </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: <i>'.$model['no_kuitansi'].'</i></td>
                             </tr>
-                            <tr style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> No. Induk Siswa </td>                                                                                    
-                                <td colspan="3" style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model['nis'].'</td>
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top"> No. Induk Siswa </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: '.$model['nis'].'</td>
                             </tr>                                                                               
-                            <tr style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Nama Siswa </td>                                                                                    
-                                <td colspan="3" style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">: '.$model['nama_lengkap'].'</td>
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top"> Nama Siswa </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: '.$model['nama_lengkap'].'</td>
                             </tr>                                                                               
-                            <tr style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; margin: 0;">
-                                <td style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top"> Pembayaran : </td>                                                                                    
-                                <td colspan="3" style="font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 5px 0;" valign="top">
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top"> Pembayaran </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">
                                     <table>
                                        '.$data.'
                                        
@@ -189,12 +189,12 @@ include 'inc/money.php';
                                 </td>
                             </tr> 
                            
-                            <tr style="tex-align:center;font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace; box-sizing: border-box; font-size: 14px; margin: 0;">
+                            <tr style="tex-align:center;font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
                                 <td ></td>                                                                                   
                                 <td></td>                                                                                   
                                 <td> </td>                                                                                   
                                                                                                                   
-                                <td style="text-align:center;">Jakarta, '. date('d M Y') /*date('d M  Y',strtotime($model['date'])) */.'<br/>Bag Adm TKAI<br/><br/>('.Yii::$app->user->identity->username.')</td>                                                                                   
+                                <td style="text-align:center;">Jakarta, '. date('d M Y') /*date('d M  Y',strtotime($model['date'])) */.'<br/>Bag Adm TKAI<br/>('.Yii::$app->user->identity->username.')</td>                                                                                   
                             </tr>
                            
                         
@@ -217,8 +217,8 @@ include 'inc/money.php';
             $title = 'HARIAN';
             $filter = 'WHERE DATE(date) = "'.date('Y-m-d').'"';
         }else if($periode == 2){
-            $title = 'MINGGUAN';
-            $filter = 'WHERE DATE(date) BETWEEN "'.date('Y-m-d', strtotime('-7 days')).'" AND "'.date('Y-m-d').'"';
+            $title = 'BULANAN';
+            $filter = 'WHERE DATE(date) BETWEEN "'.date('Y-m-d', strtotime('-30 days')).'" AND "'.date('Y-m-d').'"';
         }else if($periode == 3){
             $title = 'TAHUNAN';
             $filter = 'WHERE DATE(date) BETWEEN "'.date('Y-m-d', strtotime('-1 year')).'" AND "'.date('Y-m-d').'"';

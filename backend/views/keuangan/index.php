@@ -8,7 +8,7 @@
         <select name="periode" class="select2 m-b-1" style="width:100%">
             <option value=""> - pilih - </option>
             <option value="1"> Harian  </option>
-            <option value="2"> Mingguan</option>
+            <option value="2"> Bulanan</option>
             <option value="3"> Tahunan </option>
         </select>
         <input type="submit" value="Cetak" class="btn btn-success" />
