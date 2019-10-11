@@ -4,7 +4,7 @@
 use backend\models\Kuitansi;
 use backend\models\Siswa;
 
-// include 'inc/money.php';
+include 'inc/money.php';
 
    function PrintRegKuitansi($no_kuitansi){
     $head = '<style>
