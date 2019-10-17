@@ -4,9 +4,10 @@
 use backend\models\Kuitansi;
 use backend\models\Siswa;
 
-include 'inc/money.php';
+
 
    function PrintRegKuitansi($no_kuitansi){
+    include 'inc/money.php';
     $head = '<style>
                 img{
                     float: left;
@@ -94,6 +95,7 @@ include 'inc/money.php';
 
 
    function PrintKasir($no_kuitansi){
+    include 'inc/money.php';
     $head = '<style>
                 img{
                     float: left;
