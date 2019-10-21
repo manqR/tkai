@@ -69,7 +69,7 @@ class KasirController extends \yii\web\Controller
             $cart->diskon = $_POST['diskon'];	
             $cart->keterangan2 = $_POST['keterangan'];	
             $cart->flag= 2;	
-            $cart->save();	
+            $cart->save(false);	
             $model = new Kuitansi();	
             $model->no_kuitansi = $_POST['kode'];	
             $model->bank_name = $_POST['bank'];	
