@@ -51,31 +51,35 @@ use backend\models\Siswa;
 
         $mpdf->writeHTML($head.' 
                         
-                            <div style="text-align:center;line-height:80px;font-weight: bold; font-family: OCR A Std, monospace">
+                            <div style="text-align:center;line-height:40px;font-weight: bold; font-family: OCR A Std, monospace">
                                 <b>K     W     I     T     A     N     S     I</b>
                             </div>
+                            <div style="color:#7f8c8d;text-align:right;line-height:-35px">
+                                <b style="font-size:20px;font-family:Arial">LUNAS</b>
+                            </div>
+                            
             
-                            <table class="invoice" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; text-align: left; width: 100%; ">                                   
-                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
-                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">No Kwitansi </td>                                                                                    
-                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: <i>'.$model->no_registrasi.'</i></td>
+                            <table class="invoice" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; text-align: left; width: 100%; ">                                   
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top">No Kwitansi </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top">: <i>'.$model->no_registrasi.'</i></td>
                             </tr>
-                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
-                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top"> No. Induk Siswa </td>                                                                                    
-                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: '.$model->nis.'</td>
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top"> No. Induk Siswa </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top">: '.$model->nis.'</td>
                             </tr>                                                                               
-                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
-                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top"> Nama Siswa </td>                                                                                    
-                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: '.$model->nama_lengkap.'</td>
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top"> Nama Siswa </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top">: '.$model->nama_lengkap.'</td>
                             </tr>                                                                               
-                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
-                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top"> Pembayaran Registrasi Siswa Baru</td>                                                                                    
-                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: <b>Rp '.number_format($model->biaya_registrasi,0,".",".").'</b></td>
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top"> Pembayaran Registrasi Siswa Baru</td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top">: <b>Rp '.number_format($model->biaya_registrasi,0,".",".").'</b></td>
                             </tr> 
                             <br/>
                             <br/>
                            
-                            <tr style="tex-align:center;font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
+                            <tr style="tex-align:center;font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; margin: 0;">
                                 <td ></td>                                                                                   
                                 <td></td>                                                                                   
                                 <td> </td>                                                                                   
@@ -164,26 +168,31 @@ use backend\models\Siswa;
       
         $mpdf->writeHTML($head.' 
                         
-                            <div style="text-align:center;line-height:40px">
+                           
+                            <div style="display:inline;text-align:center">
                                 <b>K   W   I   T   A   N   S   I </b>
                             </div>
+                            <div style="color:#7f8c8d;text-align:right;line-height:-35px">
+                                <b style="font-size:20px;font-family:Arial">LUNAS</b>
+                            </div>
+                            
             
-                            <table class="invoice" style="font-weight: bold; font-family: Arial; box-sizing: border-box; font-size: 10px; text-align: left; width: 100%;">                                   
-                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
-                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">No Kwitansi </td>                                                                                    
-                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: <i>'.$model['no_kuitansi'].'</i></td>
+                            <table class="invoice" style="font-weight: bold; font-family: Arial; box-sizing: border-box; font-size: 12px; text-align: left; width: 100%;">                                   
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top">No Kwitansi </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top">: <i>'.$model['no_kuitansi'].'</i></td>
                             </tr>
-                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
-                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top"> No. Induk Siswa </td>                                                                                    
-                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: '.$model['nis'].'</td>
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top"> No. Induk Siswa </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top">: '.$model['nis'].'</td>
                             </tr>                                                                               
-                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
-                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top"> Nama Siswa </td>                                                                                    
-                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">: '.$model['nama_lengkap'].'</td>
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top"> Nama Siswa </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top">: '.$model['nama_lengkap'].'</td>
                             </tr>                                                                               
-                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
-                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top"> Pembayaran </td>                                                                                    
-                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; vertical-align: top; margin: 0;" valign="top">
+                            <tr style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; margin: 0;">
+                                <td style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top"> Pembayaran </td>                                                                                    
+                                <td colspan="3" style="font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; vertical-align: top; margin: 0;" valign="top">
                                     <table>
                                        '.$data.'
                                        
@@ -191,7 +200,7 @@ use backend\models\Siswa;
                                 </td>
                             </tr> 
                            
-                            <tr style="tex-align:center;font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 10px; margin: 0;">
+                            <tr style="tex-align:center;font-weight: bold; font-family: OCR A Std, monospace; box-sizing: border-box; font-size: 12px; margin: 0;">
                                 <td ></td>                                                                                   
                                 <td></td>                                                                                   
                                 <td> </td>                                                                                   
