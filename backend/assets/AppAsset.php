@@ -21,7 +21,8 @@ class AppAsset extends AssetBundle
         'styles/app.css',
         'styles/app.skins.css',        
         'vendors/datatables/media/css/dataTables.bootstrap4.css',
-        'vendors/sweetalert/dist/sweetalert.css',        
+        'vendors/sweetalert/dist/sweetalert.css',   
+        'vendors/amCharts/css/index.css',     
        
         
     ];
@@ -39,6 +40,10 @@ class AppAsset extends AssetBundle
         'scripts/constants.js',
         'scripts/forms/plugins.js',
 		'scripts/main.js',
+        'vendors/amCharts/js/core.js',
+        'vendors/amCharts/js/charts.js',
+        'vendors/amCharts/js/animated.js',		
+		
 		'inc/apiTable.js',
     ];
     public $depends = [

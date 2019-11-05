@@ -3,6 +3,78 @@
 /* @var $this yii\web\View */
 
 $this->title = 'TKAI - Jakarta';
+
+$this->registerJs('
+
+am4core.useTheme(am4themes_animated);
+
+var chart = am4core.create("spp", am4charts.PieChart3D);
+
+
+chart.legend = new am4charts.Legend();
+
+chart.data = [{
+    "grade": "KBB",
+    "nominal": 100000
+}, {
+    "grade": "SD",
+    "nominal": 200000
+}, {
+    "grade": "TKA",
+    "nominal": 500000
+}];
+
+chart.innerRadius = am4core.percent(40);
+
+var series = chart.series.push(new am4charts.PieSeries3D());
+series.dataFields.value = "nominal";
+series.dataFields.category = "grade";
+
+
+
+var chart2 = am4core.create("tagihan", am4charts.PieChart3D);
+chart2.legend = new am4charts.Legend();
+
+chart2.data = [{
+    "grade": "KBB",
+    "nominal": 100000
+}, {
+    "grade": "SD",
+    "nominal": 200000
+}, {
+    "grade": "TKA",
+    "nominal": 500000
+}];
+
+chart2.innerRadius = am4core.percent(40);
+
+var series2 = chart2.series.push(new am4charts.PieSeries3D());
+series2.dataFields.value = "nominal";
+series2.dataFields.category = "grade";
+
+
+
+var chart3 = am4core.create("lain", am4charts.PieChart3D);
+chart3.legend = new am4charts.Legend();
+
+chart3.data = [{
+    "grade": "KBB",
+    "nominal": 100000
+}, {
+    "grade": "SD",
+    "nominal": 200000
+}, {
+    "grade": "TKA",
+    "nominal": 500000
+}];
+
+chart3.innerRadius = am4core.percent(40);
+
+var series3 = chart3.series.push(new am4charts.PieSeries3D());
+series3.dataFields.value = "nominal";
+series3.dataFields.category = "grade";
+');
+
 ?>
 <div class="site-index">
     <div class="row">     
@@ -35,7 +107,18 @@ $this->title = 'TKAI - Jakarta';
         
         <?php endforeach; ?>
 
-       
+        <div class="col-md-4 card card-block">
+            <label>Tagihan SPP</label>
+            <div id="spp"></div>
+        </div>
+        <div class="col-md-4 card card-block">
+            <label>Tagihan Tetap</label>
+            <div id="tagihan"></div>
+        </div>
+        <div class="col-md-4 card card-block">
+            <label>Tagihan Lainnya</label>
+            <div id="lain"></div>
+        </div>
         
         
     </div>
