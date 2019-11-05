@@ -20,6 +20,14 @@ $sql2 = $connection->createCommand("SELECT c.keterangan,SUM(a.nominal) nominal
 $tagihan = $sql2->queryAll();  
 $data_tagihan = json_encode($tagihan);
 
+$sql3 = $connection->createCommand("SELECT c.keterangan,SUM(a.nominal) nominal 
+                                FROM tagihan_siswa_lain a 
+                                JOIN siswa b ON a.kode_siswa = b.kode_siswa 
+                                JOIN kategori c ON b.idkategori = c.idkategori
+                                GROUP BY c.keterangan");
+$lain = $sql3->queryAll();  
+$data_lain = json_encode($lain);
+
 $this->title = 'TKAI - Jakarta';
 
 $this->registerJs('
@@ -57,22 +65,13 @@ series2.dataFields.category = "keterangan";
 var chart3 = am4core.create("lain", am4charts.PieChart3D);
 chart3.legend = new am4charts.Legend();
 
-chart3.data = [{
-    "grade": "KBB",
-    "nominal": 100000
-}, {
-    "grade": "SD",
-    "nominal": 200000
-}, {
-    "grade": "TKA",
-    "nominal": 500000
-}];
+chart3.data = '.$data_lain.';
 
 chart3.innerRadius = am4core.percent(40);
 
 var series3 = chart3.series.push(new am4charts.PieSeries3D());
 series3.dataFields.value = "nominal";
-series3.dataFields.category = "grade";
+series3.dataFields.category = "keterangan";
 ');
 
 ?>
