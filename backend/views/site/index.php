@@ -2,6 +2,15 @@
 
 /* @var $this yii\web\View */
 
+$connection = \Yii::$app->db;
+$sql = $connection->createCommand("SELECT d.keterangan, SUM(a.nominal) nominal FROM tagihan_siswa_spp a 
+                                    JOIN bulan_spp b ON a.bulan = b.bulan
+                                    JOIN siswa c ON a.kode_siswa = c.kode_siswa
+                                    JOIN kategori d ON c.idkategori = d.idkategori
+                                    WHERE b.number = MONTH(now())");
+$spp = $sql->queryAll();  
+$data_spp = json_encode($spp);
+
 $this->title = 'TKAI - Jakarta';
 
 $this->registerJs('
@@ -13,22 +22,13 @@ var chart = am4core.create("spp", am4charts.PieChart3D);
 
 chart.legend = new am4charts.Legend();
 
-chart.data = [{
-    "grade": "KBB",
-    "nominal": 100000
-}, {
-    "grade": "SD",
-    "nominal": 200000
-}, {
-    "grade": "TKA",
-    "nominal": 500000
-}];
+chart.data = '.$data_spp.';
 
 chart.innerRadius = am4core.percent(40);
 
 var series = chart.series.push(new am4charts.PieSeries3D());
 series.dataFields.value = "nominal";
-series.dataFields.category = "grade";
+series.dataFields.category = "keterangan";
 
 
 
