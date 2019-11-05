@@ -7,7 +7,8 @@ $sql = $connection->createCommand("SELECT d.keterangan, SUM(a.nominal) nominal F
                                     JOIN bulan_spp b ON a.bulan = b.bulan
                                     JOIN siswa c ON a.kode_siswa = c.kode_siswa
                                     JOIN kategori d ON c.idkategori = d.idkategori
-                                    WHERE b.number = MONTH(now())");
+                                    WHERE b.number = MONTH(now())
+                                    GROUP BY d.keterangan");
 $spp = $sql->queryAll();  
 $data_spp = json_encode($spp);
 
