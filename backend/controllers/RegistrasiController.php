@@ -74,6 +74,7 @@ class RegistrasiController extends \yii\web\Controller
 
         if ($model->load(Yii::$app->request->post())){
             
+            $model->no_registrasi = $kode;
             $model->status = 0;
             $model->nis = $nis;
             $model->kode_siswa = $model->idcabang.'-'.$model->idkategori.'-'.$nis;

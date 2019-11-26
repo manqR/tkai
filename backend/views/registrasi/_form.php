@@ -27,8 +27,7 @@ $(document).ready(function() {
     <div class="row">
         <div class="col-md-6">
             <div class="card card-block">
-                <h5> Informasi Umum </h5>  
-                <?= $form->field($model, 'no_registrasi')->textInput(['value'=>($model->isNewRecord) ? $kode : $model->no_registrasi, 'readonly'=>true]) ?>
+                <h5> Informasi Umum </h5>                  
                 <?= $form->field($model, 'nisn')->textInput()->label('NISN') ?>
                 <?= $form->field($model, 'idcabang', ['options' => ['tag' => 'false']])-> dropDownList(
                     ArrayHelper::map(Cabang::find()->all(),'idcabang','keterangan'),

@@ -69,7 +69,7 @@ class ApiController extends Controller
             $output = array();
           
             
-         
+          
             foreach($data as $key => $models):              
             
                 $output[$key] = array($models['no_registrasi']
@@ -89,11 +89,12 @@ class ApiController extends Controller
             endforeach;
           
             
-          
+           
             $data = json_encode($output);
             $data = [
                 'data'=>$output
             ];
+            
             Yii::$app->response->format = Response::FORMAT_JSON;
             return $data;
         }else{           
