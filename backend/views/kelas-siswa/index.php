@@ -15,7 +15,8 @@ $this->registerJs("
     function myFunction() {
         var id = document.getElementById(\"mySelect\").value;
         var grade = document.getElementById(\"GradeSelect\").value;
-        var dataString = 'id=' + id + '&grade='+ grade;
+        var tahunAjaran = document.getElementById(\"tahunAjaran\").value;
+        var dataString = 'id=' + id + '&grade='+ grade + '&thn=' + tahunAjaran;
         $.ajax({
             type: 'GET',
             url: 'api/kelas-siswa',
@@ -143,6 +144,21 @@ $this->registerCss(".addSiswa{cursor: pointer;} .tambah{cursor: pointer;} .kuran
 			?>
 		</select>
        <!-- END BRANCH -->
+
+       <!-- TAHUN AJARAN -->
+       <select data-placeholder="Tahun Ajaran .." class="select2 m-b-1" onchange="myFunction()" id="tahunAjaran" style="width: 25%;float:right">
+			
+			<?php
+               
+                echo '<option value="0" selected="selected">-- All Periode--</option>';
+				foreach($ajaran as $ajarans):							
+					 echo "<option value=\"$ajarans->idtahun_ajaran\">$ajarans->tahun_ajaran</option>";
+                endforeach;
+                
+               
+			?>
+		</select>
+        <!-- END AJARAN -->
     </p>
     <br/>
     <br/>

@@ -42,17 +42,18 @@ class KelasSiswaController extends \yii\web\Controller
     }
 
     
-    public function actionIndex()
-    {
-
-        
+    public function actionIndex(){
 
         include './inc/table.php';
         include './inc/models.php';     
 
         $ThAjaran = TahunAjaran::find()
             ->Where(['flag'=>1])
+            ->OrderBy(['idtahun_ajaran'=>SORT_DESC])
             ->One();
+        $ajaran = TahunAjaran::find()
+                ->all();
+
         $grade = Kategori::find()
             ->All();
         if(Yii::$app->user->identity->cabang == 0){
@@ -81,6 +82,7 @@ class KelasSiswaController extends \yii\web\Controller
             'cabang' =>$Cabang,
             'count'=>$count,
             'grade'=>$grade,
+            'ajaran' => $ajaran,
             'arrFields' => AttributeKelasSiswa(), 
             'arrFieldsAksi'=>AttributeKelasSiswaWithAksi()
         ]);

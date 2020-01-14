@@ -157,10 +157,10 @@ class ApiController extends Controller
         }
     }
 
-    public function actionKelasSiswa($id, $grade){
+    public function actionKelasSiswa($id, $grade, $thn){
 
         $ThAjaran = TahunAjaran::find()
-                    ->Where(['flag'=>1])
+                    ->Where(['idtahun_ajaran'=>$thn])
                     ->One();
         if($id == 0 && $grade == 0){
             $Cabang = Cabang::find()
