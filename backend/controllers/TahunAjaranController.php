@@ -101,7 +101,7 @@ class TahunAjaranController extends Controller
         if ($model->load(Yii::$app->request->post())){
             
             $model->save();
-            return $this->redirect(['view', 'id' => $model->idtahun_ajaran]);
+            return $this->redirect('tahun-ajaran');
         }
 
         return $this->render('update', [
