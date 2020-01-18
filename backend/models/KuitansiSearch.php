@@ -42,7 +42,7 @@ class KuitansiSearch extends Kuitansi
      */
     public function search($params)
     {
-        $query = Kuitansi::find();
+        $query = Kuitansi::find();        
 
         // add conditions that should always apply here
 

@@ -137,7 +137,7 @@ use backend\models\Siswa;
                                             WHERE b.no_kuitansi = '".$no_kuitansi."'");
         $model = $sql->queryOne();
 
-        $kuitansi = Kuitansi::findAll($no_kuitansi);
+        $kuitansi = Kuitansi::findAll(['no_kuitansi'=>$no_kuitansi,'flag'=>2]);
        
         $data = '';
         $sum = 0;
@@ -237,7 +237,7 @@ use backend\models\Siswa;
 
         
         $connection = \Yii::$app->db;
-        $sql = $connection->createCommand("SELECT * FROM kuitansi ".$filter);
+        $sql = $connection->createCommand("SELECT * FROM kuitansi ".$filter." AND flag = 2");
         $model = $sql->queryAll();
 
     

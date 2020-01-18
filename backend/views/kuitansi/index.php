@@ -58,7 +58,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'no_kuitansi',
                 'format' => 'raw',
                 'value'=> function ($model) {                    
-                    return Html::a('<i class="material-icons">print</i>',['//kasir/print','no_kuitansi'=>$model->no_kuitansi],['target'=>'_blank']);
+                    return $model->flag != 3 ?  Html::a('<i class="material-icons">print</i>',['//kasir/print','no_kuitansi'=>$model->no_kuitansi],['target'=>'_blank']). '' .
+                           Html::a('<i class="material-icons text-danger">cancel_presentation</i>',['void','no_kuitansi'=>$model->no_kuitansi,'x'=>$model->urutan],['title'=>'Void Transaction',
+                           'data' => [
+                            'confirm' => 'Are you sure you want to delete this item?',
+                            'method' => 'post',
+                        ]]) : '<span class="tag tag-danger">Void</span>';
                 },
             ],        
             

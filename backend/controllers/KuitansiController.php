@@ -4,6 +4,10 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Kuitansi;
+use backend\models\Cart;
+use backend\models\TagihanSiswaSpp;
+use backend\models\TagihanSiswa;
+use backend\models\TagihanSiswaLain;
 use backend\models\KuitansiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -110,6 +114,42 @@ class KuitansiController extends Controller
         $this->findModel($no_kuitansi, $urutan)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionVoid($no_kuitansi, $x){
+        if($_POST){
+            $model = Kuitansi::findOne(['no_kuitansi'=>$no_kuitansi,'urutan'=>$x]);
+            $model2 = Cart::findOne(['urutan'=>$model->idcart]);
+       
+            $model->flag = 3;
+            $model->save(false);
+            
+            $model2->flag = 3;
+            $model2->save(false);
+            
+            if($model->keterangan == 'spp'){
+                $tagihan = TagihanSiswaSpp::findOne(['idtagihan'=>$model->idtagihan,'bulan'=>$model->remarks,'kode_siswa'=>$model->kode_siswa]);
+                $tagihan->nominal = $tagihan->nominal + $model->nominal;
+                $tagihan->flag = 1;
+                $tagihan->user_update = Yii::$app->user->identity->username;
+                $tagihan->date_update = date('Y-m-d H:i:s');
+                $tagihan->save(false);
+
+            }else if($model->keterangan == 'tagihan'){
+                $tagihan = TagihanSiswa::findOne(['idtagihan'=>$model->idtagihan,'kode_siswa'=>$model->kode_siswa]);
+                $name = $model2->remarks;
+                $tagihan[$name] =  $tagihan[$name] + $model->nominal;
+                $tagihan->save(false);
+                // var_dump($name);
+                // die;
+            }else{
+                $tagihan = TagihanSiswaLain::findOne(['idtagihan'=>$model->idtagihan,'kode_siswa'=>$model->kode_siswa]);
+                $tagihan->nominal = $tagihan->nominal + $model->nominal;               
+                $tagihan->save(false);
+            }
+            return $this->redirect(['index']);
+            // var_dump($model->keterangan);
+        }
     }
 
     /**
