@@ -277,7 +277,9 @@ class ApiController extends Controller
         foreach($model as $i => $models):
 
             $kelas = explode("-",$models['key_']);
-            if($models['key_']){
+            $rest2 = substr($models['key_'], -8);   
+         
+            if($models['key_'] && ($rest == $rest2)){
                 $aksi = '<span class="tag tag-success">kelas '.$kelas[0].' </span>';
             }else{
                 $aksi = '<i class="material-icons tambah" aria-hidden="true" data-id='.$models['kode_siswa'].';'.$key_.'>add_box</i>';
@@ -315,8 +317,10 @@ class ApiController extends Controller
             ->One();
 
         
-        $detail = explode("-",$return[0]);
+       
         $detail_kelas = $return[1];
+        $rest = substr($return[1], -8);   
+        $detail = explode("-",$rest);
 
         \Yii::$app->db->createCommand("INSERT INTO tagihan_siswa (
             kode_siswa
@@ -350,14 +354,13 @@ class ApiController extends Controller
                 ,'Admin'
         FROM tagihan WHERE idkategori = '".$detail[1]."' AND idcabang = '".$detail[0]."' AND `tahun_ajaran` = '".$find->tahun_ajaran."'")->execute();
 
-        
         $view = Tagihan::find()
                 ->where(['idkategori' => $detail[1]])
                 ->Andwhere(['idcabang' => $detail[0]])
                 ->Andwhere(['tahun_ajaran'=>$find->tahun_ajaran])
                 ->One();
         
-	
+
 
         // INSERT TAGIHAN SPP
        
