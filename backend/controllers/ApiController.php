@@ -214,6 +214,7 @@ class ApiController extends Controller
                                     <h5>'.$models->kode.' - '.$grd.'</h5>
                                     <i class="material-icons addSiswa" aria-hidden="true" data-toggle="modal" data-id='.$models->key_.' data-target=".add-siswa">add_circle_outline</i>
                                     <p class="plan-title text-primary">'.$models->wali_kelas.'<br/>'.$brnch.'</p>
+                                    <a class="material-icons" href="kelassiswa-export-'.$models->key_.'">import_export</a>
                                     <div class="plan-price text-primary">
                                         <span>'.$count['jml'].'</span>
                                     </div>
