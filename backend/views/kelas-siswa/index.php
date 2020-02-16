@@ -40,11 +40,33 @@ $this->registerJs("
         tableShow('.datatable','./api/siswa-list-add?key_='+key_);
     });
 
+    $(document).on(\"click\", \".pindah\", function () {		
+        var data = $(this).data('id');
+        data    = data.split(';')        
+        
+        var grade   = data[1].substr(data[1].length - 8);
+        grade = grade.split('-');
+        $('#siswaID').val(data[0])
+        $('#fromClass').val(data[1])                
+        console.log(grade)
+        $.ajax({
+            type: 'GET',
+            url: 'api/listkelas?kode='+grade[1]+'&cbg='+grade[0],
+            cache: false,
+            success: function(html) {											
+                $('#toClass').html(html);                                                  
+            }
+        });
+
+      
+        
+    });
+
     $(document).on(\"click\", \".tambah\", function () {		
         var datas = $(this).data('id');
         swal({
             title: 'Anda Yakin?',
-            text: 'Data siswa akan ditambahkan di kelasi ini',
+            text: 'Data siswa akan ditambahkan di kelas ini',
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#DD6B55',
@@ -71,6 +93,42 @@ $this->registerJs("
                                                                   
     })
     
+    $(document).on(\"click\", \"#submit\", function () {		
+        var from = $('#fromClass').val()
+        var to = $('#toClass').val()
+        var siswaID = $('#siswaID').val()        
+        
+        swal({
+            title: 'Anda Yakin?',
+            text: 'siswa akan dipindahkan dari kelas ini',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#DD6B55',
+            confirmButtonText: 'Yes, save it!',
+            closeOnConfirm: false
+          }, function() {							
+            //   console.log(datas);
+              $.post('api/pindah-kelas',{
+                from: from,
+                to: to,
+                siswaID: siswaID
+              },
+              function(data, status){	
+                //   if(data.err == 'sukses'){	
+                //         var key_ = datas.split(';');				
+                //         tableShow('.datatable','./api/siswa-list-add?key_='+key_[1]);   
+                //         myFunction();		                    
+                //       swal('Saving!', 'Data Siswa Berhasil ditambahkan', 'success');
+                //   }else{		
+                //       console.log(data)								
+                //       swal('Saving!', 'Data Tidak Berhasil ditambahkan', 'error');
+                //   }
+                                                          
+              });
+          });
+                                                                  
+    })
+
     $(document).on(\"click\", \".kurang\", function () {		
         var datas = $(this).data('id');
         swal({
@@ -99,7 +157,7 @@ $this->registerJs("
               });
           });
                                                                   
-    })
+    })   
 
 ");
 
@@ -252,6 +310,35 @@ $this->registerCss(".addSiswa{cursor: pointer;} .tambah{cursor: pointer;} .kuran
 				
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>						
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- ------------ /MODAL ------------------>
+
+      <!-------------- MODAL ------------------>
+	<div class="modal fade pindah-kelas" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="max-width: 400px" >
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">Pindah Siswa</h4>
+				</div>
+				<div class="modal-body">
+                    <label>Dari Kelas</label>
+                    <input type="hidden" id="siswaID" />
+                    <input type="text" class="form-control" name="fromClass" id="fromClass" readonly="true" />
+                    <label>Ke Kelas</label>
+                    <select name="toClass" style="width:100%" class="select2 m-b-1" id="toClass">
+                        <option value="">- Pilih -</option>
+                    </select>                    
+				</div>
+				
+				<div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="submit">Submit</button>						
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>						                    
 				</div>
 			</div>
 		</div>

@@ -22,6 +22,7 @@ use backend\models\Menu;
 use backend\models\RolePrivillage;
 use backend\models\Role;
 use backend\models\MenuDetail;
+use backend\models\KodeSiswa;
 
 
 include './inc/money.php';
@@ -237,8 +238,8 @@ class ApiController extends Controller
 			
         
         foreach($model as $key => $models):
-            $aksi = '<i class="material-icons kurang" title="Hapus" aria-hidden="true" data-id='.$models['kode_siswa'].';'.$key_.'>delete</i>';
-
+            $aksi = '<i class="material-icons kurang" title="Hapus" aria-hidden="true" data-id='.$models['kode_siswa'].';'.$key_.'>delete</i>
+                     <i class="material-icons pindah" title="Pindah Kelas" data-toggle="modal" aria-hidden="true" data-target=".pindah-kelas" data-id='.$models['kode_siswa'].';'.$key_.'>compare_arrows</i>';                     
                             $output[$key] = array($models['nis']
                             ,$models['nama_lengkap']
                             ,$models['cabang']
@@ -825,7 +826,19 @@ class ApiController extends Controller
         return $data;
         
     }
+    public function actionListkelas($kode,$cbg){
 
+        $model = Kelas::find()
+            ->Where(['idkategori'=>$kode])                            
+            ->AndWhere(['idcabang'=>$cbg])                            
+            ->All();
+        $options = '';
+        foreach($model as $i => $models):
+            $options .= '<option value='.$models->key_.'>'.$models->kode.'<option>';
+        endforeach;
+        return $options;
+
+    }
     public function actionListMenu(){
         
         $output = array();         
@@ -1008,7 +1021,36 @@ class ApiController extends Controller
             return $data;
         }
     }
+    public function actionPindahKelas(){
+        
+        $model = Siswa::findOne(['kode_siswa'=>$_POST['siswaID']]);        
+        $newKelas = Kelas::findOne(['key_'=>$_POST['to']]);
+        $oldKelas = Kelas::findOne(['key_'=>$_POST['from']]);
+        $detail = DetilKelas::findOne(['key_'=>$_POST['from']]);
 
+        // $newKelas = substr($newKelas->kode_kelas, -7);
+
+        $kodeSiswa = new KodeSiswa();
+        $kodeSiswa->kode_siswa = $model->kode_siswa;
+        $kodeSiswa->kode_kelas = $_POST['from'];
+        $kodeSiswa->tahun_ajaran = $oldKelas->tahun_ajaran;
+        $kodeSiswa->date = date('Y-m-d H:i:s');
+        $kodeSiswa->user = Yii::$app->user->identity->username;
+        // if($kodeSiswa->save()){
+        $model->kode_siswa = $newKelas->idcabang.'-'.$newKelas->idkategori.'-'.$model->nis;
+        $model->idkategori = $newKelas->idkategori;
+        $model->idcabang =   $newKelas->idcabang;
+            // $model->save();
+        // }
+        
+        if($kodeSiswa->save() && $model->save()){
+            $detail->key_ = $_POST['to'];
+            $detail->kode_siswa = $model->kode_siswa;
+            $detail->save();
+        }
+
+        var_dump($detail);
+    }
 
  
 }
