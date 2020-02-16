@@ -161,7 +161,7 @@ $this->registerJs("
 
 ");
 
-$this->registerCss(".addSiswa{cursor: pointer;} .tambah{cursor: pointer;} .kurang{cursor: pointer;}");
+$this->registerCss(".addSiswa{cursor: pointer;} .tambah{cursor: pointer;} .kurang,.pindah{cursor: pointer;}");
 
 ?>
 <div class="kelas-index">
