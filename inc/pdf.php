@@ -137,13 +137,17 @@ use backend\models\Siswa;
                                             WHERE b.no_kuitansi = '".$no_kuitansi."'");
         $model = $sql->queryOne();
 
-        $kuitansi = Kuitansi::findAll(['no_kuitansi'=>$no_kuitansi,'flag'=>2]);
+        $kuitansi = Kuitansi::find()
+                ->where(['no_kuitansi'=>$no_kuitansi,'flag'=>2])
+                ->orderBy(['idcart'=>SORT_ASC])
+                ->all();
        
         $data = '';
         $sum = 0;
         foreach($kuitansi as $kuitansis):
-        
-        $keterangan = ($kuitansis->keterangan == 'spp' ? 'SPP '.$kuitansis->remarks : $kuitansis->remarks);
+                    
+
+        $keterangan = ($kuitansis->keterangan == 'spp' ? 'SPP '.$kuitansis->remarks : $kuitansis->remarks.' '.$kuitansis->keterangan2 );
    
             $data .= '<tr>';
                 $data .= '<td>'.$keterangan.'</td>';
