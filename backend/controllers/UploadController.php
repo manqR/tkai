@@ -15,6 +15,27 @@ class UploadController extends \yii\web\Controller
     //     return parent::beforeAction($action);
     // }
 
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+               
+            ],
+            'access' => [
+                'class' => \yii\filters\AccessControl::className(),
+                'rules' => [
+                  // allow authenticated users
+                      [
+                        'allow' => true,
+                        'roles' => ['@'],
+                      ],
+                  // everything else is denied
+                ],
+            ],
+        ];
+    }
+    
     function getnominal($kode){
 
         $tagihan = TagihanLain::findOne(['idtagihan'=>$kode]);
